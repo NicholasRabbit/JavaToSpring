@@ -1,4 +1,0 @@
-（1）javac编译完程序之后，再把info.properties文件重新复制到相应目录，可解决
-（2）原因可能是javac编译完覆盖原有文件夹，造成系统无法识别原来的info.properties文件
-  (3)  清除下浏览器缓存
-（4）启动Tomcat之前先打开mysql

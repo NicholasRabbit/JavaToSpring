@@ -1,9 +1,0 @@
-1，注意，使用IE浏览器时访问本地服务器要用127.0.0.1，用localhost有时会访问失败
-2，注意超链接发送的是get请求，对应Servlet程序中调用的doGet（..）方法
-3，重点，浏览器无法收到后台服务器Servlet程序发送的cookie对象原因总结
-     -纯手工用EditPlus配置的话与IDE不用，代码一样可能还是浏览器接收不到cookie，
-     -只写response.addCookie(cookie)方法不管用，还需写其它方法进行设置，详见个人代码
-     -同样的代码用火狐可以成功获取服务器cookie，而且服务器也可以再次获得浏览器的cookie
-       用IE却不行
-4，cookie的绑定路径，参照代码内笔记
-     

@@ -1,4 +1,0 @@
-<url-pattern>/test/a</url-pattern>     <!-- 精确匹配-->
-<url-pattern>*.do</url-pattern>         <!--后缀匹配-->
-<url-pattern>/*</url-pattern>	            <!--全部匹配-->
-<url-pattern>/test/*</url-pattern>		<!--模糊匹配-->

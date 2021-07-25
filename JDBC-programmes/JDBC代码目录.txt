@@ -1,2 +1,0 @@
-JDBCTest006   PreparedStatement
-JDBCTest008,009   JDBC演示事务机制
