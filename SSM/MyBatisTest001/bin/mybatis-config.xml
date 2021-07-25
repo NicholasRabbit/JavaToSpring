@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--  -->
+ 
+ <!--MyBatis项目搭建步骤，共四步
+  第一步，导入相关jar包，注意使用log4j.jar需要用到log4j.xml
+  第二步，配置MyBatis的全局配置文件，名称可自定义，一般后缀都带"-config",但建议一般都写作mybatis-config.xml，便于识别 -->
+<configuration>
+	 
+	 <environments default="development">
+		 <environment id="development">
+			 <transactionManager type="JDBC"/>   <!-- type=JDBC表示使用最原始JDBC事务管理器 -->
+			 <dataSource type="POOLED">
+				 <property name="driver" value="com.mysql.jdbc.Driver"/>
+				 <property name="url" value="jdbc:mysql://localhost:3306/ssm"/>
+				 <property name="username" value="root"/>
+				 <property name="password" value="nicholas1200"/>
+			 </dataSource>
+		 </environment>
+	 </environments>
+	
+	 <mappers>
+	 	<mapper resource="UserMapper.xml"/>   <!-- 这里的映射文件和mybatis-config.xml在同一个目录下，因此前面啥也不写 -->
+	 </mappers>	 							  <!-- 如果在别的文件夹下，路径用斜线隔开，不是全类名带点“.”的写法。例：org/mybatis/example/BlogMapper.xml -->
+	 						      
+</configuration>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+						http://www.springframework.org/schema/beans/spring-beans.xsd  
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" >
+						
+<!-- 使用@Transactional注解开启事务，xml文件要进行相关配置 -->
+<context:component-scan base-package="com.springframe.transaction.trans02"></context:component-scan>    <!-- 使用@Component注解自动创建要加上此行标签，否则Spring框架不知道扫描 -->
+
+<bean  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="location" value="info.properties"></property>
+</bean>
+
+<bean id="data" class="com.alibaba.druid.pool.DruidDataSource">
+	<property name="driverClassName"  value="${jdbc.driver}"></property>
+	<property name="url" value="${jdbc.url}"></property>
+	<property name="username" value="${jdbc.user}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+</bean>
+
+<!-- 把上面的数据导入到JdbcTemplate.java里面 -->
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+	<property name="dataSource" ref="data"></property>    <!-- 这里用ref属性，不要用value,否则报错 -->
+</bean>
+
+<!-- 配置事务管理器 -->
+<bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="data"></property>   <!-- 把上面DruidDataSource的赋值于属性dataSource,完成数据源的传递 -->
+</bean>
+
+
+<!--(1)开启事务注解机制,对事物相关的注解进行扫描，
+	(2)如果上面的DataSourceTransactionManager的id写为“dataSourceTransactionManager”，下面的：transaction-manager="dataSourceTransactionManager"可不写
+	因为dataSourceTransactionManager时默认名，赋值时会自动找到，但是事务管理器那里的id改为别的名字则要写全属性赋值
+	(3)使用<tx>标签要引入相关命名空间语句    -->
+<tx:annotation-driven transaction-manager="dataSourceTransactionManager"></tx:annotation-driven>
+
+
+</beans>				

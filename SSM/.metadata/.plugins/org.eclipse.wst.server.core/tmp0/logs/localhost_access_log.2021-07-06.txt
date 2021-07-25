@@ -1,0 +1,9 @@
+127.0.0.1 - - [06/Jul/2021:22:25:11 +0800] "GET / HTTP/1.1" 404 697
+127.0.0.1 - - [06/Jul/2021:22:25:59 +0800] "GET / HTTP/1.1" 404 697
+127.0.0.1 - - [06/Jul/2021:22:26:10 +0800] "GET /SpringMVCTest001 HTTP/1.1" 302 -
+127.0.0.1 - - [06/Jul/2021:22:26:11 +0800] "GET /SpringMVCTest001/ HTTP/1.1" 200 302
+127.0.0.1 - - [06/Jul/2021:22:26:11 +0800] "GET /favicon.ico HTTP/1.1" 404 708
+127.0.0.1 - - [06/Jul/2021:22:26:15 +0800] "GET /SpringMVCTest001/test HTTP/1.1" 200 170
+127.0.0.1 - - [06/Jul/2021:22:26:15 +0800] "GET /favicon.ico HTTP/1.1" 404 708
+127.0.0.1 - - [06/Jul/2021:22:26:18 +0800] "GET /SpringMVCTest001/test02?username=Tom&password=456 HTTP/1.1" 200 170
+127.0.0.1 - - [06/Jul/2021:22:26:20 +0800] "GET /SpringMVCTest001/test03?username=Rose&password=333 HTTP/1.1" 200 170

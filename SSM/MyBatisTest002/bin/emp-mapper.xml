@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- 增删改查的标签名不一样，要注意 -->
+ <mapper namespace="com.mybatis.crud.mapper.EmpMapper">
+ 	
+ 	<!-- 查询单个员工信息：Emp getEmpById(Integer id); -->
+ 	<select id="getEmpById"  resultType="com.mybatis.crud.bean.Emp">
+ 		select * from emp where id=#{id}     <!-- 这里sql语句不用分号做结尾 -->
+ 	</select>
+ 	
+ 	<!-- 查询全部员工信息：public abstract List<Emp> getAllEmps(); 
+ 	虽然方法的返回值是List<Emp>,但是这里的resultType的值也要写Emp,因为只写List的话，无法识别是什么类型的，泛型是Emp,所以写Emp就行了，MyBatis会自动识别	-->
+ 	<select id="getAllEmps"  resultType="com.mybatis.crud.bean.Emp">
+ 		select id,ename,gender,age,did from emp;
+ 	</select>
+ 	
+ 	<!-- 增加员工信息：void addEmp(Emp emp);  注意，EmpMapper.java中的该方法返回值也可以是Integer(返回增加条数)，或boolean(建议写成其包装类),返回成功增加与否
+ 	返回值为空，不用写resultType -->
+ 	<insert id="addEmp" >							<!-- 如果设置了自动递增，这里id可写为null -->
+ 		insert into emp (id,ename,gender,age,did) values (null,#{ename},#{gender},#{age},#{did})
+ 	</insert>
+ 	
+ 	<!-- 删除员工信息：Integer deleteEmp(Integer id);  返回值是Integer,则返回删除结果的条数，不成功则返回0
+ 		 这里不用写resultType属性，即使方法有返回值也不写，否则报错-->
+ 	<delete id="deleteEmp"  > 
+ 		delete from emp where id=#{id}
+ 	</delete>
+ 	
+ 	<!-- 更新员工信息：Boolean updateEmp(Emp emp); -->
+ 	<update id="updateEmp">
+ 		update emp set ename=#{ename},gender=#{gender},age=#{age},did=#{did} where id=#{id}
+ 	</update>
+ 	
+ 	
+ 	
+ 	
+ </mapper>

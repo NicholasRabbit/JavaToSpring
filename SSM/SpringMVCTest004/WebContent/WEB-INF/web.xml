@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
+<welcome-file-list>
+	<welcome-file>jsp/homepage.jsp</welcome-file>   <!-- 路径前不加斜线"/"，即使有文件夹也不加，例“html/homepage.html” -->
+</welcome-file-list>
+
+<servlet>
+	<servlet-name>param</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<!-- 这里可用 <init-param>标签自定义要使用 的Spring框架的的xml文件名称，不必使用param+"-servlet"的默认形式 
+		(1)contextConfigLocation是指定的属性名不可自定义乱写，是DispatcherServlet.java里的属性(实际是其父类FrameworkServlet中的一个私有属性，后台是用了多态语法进行了赋值)
+		(2)注意，这个标签要写到<servlet>标签里面，否则无效
+		(3)classpath指的是类加载路径下的conf目录，实际就是项目文件夹根路径下的conf目录，跟Spring框架的conf目录位置一样
+		        由此可知JavaResources目录和WebContent一样，也相当于项目根目录。
+	-->
+	<init-param>
+		<param-name>contextConfigLocation</param-name>         
+		<param-value>classpath:myspring.xml</param-value>   <!-- 通过这样设置，把SpirngMVC框架的xml文件放置的位置和Spring框架中放置 xml文件的位置一样了，都在conf里 -->   
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>param</servlet-name>
+	<url-pattern>/</url-pattern>   
+</servlet-mapping>
+
+<!-- 表单输入中文乱码解决方法，乱码原因跟Servlet中一样，浏览器传数据默认是ISO-8859-1,不支持中文，且不可更改，因此需要解码 
+	(1)可调用Spring框架自带的类，CharacterEncodingFilter,进行解码
+	(2)<param-name>的值是这个类中的属性，名字不可乱写
+-->
+<filter>
+	<filter-name>encoding_filter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+</filter>
+<filter-mapping>
+	<filter-name>encoding_filter</filter-name>
+	<url-pattern>/*</url-pattern>     <!-- "/*表示过滤所有请求" -->
+</filter-mapping>
+
+
+</web-app>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+<!-- 限定扫描范围标签<context:include/exclude filter>范例
+(1)include: 表示包含，即设定好要扫描的类或注解，使用时要把改为use-default-filters=“false”，因为spring框架默认是“true”扫描指定文件夹下所有的类
+(2)exclude： 排除，扫描时排除指定的类或注解，注意把设置use-default-filters="true"，在所有的扫描中排除某几个类，方符合逻辑，否则报错
+(3)<context:component-scan>标签中可有多个include或exclude，但两者不可共存
+ -->
+<context:component-scan base-package="com.javaframe.annotation"  use-default-filters="false">  <!-- 如果这里不写use-default-filters，则默认值为true -->
+	 <!-- 当type="annotation"时表示通过注解类型来限定范围 ，“assignable”表示通过具体的某个类来确定扫描范围-->
+	<context:include-filter type="annotation"  expression="org.springframework.stereotype.Controller"></context:include-filter> 
+	<context:include-filter type="annotation"  expression="org.springframework.stereotype.Repository"></context:include-filter>
+	<context:include-filter type="assignable"  expression="com.javaframe.annotation.controller.ControllerLayer"></context:include-filter>
+	<!-- <context:exclude-filter type="annotation"  expression="org.springframework.stereotype.Controller"></context:exclude-filter> -->   <!-- 这里把@Controller注解排除，使用exclude时，要把use-default-filters="true" -->
+</context:component-scan>  
+	
+</beans>

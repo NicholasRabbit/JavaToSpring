@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+<bean id="u01" class="com.springframe.test02.User">
+	<property name="id" value="1001"></property>
+	<property name="name" value="Tom"></property>
+	<property name="cars">
+		<list>
+			<ref bean="car01"></ref>
+			<ref bean="car02"></ref>
+		</list>
+	</property>
+	
+	<!-- 给元素是一般类行的List集合赋值范例 -->
+	<property name="num">
+		<list>
+			<value>2</value>
+			<value>0</value>
+			<value>2</value>
+			<value>1</value>
+		</list>
+	</property>
+	
+	<!-- 给Map属性赋值 -->
+	<property name="myMap">
+		<map>
+			<entry>   <!-- 一个<entry>表示一个键值对 -->
+				<key>
+				<value>1001</value>
+				</key>
+				<value>Jack</value>
+			</entry>
+			<entry>
+				<key>
+				<value>1002</value>
+				</key>
+				<value>Miller</value>
+				</entry>
+		</map>
+	</property>
+</bean>
+
+<bean id="car01" class="com.springframe.test02.Car">
+	<property name="brand"  value="BMW"></property>
+	<property name="make"  value="330i"></property>
+	<property name="litre"  value="3.0"></property>
+</bean>
+
+<bean id="car02" class="com.springframe.test02.Car">
+	<property name="brand"  value="Benz"></property>
+	<property name="make"  value="c120"></property>
+	<property name="litre"  value="1.2"></property>
+</bean>
+
+<!-- 也可使用util代码块创建List,Map对象，进行赋值 -->
+<bean id="u02" class="com.springframe.test02.User">
+	<property name="cars" ref="list01"></property>
+	<property name="num" ref="list02"></property>
+	<property name="myMap" ref="map01"></property>
+</bean>
+
+
+<util:list id="list01">
+	<ref bean="car01"></ref>
+	<ref bean="car02"></ref>
+</util:list>
+<util:list id="list02">
+	<value>1</value>
+	<value>9</value>
+	<value>0</value>
+	<value>0</value>
+</util:list>
+
+<util:map id="map01">
+	<entry>
+		<key>
+			<value>4</value>
+		</key>
+		<value>Castro</value>
+	</entry>
+	<entry>
+		<key>
+			<value>5</value>
+		</key>
+		<value>Maximiliam</value>
+	</entry>
+</util:map>
+
+
+
+
+
+
+
+</beans>

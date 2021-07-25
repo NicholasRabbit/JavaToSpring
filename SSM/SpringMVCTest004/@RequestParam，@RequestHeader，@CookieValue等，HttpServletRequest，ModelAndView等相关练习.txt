@@ -1,0 +1,6 @@
+一，@RequestParam，@RequestHeader，@CookieValue等属性练习
+二，以及HttpServletRequest,HttpServletResponse作为处理请求的方法的形参的用法
+三，ModleAndView.java用法范例
+四，return  "redirect:/jsp/redirect.jsp"重定向用法范例
+五，Spring框架解决浏览器传中文乱码的方法，见web.xml文件
+六，自定义SpringMVC的xml配置文件名称，见web.xml文件

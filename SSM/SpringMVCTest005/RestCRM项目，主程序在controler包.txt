@@ -1,0 +1,4 @@
+使用SpringMVC写一个CRM项目，本例先不链接数据库，把数据存到Map集合里
+问题总结：
+(1)如果设置自定义的主页，注意文件的路径，个人错误是把/html/homepage/html放在了WEB-INF目录下，但是欢迎页面设置成了/SpringMVCTest005/html/hompage.html,少了个WEB-INF目录
+(2)有笔记主程序在controler包里

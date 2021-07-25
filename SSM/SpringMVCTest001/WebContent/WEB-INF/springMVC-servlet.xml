@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">	  
+	  
+<!-- 这个Spring框架本身的文件名称springMVCTest-servlet.xml是web.xml中的"<servlet-name>"+"-servlet" 
+	默认路径是在WEB-INF下，这样才可被web.xml识别
+-->
+
+<context:component-scan  base-package="com.springmvc.test"></context:component-scan>	  
+	  
+<!--当访问@RequestMapping注解所在方法时，通过创建以下bean对象，配置视图解析器，进行跳转，
+	可设置好跳转路径的前缀，及后缀
+	最终的文件名称是@RequestMapping注解所在方法的返回值加后缀，例,localhost:8080/SpringMVCTest001/WEB-INF/view/done.html
+ -->
+<bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/view/"></property>
+	<property name="suffix" value=".jsp"></property>     <!-- 跳转到的页面后缀如果是.html就无法跳转，但是.jsp就可以，原因待查？？-->
+</bean>
+
+
+</beans>	  

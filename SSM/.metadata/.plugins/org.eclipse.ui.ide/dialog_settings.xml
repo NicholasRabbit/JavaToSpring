@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\MyBatisTest002"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\MyBatisTest001"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringMVCTest007"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringMVCTest005"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringMVCTest006"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringMVCTest004"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringMVCTest003"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringMVCTest002"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringMVCTest001"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringTranscationTest"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringJDBCTemplateTest"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringReview"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringTest003"/>
+			<item value="E:\Learning\Computer\SSM\EclipseSapce\EclipseProject01\SpringTest002"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jst.servlet.ui.project.facet.WebProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.wst.web.ui"/>
+		</list>
+	</section>
+</section>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- bean内部嵌套范例 -->
+<!-- 不嵌套使用的情况，仅作对比 -->
+<bean id="stu07" class="com.javaframe.spring.Student">
+	<property name="num" value="100127"></property>
+	<property name="name" value="Rogers"></property>
+	<property name="age"  value="19"></property>
+	<property name="score" value="61.3"></property>
+	<property name="teacher" ref="t01"></property>	 <!-- 给引用赋值要用"ref",注意赋值是把引用对象的"id"赋值于"ref" -->
+
+</bean>	
+
+<!-- 外部老师对象t01 -->
+<bean id="t01"  class="com.javaframe.spring.Teacher">   
+		<property name="age" value="60"></property>
+		<property name="tname" value="王老师"></property>
+		<property name="subject"  value="美术"></property>
+</bean>
+
+<!-- 内部嵌套 -->
+<bean id="stu08" class="com.javaframe.spring.Student">
+	<property name="num" value="100128"></property>
+	<property name="name" value="Kushner"></property>
+	<property name="age"  value="43"></property>
+	<property name="score" value="30.6"></property>
+	<property name="teacher">   <!-- 注意，内部嵌套<bean>teacher对象后，不用再写ref属性了 -->
+		<bean id="t02" class="com.javaframe.spring.Teacher">   <!-- 内部老师对象t02 -->
+			<property name="age" value="76"></property>
+			<property name="tname" value="唐"></property>
+			<property name="subject"  value="英语"></property>
+		</bean>		
+	</property>	
+</bean>
+
+<!-- 外部引用嵌套的<bean>表示的teacher对象，找不到t02,报错
+<bean id="stu09" class="com.javaframe.spring.Student">
+	<property name="teacher" ref="t02"></property>
+</bean>
+ -->
+
+   
+	   
+</beans>

@@ -1,0 +1,2 @@
+五，Spring框架解决浏览器传中文乱码的方法，见web.xml文件
+六，自定义SpringMVC的xml配置文件名称，见web.xml文件

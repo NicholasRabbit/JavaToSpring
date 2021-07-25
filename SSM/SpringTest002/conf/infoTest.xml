@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	                        
+	<!-- 第一种加载外部属性文件到Spring框架的方式,把数据库链接信息直接写在xml配置文件里了,这种写法格式固定，耦合度高 -->
+	<!-- 注意以下是给DruidDataSource中的属性赋值，因此属性名要写对不可乱写，个人刚开始把driverClassName写成了driver，username写作user,因此报错 -->
+	<bean id="data" class="com.alibaba.druid.pool.DruidDataSource">   <!-- 这里使用了阿里巴巴的开源工具Druid，这是一个数据库监视软件 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/company"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="nicholas1200"></property>
+	</bean>
+	
+	<!-- 第二种，加载外部配置文件，以后改数据库链接在外部改，不用在xml文件里改了，解耦合 -->
+	<!-- 下面的<bean>对象加载资源文件，这是个工具类，专门用来加载属性配置文件的，不用写id,因为用不到 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+		<property name="location"  value="info.properties"></property>
+	</bean> <!-- A bean -->
+	
+	<!-- 上面加载配置文件对象<A bean>的简洁写法 -->
+	<!-- <context:property-placeholder location="info.properties"></context:property-placeholder> -->  
+	<!-- 实际这行标签内容在底层还是会被被解析成上面的<A bean>标签里的格式进行编译，因此这里只是简化写法，底层原理不变 -->
+	
+	<bean id="data02" class="com.alibaba.druid.pool.DruidDataSource">   
+		<property name="driverClassName" value="${mysql.driver}"></property> <!-- ${key}用法，表示从PropertyPlaceholderConfigurer对象中通过key获取value -->
+		<property name="url" value="${msql.url}"></property>
+		<property name="username" value="${msql.user}"></property>
+		<property name="password" value="${msql.password}"></property>
+	</bean>
+	<!-- 注意info.properties文件的编码要和xml文件编码一致，否则即使${key}里面名字写对，也报错 -->
+	
+
+</beans>
+
+
+
+
+
+
+
+

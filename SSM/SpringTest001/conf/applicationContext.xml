@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+(1)appliactionContext是Spring框架默认的配置文件名称，
+        可以改，但ApplicationContext app=new ClassPathXmlApplicationContext("applicationContext.xml");中参数也要改，保持一致，否则报错 
+(2)这里标签<bean>表示一个对象，可设置多个对象
+(3)另外标签内属性值全是String类型
+ -->
+	<bean id="user" class="com.javaframe.spring.User">   <!-- 注意这里class参数要写全类名 -->
+		<property name="age" value="25"></property>     <!-- <property>标签是通过set,get方法给对象的属性赋值的 -->
+		<property name="name" value="Tom"></property>
+	</bean> 
+	
+	<bean id="user02" class="com.javaframe.spring.User">
+		<property name="age" value="35"></property>
+		<property name="name" value="Jane"></property>
+	</bean>
+	
+</beans>

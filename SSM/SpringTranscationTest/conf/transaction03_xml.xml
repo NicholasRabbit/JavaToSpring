@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+						http://www.springframework.org/schema/beans/spring-beans.xsd  
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" >
+
+<!-- 只使用xml相关标签开启事务 -->			 	 		
+<context:component-scan base-package="com.springframe.transaction.trans03_xml"></context:component-scan>
+
+<context:property-placeholder  location="info.properties"></context:property-placeholder>    <!-- 第二种导入配置文件的方式 -->
+
+<bean id="data"  class="com.alibaba.druid.pool.DruidDataSource">
+	<property name="driverClassName"  value="${jdbc.driver}"></property>
+	<property name="url"  value="${jdbc.url}"></property>
+	<property name="username"  value="${jdbc.user}"></property>
+	<property name="password"  value="${jdbc.password}"></property>
+</bean>
+
+<!-- 创建JdbcTemplate对象，并把配置文件导入 -->
+<bean id="jdbaTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<property name="dataSource" ref="data"></property>       <!-- 注意这里属性都要用ref,不是value -->
+</bean>
+
+<!-- 配置事务管理器，不管是注解的形式开启事务，还是xml配置文件的方式，都要配置事务管理器以及JdbaTemplate对象（自动赋值要用） -->
+<bean id="dataManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource"  ref="data"></property>
+</bean>
+
+ 
+<!-- 以下是xml开启事务所需配置 ，这里用到了AOP机制-->
+<tx:advice id="trans"  transaction-manager="dataManager">  <!-- "dataManager"名字要与上面的事务管理器的id一致，就是把事务管理器对象赋值于transaction-manager -->
+	<tx:attributes>
+		<tx:method name="purchase"></tx:method>  <!--  切入点范围较大，这里进一步精确到具体方法，表明哪些方法要设置事务机制 -->
+		
+		<!-- 也可使用通配符的方式进行匹配 ，一般公司代码查询都以select开头，删除一般都以delete开头，select*相关方法可设置为只读，这样MySQL就不加锁了，效率高-->
+		<tx:method name="select*"  read-only="true"></tx:method >  
+		<tx:method name="delete*"></tx:method>
+		<!-- <tx:method name="*"></tx:method>  --> <!-- 全部匹配，不建议使用 -->
+	</tx:attributes>
+</tx:advice>
+
+<!-- 设置切入点,把事务开启标志"trans"给advice-ref赋值，就把切入点和事务联系起来了，事务就可作用于切入点，跟之前通知切面方法和切入点链接起来一样 -->
+<!-- 重点，这里execution路径一定要检查仔细，否则无法开启事务，个人出现问题点：
+	(1)上次这里transaction少写个"c"
+	(2)路径写成execution(* com.springframe.transaction.trans03_xml.*.*(..)),后面还有个service包没写，也没写通配符星号“*”
+ -->
+<aop:config>                                
+	<aop:pointcut  expression="execution(* com.springframe.transaction.trans03_xml.service.*.*(..))"  id="pointCut"></aop:pointcut>
+	<aop:advisor advice-ref="trans"  pointcut-ref="pointCut" ></aop:advisor>
+</aop:config>
+
+
+
+
+
+
+
+
+
+
+</beans>					
