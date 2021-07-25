@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>input标签的file,hidden属性</title>
+</head>
+
+<body>
+	<form action="http://192.168.0.155:8080/html/dir" method="get">
+		
+		<!--file表示打开本地文件，下面可以提交给服务器-->
+		<input type="file"/> <br>  
+
+		<!--hidden表示网页主页面隐藏, 实际提交时还是会提交给服务器:	userID=001&userCode=222-->
+		<input type="hidden" name="userID" value="001" /> <br>
+		用户代码：<input type="text" name="userCode" />  <br>
+
+		<input type="submit" value="提交">
+
+	
+	</form>
+</body>
+
+</html>

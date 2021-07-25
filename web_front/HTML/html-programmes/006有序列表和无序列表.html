@@ -1,0 +1,62 @@
+<html>
+<meta charset="ansi">
+
+<head>
+	<title>有序列表，无序列表</title>
+
+	<body>
+		<!--<ol>,,</ol>:order list有序列表，里面嵌套<li>..</li>
+			属性type="A"/"a"/"I"(罗马数字)/"1"（数字）,默认按数字排序	
+		-->
+		<ol type="A"> 
+			<li>汽车</li>
+			<li>轮船</li>
+		</ol>
+
+		<ol type="I"> 
+			<li>第一行</li>
+			<li>第二行</li>
+			<li>第三行</li>
+		</ol>
+
+		<!--多层嵌套，注意<ol>标签后面写的内容没有序号。<li>标签后面的有，根据type的定义排-->
+		<ol type="i">  
+			<li>植物
+				<ol type="1">
+					<li>梧桐树</li>
+					<li>杨树</li>
+				</ol>
+			</li>
+			<li>动物
+				<ol type="a">
+					<li>猪</li>
+					<li>狗</li>
+				</ol>
+			</li>
+		</ol>
+
+		<!--无序列表:ul,也是嵌套<li>使用
+			type="disc/circle/square",默认是disc圆点
+		-->
+		<ul >  
+			<li>汽车
+				<ul type="disc">
+					<li>丰田</li>
+					<li>本田</li>
+					<li>大众</li>
+				</ul>
+            </li>
+			<li>摩托
+				<ul type="square">
+					<li>宝马</li>
+					<li>雅马哈</li>
+				</ul>
+			</li>
+		</ul>
+
+		
+	</body>
+</head>
+
+
+</html>

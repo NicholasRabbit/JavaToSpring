@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>全局变量和局部变量的用法范例</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+	
+		/*一，全局变量,在函数体外声明
+		(1)JS中全局变量生命周期从浏览器打开到关闭，比较占浏览器内存，不建议经常使用
+		(2)在函数体内，如果一个变量没有声明类型，就是没有加var,那么它属于全局变量，不是局部变量
+		  二，局部变量，在函数体内声明的变量，以及形参列表中的变量都属于局部变量
+        (1)生命周期是从函数开始执行到函数结束；
+		(2)变量前需加var
+		*/
+		var global="环球";  //全局变量
+		function doSome(){
+		    alert("global:"+global);
+		}
+
+		function method01(i,j){  
+			var k=" a is kingslayer.";
+			alert(i+j+k);
+		}
+		method01("Jimmy ","Lanister");
+
+		/*以下报错Uncaught ReferenceError: k is not defined
+		  局部变量在函数体外无法被访问。
+		*/
+		//alert(k);  //注意这里报错后，后面的语句不会执行
+
+		
+		//这里函数体内的变量声明是不加var,那它属于全局变量
+		function method02(){
+			name="Jerry";
+		}
+		method02();
+		alert("函数体外访问："+name);
+	</script>
+</body>
+
+</html>

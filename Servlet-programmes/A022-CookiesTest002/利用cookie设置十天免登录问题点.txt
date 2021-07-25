@@ -1,0 +1,7 @@
+个人错误代码，这里得到的结果是userName="userName", password="Jane"和username="password"  password="333"
+				下面数据库查询时把结果“userName”当作“Jane”去查询了
+				Cookie中的用户名和密码是两个cookie对象
+				name        value
+				"userName"  "Jane"  =>>cookie01对象
+				"password"  "333"   =>>cookie02对象
+				是通过key("userName")来获取value("Jane")，用户名密码不是在一个键值对里

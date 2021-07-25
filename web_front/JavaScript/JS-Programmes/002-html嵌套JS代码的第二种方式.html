@@ -1,0 +1,31 @@
+<!--<script>标签可以写在网页中的任何位置，包括!DCOTYPE之前，</html>之后都可以-->
+<script type="text/javascript">
+	window.alert("lurch from side to side");
+	window.alert("where thousands upon thousands people had been slain in one second");
+</script>
+
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>第二种方式，脚本块</title>
+</head>
+<body>
+	<!--<script>标签会使网页阻塞，即<script>标签内的语句执行完，下面的才会执行
+	-->
+	
+	<input type="button" value="执行">  <!--此行执行完执行下面的-->
+
+	<script type="text/javascript" >
+	
+		window.alert('Hello');
+		window.alert('again');
+		window.alert('martyred');
+	</script>   <!--此脚本执行完才会执行下面的语句-->  <br> 
+    
+	<input type="button" value="execute">
+
+</body>
+
+
+</html>

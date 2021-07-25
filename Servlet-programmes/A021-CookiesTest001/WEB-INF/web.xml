@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+<welcome-file-list>
+	<welcome-file>html/cookies.html</welcome-file>   <!--设置欢迎页面路径最前面不加"/"-->
+</welcome-file-list>
+
+<!--第一个Servlet对象,服务器创建Cookie对象，并发送到浏览器-->
+<servlet>
+	<servlet-name>servletToBrowser</servlet-name>
+	<servlet-class>com.javaweb.servlet.SendCookiesToBrowser</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>servletToBrowser</servlet-name>
+	<url-pattern>/cookieTest/a</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>browserToServer</servlet-name>
+	<servlet-class>com.javaweb.servlet.CookiesBrowserToServer</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>browserToServer</servlet-name>
+	<url-pattern>/browserToServer</url-pattern>
+	<url-pattern>/b</url-pattern>
+</servlet-mapping>
+
+</web-app>

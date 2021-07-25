@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>null,NaN,undefined</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+	
+		//第一，数据类型不一致
+		alert(typeof null);			//"object"
+		alert(typeof NaN);			//"number"
+		alert(typeof undefined);	//"undefined"
+
+		//第二，使用双等号判断
+		alert(null == NaN);			//flase
+		alert(null == undefined);	//true,用双等号判断时，只判断结果，不判断类型，而null和undefined的值都为空，因此相等
+		alert(NaN == undefined);	//false
+		
+		alert("============");
+		//第三，使用三等号判断,三等号"===",即判断结果，有判断类型，因此以下全部为false
+		alert(null === NaN);        //这三条结果全部为false;
+		alert(null === undefined);
+		alert(NaN === undefined);
+
+		alert("===========");
+		/*"=="和"==="的区别:
+		  双等号与Java中的equals(..)方法类似，表示等同于，只判断值是否相等
+		  而三等号与Java中的判断绝对相等的"=="类似,即判断值，又判断类型
+		*/
+		alert(1==true);    //true
+		alert(0==false);   //true
+		
+		alert(1===true);   //false
+		alert(0===false);  //false
+
+	</script>
+</body>
+
+</html>

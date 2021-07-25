@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>window对象的open和close用法</title>
+</head>
+<body>
+	<!--window时浏览器的顶级对象，比document还高
+	-->
+	<script type="text/javascript">
+	
+	</script>
+
+	<!--默认打开新窗口-->
+	<input type="button" value="打开默认"  onclick="window.open('http://cn.bing.com')" />  <br>
+
+	<!--在open()方法中
+	    "_self":实参表示在当前窗口打开
+		"_blank":表示新窗口打开链接
+		"_parent":父窗口打开链接
+		"_top":顶级窗口打开链接
+		注意:写到open("","")里的参数加引号，若外部有双引号，可加单引号嵌套或转义符，见本例
+	-->
+	<input type="button" value="当前窗口" onclick="window.open('http://127.0.0.1:8080/A000-FirstHomepage/FirstHomepage.html','_self')">  <br>
+    
+	<input type="button" value="打开新窗口"  onclick="window.open('http://cn.bing.com', '_blank')" />  <br>
+	
+	<input type="button" value="父窗口打开链接"  onclick="window.open('http://cn.bing.com', '_parent')" />  <br>
+	<iframe src="035-test.html"></iframe>   <br>
+
+	<input type="button" value="顶级窗口打开"  onclick="window.open('http://cn.bing.com', '_top')" />  <br>
+
+
+</body>
+
+</html>

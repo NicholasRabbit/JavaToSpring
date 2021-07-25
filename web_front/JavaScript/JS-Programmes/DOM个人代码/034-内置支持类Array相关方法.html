@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>034-内置支持类Array相关方法</title>
+</head>
+<body>
+    <!--JavaScript自带数组类Array特点:
+	(1)可自动扩容；
+	(2)向定好长度的数组的下标之外添加元素，不会出异常
+	(3)数组内元素类型可不一致
+	(4)常用方法:push(),pop(),join(),reverse()
+	-->
+	<script type="text/javascript">
+		
+		 //创建数组的两种方式:
+		 var arr01=[];  //数组用中括号表示
+		 document.write("arr01数组长度："+arr01.length);
+		 document.write("<br>");
+		 var arr02=new Array();
+		 document.write("arr02数组长度："+arr02.length);
+		 document.write("<br>");
+
+		 //数组内类型可不相同
+		 var arr03=[1,true,"Tom",'A',3.14];  //五个元素，下标到4
+		 for(var i=0;i<arr03.length;i++){
+			document.write(arr03[i]+"<br>");
+		 }
+
+		 document.write("<hr>");
+
+		 //向超过数组下标的位置添加元素也不报错，Array可自动扩容
+		 arr03[6]=150;
+		 for(var i=0;i<arr03.length;i++){
+			document.write(arr03[i]+"<br>");   //中间隔着的下标5的位置系统自动给赋值:undefinded
+		 }
+
+		 //常用方法
+		 arr03.push("football");  //添加元素，自动添加到末尾
+		 document.write("arr03数组最后一个元素"+arr03[arr03.length-1]);
+         document.write("<br>");
+		 
+		 var popElmt=arr03.pop();      //弹出元素，即移除之，移除的是最后添加的元素
+         document.write("arr03数组弹出的元素"+popElmt);
+         document.write("<br>");
+		 /*总结，Array里的push(),pop()操作方法跟栈结构操作一样，先进后出，后进先出
+		 */
+
+		 //join("-")方法，把数组内元素按指定符号连接起来，生成一个整体
+		 arr04=[1800,2,29];
+		 var c=arr04.join("-");
+		 document.write(c);
+		 
+		 document.write("<br>");
+
+		 //reverse()方法，反转数组
+		 arr04.reverse();
+		 var d=arr04.join("-");
+		 document.write(d);
+	</script>
+</body>
+
+</html>
