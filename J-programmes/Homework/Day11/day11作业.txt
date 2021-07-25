@@ -1,0 +1,29 @@
+
+1、编写一个方法，求整数n的阶乘，例如5的阶乘是1*2*3*4*5
+思考：这个方法应该起什么名字，这个方法的形参是什么，方法的返回值类型是什么。
+
+2、编写一个方法，输出大于某个正整数n的最小的质数。
+思考：这个方法应该起什么名字，这个方法的形参是什么，方法的返回值类型是什么。
+
+3、画出以下程序运行过程的内存图
+
+public class Test{
+	public static void main(String[] args){
+		int a = 100;
+		int b = 200;
+		int retValue = m1(a, b);
+		System.out.println(retValue);
+	}
+	public static int m1(int x, int y){
+		int k = x * 10;
+		int m = y * 10;
+		int result = m2(k, m);
+		return result;
+	}
+	public static int m2(int c, int d){
+		int e = c / 2;
+		int f = d / 2;
+		int i = e + f;
+		return i;
+	}
+}

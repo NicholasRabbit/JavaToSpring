@@ -1,0 +1,8 @@
+public class Keyboard implements InsertDrawable {
+
+    public void add(){
+	
+	    System.out.println("½ÓÉÏ¼üÅÌ¡£");
+	}
+
+}
