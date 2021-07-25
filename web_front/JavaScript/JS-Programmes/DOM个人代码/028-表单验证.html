@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>表单验证</title>
+</head>
+<body>
+		<!--
+		    （1）用户名不能为空
+			（2）用户名必须在6-14位之间
+			（3）用户名只能有数字和字母组成，不能含有其它符号（正则表达式）
+			（4）密码和确认密码一致，邮箱地址合法。
+			（5）统一失去焦点验证
+			（6）错误提示信息统一在span标签中提示，并且要求字体12号，红色。
+			（7）文本框再次获得焦点后，清空错误提示信息，如果文本框中数据不合法要求清空文本框的value
+			（8）最终表单中所有项均合法方可提交
+		-->
+		<script type="text/javascript">
+			window.onload=function list(){
+				var userNameObj=document.getElementById("userName");
+				var name=userNameObj.value;
+				var nameError=document.getElementById("nameError");
+				userNameObj.onblur=function chekName(){
+					name=name.trim();  //去除名字前后空格，因为Boolean("空格")结果为true，影响下面的判断语句执行
+					if(name===""){
+						nameError.innerHTML="名称不能为空";
+					}else if(name.length > 6 && name.length < 14){  //首先名字长度合法，然后在进行字母数字检查
+						//创建名字为只有数字和字母的正则表达式对象
+						var regExp=/^[A-Za-z0-9]+$/g  //flags:g表示不区分大小写
+						alert(name.length);
+						var isName=regExp.test(name);
+						alert(isName);
+					}else{
+						nameError.innerHTML="名字长度必须在6-14之间";
+					}
+					
+				}
+			}	
+		</script>
+
+		用户名:<input type="text" id="userName"></input>	<span id="nameError"></span>      <br>
+		密码:<input type="text" id="password"/>             <span id="passwordError"></span>  <br>
+		确认密码:<input type="text" id="checkPassword"/>    <span id="passwordError"></span>  <br>
+		邮箱地址:<input type="text" id="email"></input>		<span id="checkpwError"></span>   <br>
+
+		<style type="text/css">
+			/*这里使用标签选择器，所有span标签都是这个样式,12号字体，红色
+			*/
+			span{   
+				font-size:12px;
+				color:red;
+			}
+		</style>
+</body>
+
+</html>

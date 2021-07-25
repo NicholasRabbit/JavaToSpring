@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+<!--第一个Servlet对象-->
+<servlet>
+	<servlet-name>servlet006</servlet-name>
+	<servlet-class>ServletTest006</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>servlet006</servlet-name>
+	<url-pattern>/a</url-pattern>
+</servlet-mapping>
+
+<!--第二个Servlet对象-->
+<servlet>
+	<servlet-name>servlet006b</servlet-name>
+	<servlet-class>ServletTest006B</servlet-class>
+
+	<!--以下的配置信息会被封装到ServletConfig接口实现类的对象里面，即Tomcat的实现类StandardWraperFacade
+		可以通过ServletConfig接口的相关方法调用以下信息，只需面相接口调用，不需要关心Tomcat实现类是什么
+	-->
+	<init-param>
+		<param-name>driver</param-name>
+		<param-value>com.mysql.jdbc.Driver</param-value>
+	</init-param>
+	<init-param>
+		<param-name>url</param-name>
+		<param-value>jdbc:mysql/127.0.0.1：3306/company</param-value>
+	</init-param>
+	<init-param>
+		<param-name>user</param-name>
+		<param-value>root</param-value>
+	</init-param>
+	<init-param>
+		<param-name>password</param-name>
+		<param-value>nicholas1200</param-value>
+	</init-param>
+
+</servlet>
+<servlet-mapping>
+	<servlet-name>servlet006b</servlet-name>
+	<url-pattern>/b</url-pattern>
+</servlet-mapping>
+
+
+</web-app>

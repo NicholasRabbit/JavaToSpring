@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>第三种方式，导入外部JavaScript源</title>
+</head>
+<body>
+	
+	<!--(1)注意，导入外部JavaScript文件使用的属性是：src=""，和CSS里的 href=""不一样，注意区分
+		(2)文件要加后缀*.js
+	-->
+	<script type="text/javascript" src="JavaScriptInfo\JavaScriptSet.js">  
+	/*(1)javaScript中的单行，多行注释可java中一样，写在script标签中间的属于JavaScript语句，不可用html注释的写法
+	  (2)这里不可写JavaScript语句，写了也不执行	   
+	*/
+	window.alert("Execute???"); //不执行
+	</script>
+
+	<!--但是上面执行完成后，这里可以写新的第二种方式的<script>代码块,会执行
+	-->
+	<script type="text/javascript">
+		window.alert("代码块执行");
+	</script>
+</body>
+
+</html>

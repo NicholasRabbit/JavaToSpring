@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+<welcome-file-list>
+	<welcome-file>html/sessionTest.html</welcome-file>  <!--设置默认欢迎页面，路径前不加"/"-->
+</welcome-file-list>
+
+<!--第一个Servlet-->
+<servlet>
+	<servlet-name>session01</servlet-name>	
+	<servlet-class>com.javaweb.http.HttpSessionTest001</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>session01</servlet-name>
+	<url-pattern>/test/session01</url-pattern>
+</servlet-mapping>
+
+
+<!--第二个Servlet-->
+<servlet>
+	<servlet-name>session02</servlet-name>	
+	<servlet-class>com.javaweb.http.HttpSessionTest002</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>session02</servlet-name>
+	<url-pattern>/test/session02</url-pattern>
+</servlet-mapping>
+
+
+<!--手动设置服务器保存session的时间,单位是“分钟”-->
+
+<session-config>
+	<session-timeout>60</session-timeout>
+</session-config>
+
+
+</web-app>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>innerHTML和innerTEXT的用途及区别</title>
+
+</head>
+<body>
+	<!--使用JS代码结合innerHTML,innerTEXT在div,span标签种插入内容-->
+	<script type="text/javascript">
+		
+			window.onload=function(){
+				
+				var d=document.getElementById("myDiv");
+			    
+				//innerHTML属性可以把等号后边的html语言进行编译，而innerText则不会编译写什么就显示什么
+				d.innerHTML="<font size=5px colcor='blue'>resilience</font>";
+                
+				//由于下面的innerText会覆盖上面的innerHTML，所以上面的不显示,可把下面注释进行查看
+				d.innerText="<font size=4px color='black'>sardonical</font>"
+
+				var spanObj=document.getElementById("mySpan");
+				spanObj.innerHTML="City";
+				spanObj.innerTEXT="Martyred";   //span标签使用innerTEXT属性赋值不管用，原因待查
+			
+			}
+	</script>
+
+	<style type="text/css">
+	
+		#myDiv{
+			background-color:pink;
+			border:2px solid black;
+			width:200px;
+			height:200px;
+			font-size:15px;
+			
+			/* 以下是div块的绝对坐标表示方法,原点是网页左上角，测量点是块的左上角*/
+			position:absolute;  
+			top:100px;
+			left:100px;
+		}
+
+		span{
+			color:black;
+		}
+		
+		
+		}
+	</style>
+
+	<div id="myDiv"></div>    <br> 
+
+	<span id="mySpan"></span>
+	
+</body>
+
+</html>

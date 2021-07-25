@@ -1,0 +1,4 @@
+1，本例先不写模板类HttpServlet
+2，只写Login.java, Logout.java直接继承Generic;
+3，这种写法代码麻烦，仅与写HttpServlet的项目对比用，体会差别；
+4，本例这种写法，Login.java里要写一边判断是get或post,而Logout.java里要判断是get或post,代码重复

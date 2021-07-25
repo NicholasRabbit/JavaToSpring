@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>JavaScript中的变量的声明</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+	
+		/*变量的声明：var a;
+		JavaScript是一种弱语言，即声明一个变量a的后，后面可赋值任何类型数据，数据类型由等号后面的决定，不报错，要求不严谨，
+		*/
+		var a;  //变量a如果不赋值，系统自动赋值undefined，undefined在JS中这也是实际存在的一个值，并非空值。
+		window.alert("a:"+a);  //JS中字符串拼接也使用加号：“+”
+
+		var b=100;
+		window.alert("b:"+100);
+
+		var c="hello";
+		alert("c："+c);  //window可省略
+
+		var d=true;
+		alert("d:"+d);
+
+		var e=1.2;
+		alert("e:"+e);
+
+		var x,y,z=200;  //也可像Java一样，声明多个变量，注意这里只有z赋值了
+		alert("x:"+x);
+		alert("y:"+y);
+		alert("z:"+z);
+
+		alert(undeclaration);  //未声明的变量无法访问，在浏览器按F12控制台可查看报错信息
+
+
+	</script>
+</body>
+
+</html>

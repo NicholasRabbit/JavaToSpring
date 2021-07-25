@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+
+<head>
+<title>第二种方式</title>
+
+<!--在<head>标签中使用样式块，通过标签选择器或类选择器的范围限制来定义html的样式,格式如下-->
+<style type="text/css">
+	/* <stytle>标签内部属于CSS语言，注释要用CSS格式，和java注释方式一样
+		第一种：id选择器，格式如下。注意下面<span>声明id的格式	
+	*/
+	#attention {
+		color:aqua;
+		font-size:16px;
+	}
+
+	/*第二种：标签选择器，把主页内所有标签统一设定成一个样式，范围比较广
+	*/
+	div{
+		background-color:purple;
+		font-size:15px;
+		border:2px;
+	}
+
+	/*第三种：类选择器，在标签属性里定义好类名，以类名来确定标签的格式，
+			  不同标签可以设定相同类名，从而设置的格式也相同，id前要加".",例如.user
+	*/
+	.user {
+		color:red;
+		
+		/* 注意此处border的分属性可以连写在这里，用空格隔开
+		   border : border-width || border-style || border-color 
+		*/
+		border:2px solid black;  
+		width:300px;
+		height:50px;
+	}
+
+	
+		
+</style>
+
+</head>
+
+<body>
+	<!--id选择器-->
+	<span id="attention">请注意，输入错误</span>
+	
+	<!--标签选择器-->
+	<div>图层1</div>
+	<div>图层2</div>
+	<div>图层3</div>
+
+	<!--类选择器-->
+	用户名：<input type="text" class="user"></input>  <br>
+	学历：<select class="user">
+			<option>硕士</option>
+			<option>本科</option>
+			<option>专科</option>
+	      </select>
+
+</body>
+
+</html>

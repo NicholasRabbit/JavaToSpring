@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>Number数据类型</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+	
+		/*(1)JS中的Number包括了所有Java中的基本数据类型，
+		   1，2.0，3.14，NaN,Infinity都属于Number类型
+		  (2)Number中的常用函数，大多与Java中类似
+		   isNaN(..):判断是否为NaN,是则为true
+		   parseInt("25"):把非Number类型转换为Number类，并且取整
+		   parseFloat(..):转为Float类型
+		   Math.ceil(..):向上取整
+		*/
+		var a=1;
+		var b=2.0;
+		var c=3.14;
+		var d=NaN;
+		var e=Infinity;
+		alert(typeof a);
+		alert(typeof b);
+		alert(typeof c);
+		alert(typeof d);
+		alert(typeof e);
+
+		var f="3.66";
+		var g=3.66;
+		alert("f:"+parseInt(f));  //结果为3，说明String类型转换时只取整数，并非四舍五入，与Java中一样
+		alert("g:"+parseInt(g));  //Number类型的也是取整，舍弃小数
+
+		alert(parseFloat("3.14")+1);  //结果4.14000000001，这里把String类型“3.14”转化为Number类进行运算
+		alert(parseFloat(3.14+1));    //结果4.14000000001，具体原因待分析。
+
+		var h=Math.ceil(6.1);
+		alert(h);  //向上取整，结果为：7
+
+		var i=20;
+		var j="x";
+		alert(i/j);  //这里用除号运算,结果为NaN,即所得结果不是数字
+		alert(i+j);  //注意，用加号表示字符串链接符，结果20x
+
+		alert(20/0);  //这里不报错，不严谨，结果Infinity,但是在java中报错
+
+		//isNaN(.)用法
+		function sum(x,y){
+			if(isNaN(x) || isNaN(y)){
+			   return "不是数字类型";
+		    }else{
+				return x+y;
+			}
+		}
+		alert(sum(10,"abx"));
+		alert(sum(10,20));
+		
+	</script>
+
+</body>
+
+</html>

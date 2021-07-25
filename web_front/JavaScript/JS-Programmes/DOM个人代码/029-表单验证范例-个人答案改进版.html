@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>表单验证改进版</title>
+	<!--表单验证要求：	
+	（1）用户名不能为空
+	（2）用户名必须在6-14位之间
+	（3）用户名只能有数字和字母组成，不能含有其它符号（正则表达式）
+	（4）密码和确认密码一致，邮箱地址合法。
+	（5）统一失去焦点验证
+	（6）错误提示信息统一在span标签中提示，并且要求字体12号，红色。
+	（7）文本框再次获得焦点后，清空错误提示信息，如果文本框中数据不合法要求清空文本框的value
+	（8）最终表单中所有项均合法方可提交
+	-->
+
+</head>
+<body>
+	
+	<!--注意提交表单时的触发操作的用法-->
+
+	<script type="text/javascript">
+		window.onload=function formSubmit(){  //这里也可写成匿名函数
+			
+			var nameObj=document.getElementById("userName");
+			var nameErrorSpan=document.getElementById("nameError");
+			
+			//var nameRegExp=/^[A-Za-z0-9]+$/g;
+			/*这里onload之后，onblur之前创建字母数字的正则表达式错误
+			  注意，易出错点:创建正则表达式对象，需在onblur之后，因为用户输错名字，可能再点击输入框(onfocus)，
+			  然后光标再离开(onblur),这种情形就需要在onblur之后创建正则对象，而不是onload之后,onload需要刷新，
+			  实际中一般用户不会刷新
+			*/
+			
+			//第一项：判断名字是否合法
+			nameObj.onblur=function (){    //匿名函数用法
+				var nameValue=nameObj.value;
+				nameValue=nameValue.trim();  //修剪前后空格
+				
+				/*
+				*/
+				var nameRegExp=/^[A-Za-z0-9]+$/g;
+				
+				if(nameValue === ""){
+					nameErrorSpan.innerHTML="The user's name can't be empty.";
+				}else if(nameValue.length >=6 && nameValue.length <= 14){  //首先判断长度是否合适
+					var isName=nameRegExp.test(nameValue);
+					if(isName){  //isName为真，则名字只有字母数字组成
+						nameErrorSpan.innerHTML="Valid name";  //名字合法则span标签中间改为空值
+					}else{		//这里是名字长度合法，但是含有字母数字意外的别的字符
+						nameErrorSpan.innerHTML="The proper user's name only consists of numbers and charactors. "
+					}	
+				}else{
+					nameErrorSpan.innerHTML="The length of name must between 6 and 14.";
+				}  
+			}
+
+			nameObj.onfocus=function clearWrongValue(){  //获得焦点(光标)后，清空value,以及span内错误信息
+				if(nameErrorSpan.innerHTML!=""){
+					nameObj.value="";   //这里不可使用上面已声明的nameValue,因为它已经被trim()重新赋值，不再代表文本框value本身了
+				}						//必须使用nameObj.value
+				nameErrorSpan.innerHTML="";
+		  }
+
+		  //验证密码
+		  var pwObj=document.getElementById("password");
+		  var pwRObj=document.getElementById("passwordRepeat");
+		  var pwErrorSpan=document.getElementById("passwordRepeatError");
+
+		  pwRObj.onblur=function checkPassword(){
+			 if(pwRObj.value != pwObj.value){
+				pwErrorSpan.innerHTML="The password is not same.";		
+			 }	
+		  }
+		  pwRObj.onfocus=function clearWrongPassword(){
+			 if(pwErrorSpan.innerHTML != ""){
+				pwRObj.value="";
+			 }
+			 pwErrorSpan.innerHTML="";
+		  }
+
+		  //验证邮箱
+		  var emailObj=document.getElementById("emailAddr");
+		  var emailErrorSpan=document.getElementById("emailError");
+		  emailObj.onblur=function checkEmail(){
+			 var emailRegExp=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/g;
+			 var isEmail=emailRegExp.test(emailObj.value);
+			 if(isEmail){
+				 emailErrorSpan.innerHTML="";
+			 }else{
+				 emailErrorSpan.innerHTML="invalid email";
+			 }
+		  }
+		  //获得焦点后，清空错误信息，框内错误值
+		  emailObj.onfocus=function (){
+		     if(emailErrorSpan.innerHTML != ""){
+				emailObj.value="";
+			 }
+			 emailErrorSpan.innerHTML="";
+		  }
+
+		  //触发onload,onfocus操作，验证各项内容是否合格
+		  var submitObj=document.getElementById("submitBtn");
+		  submitObj.onclick=function submitMethod(){
+			  
+			  nameObj.focus();     //调用focus(),blur()方法，即可触发各个对象的相关获取焦点，失去焦点的操作
+			  nameObj.blur();
+			  pwRObj.focus();
+			  pwRObj.blur();
+			  emailObj.focus();
+			  emailObj.blur();
+
+			  var formObj=document.getElementById("userForm");
+			  if(nameErrorSpan.innerHTML==="" &&  emailErrorSpan.innerHTML ==="" && emailErrorSpan.innerHTML ===""){
+				  formObj.action="http://localhost:8080/tmall/user";  //form表单对象调用属性并赋值
+				  formObj.submit();   //这里调用submit()方法即可进行提交操作
+			  }
+
+		  }
+
+			
+		}
+	
+	</script>
+
+	
+	
+	<!--method="get"表示在地址栏中显示提交的信息，这个为了检查所以显示，“post”是不显示-->
+	<form action="http://localhost:8080/JavaScript" method="get">  
+		
+		<!--写上name属性，下面submit执行时才会提交数据-->
+		用户名：<input type="text" id="userName" name="user"></input>       <span id="nameError"></span>  <br> 
+		密码：<input type="text" id="password" name="passwd"></input>		<span id="passwordError"></span>  <br>
+		确认密码：<input type="text" id="passwordRepeat" name="passwdRepeat"/>   <span id="passwordRepeatError"></span>   <br>
+		邮箱地址：<input type="text" id="emailAddr" name="email"></input>	   <span id="emailError"></span>  <br>
+		<input type="submit" id="submitBtn" value="提交"/>  <!--提交按钮，点这里才会提交数据-->
+		<input type="reset" id="myButton" value="重置"/>  <br>
+
+	</form>
+
+	<style type="text/css"> 
+		span{  /*标签(tag)选择器，所有span标签均为此样式*/
+			font-size:12px;
+			color:red;
+		}
+	</style>
+
+</body>
+
+</html>

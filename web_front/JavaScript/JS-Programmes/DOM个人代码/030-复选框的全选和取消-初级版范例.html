@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>复选框的全选和取消</title>
+
+</head>
+<body>
+	<!--实现效果：
+	点全选则全部选中，取消任意选项则全选按钮取消选中，
+	所有选项勾选时全选按钮自动勾选
+	本例未实现以上功能，只是初级版：即全选选中，其它都选中，全选取消，其它都取消
+	-->
+	<script type="text/javascript">
+		
+		//input的复选标签有个布尔类型的属性checked,当它为true时选中，反之取消
+		window.onload=function selected(){
+			
+			var all=document.getElementById("allSelected");
+			all.onclick=function checAll(){
+				
+				var checkArr=document.getElementsByName("hobby");  //注意这里使用的时getElementsByName(),即在标签中定好统一的name属性值，而不是getElementsByTagName(),注意区分
+				var isChecked=all.checked;   //checked属性的使用
+				
+				if(isChecked){   //如果全选按钮选中，则下面各项爱好全部选中
+					for(var i=0;i<checkArr.length;i++){
+						checkArr[i].checked=true;   //每个标签的checked属性赋值为true
+					}
+				}else{    //这里时全选按钮取消，则各个选项全部取消   
+					for(var i=0;i<checkArr.length;i++){
+						checkArr[i].checked=false;
+					}
+				}
+			}
+			
+		}
+		
+	</script>
+
+	<input type="checkbox" value="all" id="allSelected">全选</input>  <br>
+	<input type="checkbox" name="hobby" id="football">足球</input>    <br>
+	<input type="checkbox" name="hobby" id="basketball">篮球</input>  <br>
+	<input type="checkbox" name="hobby" id="boxer">拳击</input>		  <br>
+</body>
+
+</html>
