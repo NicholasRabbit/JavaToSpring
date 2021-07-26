@@ -27,7 +27,7 @@
  		<!--  这里每个映射文件都要如上面写上，如果mapper.xml文件多的话就太臃肿了，可添加<package>标签来解决此问题 
  		(1)注意使用<package>时，emp-mapper.xml文件要和对应的EmpMapper.java接口在同目录下，本项目中虽然在conf目录下，但是给emp-mapper的包路径是和src目录下EmpMapper.java的路径名一样的
  		实际打开Navigator视图，它们都在bin目录下同一个位置，即实际运行时它们被复制或编译到bin这一个地方了
- 		(2)也可以直接把emp-mapper.xml放到src目录下，和EmpMapper.java放一起，最后效果都一样，都会到bin目录下
+ 		(2)也可以直接把EmpMapper.xml放到src目录下，和EmpMapper.java放一起，最后效果都一样，都会到bin目录下
  		(3)注意，用package报的方式扫描映射文件，则映射文件的名字要和接口名一致，不可自定义，例EmpMapper.xml<==>EmpMapper.java
  		    否则报错：BindingException-->
  		<package name="com.mybatis.crud.mapper"></package> 

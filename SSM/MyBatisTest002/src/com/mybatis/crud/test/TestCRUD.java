@@ -25,7 +25,7 @@ MyBatis项目搭建步骤，共四步
 第六步，测试
  */
 
-//注意Emp内属性要和数据库列名一  一对应
+//注意Emp内属性要和数据库列名 一  一 对应
 public class TestCRUD {
 	
 	public static void main(String[] args) {
@@ -84,5 +84,9 @@ public class TestCRUD {
 				}
 			}
 		}
+	
+	
 	}
+	
+	
 }
