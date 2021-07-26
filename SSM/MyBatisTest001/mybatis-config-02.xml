@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--这个文件作为第一个mybatis-config.xml的备份 ，仅为都在一个里做笔记太乱 -->
+
+<!--以下标签可在MyBatis帮助文档里ConfiturationXML章节查看其解释
+(1)<envoroments>标签设置链接数据库的相关配置环境
+属性default表示默认链接数据库的类型
+(2)<envoroment>中的id是数据库类型的唯一标识
+(3)<properties>用来设置或引入资源，内部属性名区别:
+	“resource”：表示在类路径下的形式访问，因此赋值是全类名的方式赋值，带点“.”
+	"url"：表示在网络路径下，或磁盘路径下访问，即带斜线"/"的路径方式
+(4)<transactionManage>标签，type属性值的含义
+   JDBC:表示使用最原始JDBC事务管理器，即提交回滚都是手动的，注意不是自动的
+   MANAGED:表示由Spring框架来管理事务机制，后期SSM整合时用 
+(5)<dataSource>标签，type属性值含义
+   MyBatis中如果使用数据库连接池，则会保存数据库的链接信息，下次链接时从缓存中读取。不使用连接池则表示每次链接都创建新的链接数据。
+   POOLED:表示使用数据库链接池，这里表示使用MyBatis自带的数据库连接池
+   UNPOOLED:表示不使用数据库连接池
+   JNDI:表示使用上下文的数据库链接信息
+(6)<settings>标签，设置MyBatis的参数，了解内容
+(7)<typeAliases>:为一个类设置一个简短的别名,在整个MyBatis项目环境下，就可以用这个别名来代表一个全类名。不常用，建议把java对象的属性名和数据库中表的列名写作一致。
+注意，Mybatis的xml文件中，以上这几个标签有书写顺序，如下，不可乱写，否则报错！！
+
+ -->
+ 
+<configuration>
+	 
+	<properties  resource="info.properties"></properties>  <!-- 引入外部属性文件 -->
+	 
+	 <settings>
+	 	<setting name="cacheEnabled"  value="true"></setting>   <!-- 默认值就是true,这里仅为熟悉练习 -->
+	 </settings>
+	 
+	 <!--(1)注意，如果这里不写alias属性，则别名默认值是User,且不区分大小写
+	  	 (2)这里的别名可用于UserMapper.xml中的 resultType赋值
+	  	 (3)<package>标签name属性值表示在这个包下，所有全限定类的别名均为其单个类名,且不区分大小写，一般写首字母大写，和类名一致好识别。
+	  -->
+	 <typeAliases>    
+	 	<typeAlias type="com.mybatis.bean.User"  alias="MyUser"></typeAlias> 
+	 	<package name="com.mybatis"></package> 
+	 </typeAliases>
+	 
+	 <environments default="mysql">   <!-- default值是mysql的话，下面的id值也的是 mysql -->
+		 <environment id="mysql">
+			 <transactionManager type="JDBC"/>   <!--  JDBC:表示使用最原始JDBC事务管理器，即提交回滚都是手动的，注意不是自动的,增删改都是手动，需手动提交，在MyBatisTest001.java里加"sqlSession.commit();"--> 
+			 <dataSource type="POOLED">
+				 <property name="driver" value="${jdbc.driver}"/>   <!-- 从外部属性文件info.properties中取值 -->
+				 <property name="url" value="${jdbc.url}"/>
+				 <property name="username" value="${jdbc.user}"/>
+				 <property name="password" value="${jdbc.password}"/>
+			 </dataSource>
+		 </environment>
+	 </environments>
+	 
+	 
+	 
+	
+	 <mappers>
+	 	<mapper resource="UserMapper02.xml"/>  
+	 </mappers>	
+	 						    
+</configuration>
+

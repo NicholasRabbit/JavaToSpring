@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- MyBatis的三种查询方式 -->
+ <mapper namespace="com.mybatis.crud.mapper.EmpSelectMapper">
+ 	
+ 	<!--一，查询单个员工， Emp getEmpById(Integer id) -->
+ 	<select id="getEmpById" resultType="com.mybatis.crud.bean.Emp">
+ 		select * from emp where id=#{id}
+ 	</select>
+ 	
+ 	<!--二，查询员工总数， Integer getEmpCount()
+ 		这里resultType要写Integer类型，因为查询结果是人数，是Integer类型 -->
+ 	<select id="getEmpCount" resultType="java.lang.Integer">
+ 		select count(id) from emp 
+ 	</select>
+ 	
+ 	<!-- 三，1，以Map集合获取单个员工的信息,Map<Integer,Emp> getEmpMap(Integer id) -->
+ 	<select id="getEmpMap" resultType="java.util.HashMap">
+ 		select id,ename,gender,age,did from emp where id=#{id}    <!-- 查询单个员工，要加条件限制 -->
+ 	</select>
+ 	
+ 	<!-- 三，2，获取全部员工封装进Map集合Map<Integer,Emp> getAllEmps(Integer id) -->
+ 	<select id="getAllEmps" resultType="com.mybatis.crud.bean.Emp">  <!-- 因为Map集合内value是Emp对象，所以这里resultType是Emp -->
+ 		select id,ename,gender,age,did from emp    <!-- 这里不用加条件限制 -->
+ 	</select>
+ </mapper>
