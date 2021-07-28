@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+ <configuration>
+ 	<!-- <properties>用来设置或引入资源，内部属性名区别:
+		“resource”：表示在类路径下的形式访问，因此赋值是全类名的方式赋值，带点“.”
+		"url"：表示在网络路径下，或磁盘路径下访问，即带斜线"/"的路径方式。 -->
+ 	<properties resource="jdbc.properties"></properties>
+ 	
+ 	<environments default="mysql">
+ 		<environment id="mysql">
+ 			<transactionManager type="JDBC"></transactionManager>
+ 			<dataSource type="POOLED">
+ 				<property name="driver"  value="${jdbc.driver}"></property>
+ 				<property name="url"  value="${jdbc.url}"></property>
+ 				<property name="username"  value="${jdbc.user}"></property>
+ 				<property name="password"  value="${jdbc.password}"></property>
+ 			</dataSource>
+ 		</environment>
+ 	</environments>
+ 
+ 	<mappers>
+ 		<!-- 如果用<package>标签扫描，则需写作 EmpMapper.xml,与EmpMapper.java名字一致 。这里先不用。-->
+ 		<mapper resource="com/mybatis/multiple/mapper/multiple-mapper.xml"></mapper>
+ 	</mappers>
+ </configuration>

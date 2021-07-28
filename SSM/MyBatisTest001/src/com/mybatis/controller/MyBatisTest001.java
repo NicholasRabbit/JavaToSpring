@@ -15,7 +15,7 @@ public class MyBatisTest001 {
 	
 	/*
 	 MyBatis项目搭建步骤，共四步
-	  第一步，导入相关jar包，注意使用log4j.jar需要用到log4j.xml
+	  第一步，导入相关jar包，注意使用log4j.jar需要用到log4j.xml,最后AddToBuildPath
 	  第二步，配置MyBatis的全局配置文件，名称可自定义，一般后缀都带"-config",但建议一般都写作mybatis-config.xml，便于识别
 	  第三步，创建映射文件，实现两个绑定：
 		1，给namespace赋值，把接口UserMapper.java的全类名赋给它 ；

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+						http://www.springframework.org/schema/beans/spring-beans.xsd  
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd" >
+						
+		
+<!--(一) 如果springmvc.xml和spring.xml配置文件的base-package的扫描范围都写为com.springmvc.ss,那么这个包下的所有实体类都会被实例化两次，不同层的对象被乱用了
+	解决办法有两种：(1)缩小包的范围，Spring只扫描它所对应的service包里的；
+	     	  (2)使用<context:include-filter/exclude-filter..>缩小范围。
+ -->								<!-- com.springmvc.ss ：范围太大，会扫描到SpringMVC用的类-->
+<context:component-scan  base-package="com.springmvc.ss"  use-default-filters="false">    <!-- filters是复数 -->
+	<context:include-filter type="annotation"  expression="org.springframework.stereotype.Service"></context:include-filter>   <!-- User的注解是 @Service可扫描到 -->
+</context:component-scan>   
+
+
+<!--(二)Spring框架自带的DataSourceTransactionManager，DruidDataSource等，不能通过扫描注解的方式获取，但是SpringMVC想要访问它们，
+		解决办法：在spring.xml中创建对应的<bean>对象，把这个对象放进ServletContext中，然后再SpringMVC的ControllerLayer.java中就可以获取了，结合各层的代码理解
+		这里以Student对象举例
+  -->
+<bean id="stu"  class="com.springmvc.ss.bean.Student">
+	<property name="sid"  value="1001"></property>
+	<property name="sname"  value="Hans"></property>
+</bean>				
+</beans>						

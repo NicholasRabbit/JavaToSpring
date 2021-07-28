@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <!--
-(1)appliactionContext是Spring框架默认的配置文件名称，
+(1)appliactionContext是Spring框架默认的配置文件名称，默认在WEB-INF下
         可以改，但ApplicationContext app=new ClassPathXmlApplicationContext("applicationContext.xml");中参数也要改，保持一致，否则报错 
 (2)这里标签<bean>表示一个对象，可设置多个对象
 (3)另外标签内属性值全是String类型

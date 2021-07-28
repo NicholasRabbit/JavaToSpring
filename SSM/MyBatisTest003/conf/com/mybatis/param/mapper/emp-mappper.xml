@@ -36,16 +36,19 @@
  	</select>
  	
  	<!--4,根据Map集合查询单个员工信息，把查询条件封装进Map集合，返回查询结果Emp对象:Emp getEmpByMap(Map<Object,Object> map);
- 		在ParamTest.java中个人自定义好了键key的名字，所以不用MyBatis默认的param1,2...了  -->
+ 		在ParamTest.java中个人自定义好了键key的名字，【注意：与5中区分，自定义Map集合的方式，不能用MyBatis默认的param1,2...】  -->
  	<select id="getEmpByMap"  resultType="com.mybatis.param.bean.Emp">
  		select id,ename,gender,age,did from emp where id=#{myId} and ename=#{myEname}	 <!-- 自定义key之后，#{}${}的用法也和3中一样 -->
- 		<!-- select id,ename,gender,age,did from emp where id=${myid} and ename="${myename}" -->	 
+ 		<!-- select id,ename,gender,age,did from emp where id=${myid} and ename="${myename}" -->
+ 			 
  	</select>
  	
- 	<!-- 5，注解@Param自定义Map集合的key名字，不用4中的声明Map集合了。@Param的value就是自定义的key名称。
+ 	<!-- 5，注解@Param自定义Map集合的key名字，不用4中的声明Map集合了。@Param的value就是自定义的key名称,【注意：与4中区分，@Param方式，仍然可用MyBatis默认的param1,2...，4中不可用】。
  	Emp getEmpByAtParam(@Param("myId") Integer id, @Param("myEname")String ename) -->
  	<select id="getEmpByAtParam"  resultType="com.mybatis.param.bean.Emp">
- 		select id,ename,gender,age,did from emp where id=#{myId} and ename=#{myEname}	 
+ 		<!-- 以下两种方式都行 -->
+ 		<!-- select id,ename,gender,age,did from emp where id=#{myId} and ename=#{myEname} -->   
+ 		select id,ename,gender,age,did from emp where id=#{param1} and ename=#{param2}	   <!-- 这里仍然可用MyBatis默认的param1,2 -->
  	</select>
  	
  </mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+ 
+<!-- web.xml中各标签的执行顺序，他们的书写顺序可随意变，但加载有顺序
+	1,<context-param>:定义Spring框架配置文件的位置，因为SpringMVC(子)依赖于Spring(父)框架，所以Spring的配置文件要先加载
+					  注意：当使用Spring框架自带的监听器时用，个人自定义的监听器不用此标签
+	2,<listener>:设置监听器，在过滤器之前执行，用来加载Spring的配置文件
+	3,<filter>:过滤器，用来过滤内容，转化请求等
+	4,<servlet>:最后加载。
+ -->
+
+<welcome-file-list>
+	<welcome-file>jsp/homepage.jsp</welcome-file>
+</welcome-file-list>
+
+<servlet>
+	<servlet-name>spring-springmvc</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:springmvc.xml</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>spring-springmvc</servlet-name>
+	<url-pattern>/</url-pattern>
+</servlet-mapping>
+
+<!-- 监听器作用是在过滤器之前，在加载servlet之前，先加载 spring.xml框架配置文件  
+	   监听器整合Spring和SpringMVC设置有两种方式：-->
+<!--第一种方式：使用个人自定义的监听器
+    (1)配置个人自定义的监听器SpringListener实现ServletContextListener接口，并在其初始化方法里加载spring.xml配置文件，注意不用<context:param>标签
+    (2)在<listener>中写入自定义监听器全类名。-->
+<listener>
+	<listener-class>com.springmvc.ss.listener.SpringListener</listener-class>
+</listener> 
+
+<!--第二种方式，使用框架自带的监听器。
+	 (1)使用框架自带的监听器，如果不自定义<context-param>，则默认位置是WEB-INF下，默认名字是applicationContext.xml,祥见 XmlWebApplicationContext.java源码 。
+	 	当没有默认文件时报异常：BeanDefinitionStoreException
+	 (2)如果使用<context:param>可自定义Spring框架的配置文件及名字
+-->
+<!-- <listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<context-param>
+	<param-name>contextConfigLocation</param-name>     contextConfigLocation是属性名，不可改
+	<param-value>classpath:spring.xml</param-value>    classpath自定义框架配置文件，在conf目录下
+</context-param>  -->
+
+
+<!-- 解决中文乱码 -->
+<filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+</filter>
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<!-- Rest风格过滤器，把get，post转化为 六个请求 -->
+<filter>
+	<filter-name>methodFilter</filter-name>
+	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>methodFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+ 	
+</web-app>

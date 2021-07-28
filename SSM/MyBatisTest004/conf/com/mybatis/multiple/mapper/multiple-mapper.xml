@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper  namespace="com.mybatis.multiple.mapper.MultipleMapper">
+ 	
+ <!-- =================================================================== -->
+ 	<!-- <resultMap>标签，自定义表的列名和对象(有时用到多个对象)属性间的映射，处理复杂表关系，
+ 		<id>用于主键，<result>用于其它列；
+ 		column表示列名，property是属性名。
+ 	 -->
+ 	
+ 	<!--1，两表联查获取员工及其部门名称信息，即多（员工）对一(部门)： List<Emp> getAllEmpAsList() 
+ 		因为是两个表，所以不能用resultType,要用resultMap-->
+ 	<!-- (1)首先用<resultMap>标签，查询结果和对象的属性对应起来， -->
+ <!-- 	<resultMap type="com.mybatis.multiple.bean.Emp" id="empMap">
+ 		<id column="id" property="id"></id>    主键用<id>表示
+ 		<result  column="ename"  property="ename"></result> 
+ 		<result  column="gender" property="gender"></result>
+ 		<result  column="age"	 property="age"></result>
+ 		<result  column="did"    property="dept.did"></result>   这里级联属性的写法，dept.did取dept对象中的属性did。下面dname同理
+ 		<result  column="dname"  property="dept.dname"></result>
+ 	</resultMap> -->
+ 	<!-- (2)也可使用<association>标签，替代上面级联属性写法 -->
+ 	<resultMap type="com.mybatis.multiple.bean.Emp" id="empMap">
+ 		<id column="id" property="id"></id>    <!-- 主键用<id>表示 -->
+ 		<result  column="ename"  property="ename"></result> 
+ 		<result  column="gender" property="gender"></result>
+ 		<result  column="age"	 property="age"></result>
+ 		<association property="dept"  javaType="com.mybatis.multiple.bean.Dept">    <!-- config文件中没有定义<Alias>别名，所以这里写全类名 -->
+ 			<id  column="did"  property="did"></id>
+ 			<result column="dname"  property="dname"></result>
+ 		</association>
+ 	</resultMap>
+ 	
+ 	<!-- 2，再写select语句，属性改为resultMap，不用resultType -->
+ 	<select id="getAllEmpAsList" resultMap="empMap">  <!-- 这里用resultMap属性，赋值是上面<resultMap>标签的id值 -->
+ 		select e.id,e.ename,e.gender,e.age,e.did,d.dname 
+ 		from emp as e 
+ 		left outer join dept as d 
+ 		on e.did=d.did;
+ 	</select>
+ <!-- =================================================================== -->
+ 	
+ </mapper>
