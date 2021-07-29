@@ -1,5 +1,5 @@
 #这里把用户名设置成user_name是为了以后测试用
-
+#emp是id,不是eid,注意！！
 drop database if exists ssm;
 create database ssm;
 use ssm;
@@ -8,10 +8,19 @@ drop table if exists emp;
 create table dept (did int primary key unique, dname varchar(100) not null);
 insert into dept (did ,dname ) values (11,"sales"),(22,"hr"),(33,"research"),(44,"manage"),(55,"account");
 create table emp (id int primary key auto_increment, ename varchar(255),gender char(8), age int,did int, foreign key(did) references dept(did));
-insert into emp (id, ename,gender,age,did) values (1,"Jack","male",30,11),(2,"Mike","male",36,22),(3,"Jane","female",40,33);
+insert into emp (id, ename,gender,age,did) 
+values (1,"Jack","male",30,11),(2,"Mike","male",36,22),(3,"Jane","female",40,33),(4,"Landa","male",20,22),(5,"Ann","female",35,11);
 
 #两表联查
  select e.id,e.ename,e.gender,e.age,e.did,d.dname 
  from emp as e
  left outer join dept as d
  on e.did=d.did;
+ 
+ 
+#一对多
+select d.did,d.dname,e.id,e.ename,e.gender,e.age 
+from dept as d
+left outer join emp as e
+on d.did=e.did
+where d.did=22;

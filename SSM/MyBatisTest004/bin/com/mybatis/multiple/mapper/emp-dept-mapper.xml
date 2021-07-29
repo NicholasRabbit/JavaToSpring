@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper  namespace="com.mybatis.multiple.mapper.EmpDeptMapper">
+ 	
+ <!-- =================================================================== -->
+ 	<!-- <resultMap>标签，自定义表的列名和对象(有时用到多个对象)属性间的映射，处理复杂表关系，
+ 		<id>用于主键，<result>用于其它列；
+ 		column表示列名，property是属性名。
+ 	 -->
+ 	
+ 	<!--一，多对一查询。
+ 		1，多对一的两表联查，有两种写法。获取员工及其部门名称信息，即多（员工）对一(部门)： List<Emp> getAllEmpAsList() ，因为是两个表，所以不能用resultType,要用resultMap。-->
+ 		
+ 	<!-- 第(1)种：首先用<resultMap>标签，自定义映射，处理复杂关系，即把查询结果和对象的属性（包括引用属性）对应起来， -->
+ <!-- 	<resultMap type="com.mybatis.multiple.bean.Emp" id="empMap">
+ 		<id column="id" property="id"></id>    主键用<id>表示
+ 		<result  column="ename"  property="ename"></result> 
+ 		<result  column="gender" property="gender"></result>
+ 		<result  column="age"	 property="age"></result>
+ 		<result  column="did"    property="dept.did"></result>   这里级联属性的写法，dept.did取dept对象中的属性did。下面dname同理
+ 		<result  column="dname"  property="dept.dname"></result>
+ 	</resultMap> -->
+ 	<!-- 第(2)种：多对一也可使用<association>标签，替代上面级联属性写法 -->
+ 	<resultMap type="com.mybatis.multiple.bean.Emp" id="empMap">
+ 		<id column="id" property="id"></id>    <!-- 主键用<id>表示 -->
+ 		<result  column="ename"  property="ename"></result> 
+ 		<result  column="gender" property="gender"></result>
+ 		<result  column="age"	 property="age"></result>
+ 		<!-- property是Emp对象内的属性名 -->
+ 		<association property="dept"  javaType="com.mybatis.multiple.bean.Dept">    <!-- config文件中没有定义<Alias>别名，所以这里写全类名 -->
+ 			<id  column="did"  property="did"></id>
+ 			<result column="dname"  property="dname"></result>
+ 		</association>
+ 	</resultMap>
+ 	
+ 	<!-- 2，再写select语句，属性改为resultMap，不用resultType -->
+ 	<select id="getAllEmpAsList" resultMap="empMap">  <!-- 这里用resultMap属性，赋值是上面<resultMap>标签的id值 -->
+ 		select e.id,e.ename,e.gender,e.age,e.did,d.dname 
+ 		from emp as e 
+ 		left outer join dept as d 
+ 		on e.did=d.did;
+ 	</select>
+ <!-- =================================================================== -->
+ 	<!-- 二，多对一分步查询，即两个表分别查询，然后MyBatis把结果结合起来。Emp getEmpByStep(Integer id)。-->
+ 	<!-- 跟上面一样，因为有属性Dept dept,所以用<resultMap>标签，自定义映射，处理复杂关系 -->
+ 	<resultMap type="com.mybatis.multiple.bean.Emp"  id="empStepMap">
+ 		<id column="id" property="id"></id>
+ 		<result column="ename" property="ename"></result>
+ 		<result column="gender" property="gender"></result>
+ 		<result column="age" property="age"></result>
+		<!-- 分步查询关键步骤:使用<association>把两个单独查询的结果链接起来。
+			 select赋值是dept-mapper.xml映射文件中SQL语句的id,要加全限定名，因为可能有多个mapper.xml文件相同的id,防止冲突。
+			 column的赋值"did"，是dept表的查询条件。必须是下面select语句中查询出的结果did,如果没有这个查询结果，那么在部门表中查出结果是null。 -->
+		<association property="dept" select="com.mybatis.multiple.mapper.DeptMapper.getDeptByDid"  column="did"></association>
+ 	</resultMap>
+ 	
+ 	<select id="getEmpByStep"  resultMap="empStepMap">
+ 		select id,ename,gender,age,did from emp where id=#{id}  <!-- emp对象中不必有Ingteger did这个属性，因为有Dept dept了。但MySQL的emp表中必须有，它是用于主外键依赖链接的。 -->
+ 	</select>
+ 	   <!-- 三，延迟加载，只在查询时有效，见multiple-select-config.xml中设置。 -->
+  
+  <!-- =================================================================== -->
+  	
+  	<!-- 四，一对多映射，用 <collection>,两表联查的方式，以Dept对象为主，在Dept.java中加属性List<Emp> empList表示一个部门中的所有员工。sql查询也是以dept表为主表。
+  	 List<Emp> getEmpsAsListByDept(Dept did); -->
+  	<resultMap type="com.mybatis.multiple.bean.Dept"  id="deptMap">
+  		<id column="did"  property="did"></id>
+  		<result column="dname"  property="dname"></result>
+  		<!-- 用<collectioin>标签来映射 List<Emp> empList属性，这里要用ofType，其值是List<Emp>集合内的元素类型，不可用javaType-->
+  		<collection property="empList"  ofType="com.mybatis.multiple.bean.Emp"> 
+  			<id column="id"  property="id"></id>
+  			<result column="ename"  property="ename"></result>
+  			<result column="gender"  property="gender"></result>
+  			<result column="age"  property="age"></result>  
+  		</collection>
+  	</resultMap>
+  									<!-- 这里不能用resultType=“Dept”,因为查询结果是多条，即一个部门有多个员工 -->
+  	<select id="getEmpsAsListByDept" resultMap="deptMap">   <!-- 这里也是把查询到的结果一一对应到上面的<resultMap>中去 -->
+  		select d.did,d.dname,e.id,e.ename,e.gender,e.age 
+  		from dept as d
+  		left outer join emp as e
+  		on d.did=e.did
+  		where d.did=#{did}
+  	</select>
+  	
+  <!-- =================================================================== -->
+  
+  <!-- 五，一对多，分步查询 -->
+ 	<!-- 获取一个部门的员工，放进List集合，List<Emp> getEmpsByDid(Integer did) -->
+	<select id="getEmpsByDid" resultType="com.mybatis.multiple.bean.Emp">
+		select id,ename,gender,age from emp where did=#{did}
+	</select> 
+ 	
+ 	<!--获取单个部门， Dept getDeptOnlyByDid(Integer did) -->
+ 	<resultMap type="com.mybatis.multiple.bean.Dept" id="deptMapByStep">
+ 		<id column="did"  property="did"></id>
+ 		<result column="dname"  property="dname"></result>						
+ 		<!-- multiple-select-config中设置全局延迟加载后，可在此使用fetchType属性单独设置是否延迟加载，“lazy”是默认值，“eager”表示这里不延迟加载 -->	
+ 		<collection property="empList" select="com.mybatis.multiple.mapper.EmpDeptMapper.getEmpsByDid"  column="did"  fetchType="lazy"> <!-- 底层是Map集合，也可写作:column={did=did} -->
+ 			<id column="id"  property="id"></id>								
+  			<result column="ename"  property="ename"></result>                   
+  			<result column="gender"  property="gender"></result>
+  			<result column="age"  property="age"></result>
+ 		</collection>
+ 	</resultMap>
+ 	<select id="getDeptOnlyByDid" resultMap="deptMapByStep">
+ 		select did,dname from dept where did=#{did}     <!-- (1)这里从方法中获取did实参，再赋值给(2)处的did,(2)再赋值给(3)处的did -->
+ 	</select>
+ 	
+ 		
+ 	
+ </mapper>

@@ -9,6 +9,12 @@
 		"url"：表示在网络路径下，或磁盘路径下访问，即带斜线"/"的路径方式。 -->
  	<properties resource="jdbc.properties"></properties>
  	
+ 	<settings>
+ 		<!-- 三，延迟加载设置，首先把 lazyLoadingEnabled(启用延迟加载)设置为true,同时也要把aggressiveLazyLoading(表示不延迟加载)设置为false-->
+ 		<setting name="lazyLoadingEnabled"  value="true"></setting>
+ 		<setting name="aggressiveLazyLoading" value="false"></setting>
+ 	</settings>
+ 	
  	<environments default="mysql">
  		<environment id="mysql">
  			<transactionManager type="JDBC"></transactionManager>
@@ -22,7 +28,8 @@
  	</environments>
  
  	<mappers>
- 		<!-- 如果用<package>标签扫描，则需写作 EmpMapper.xml,与EmpMapper.java名字一致 。这里先不用。-->
- 		<mapper resource="com/mybatis/multiple/mapper/multiple-mapper.xml"></mapper>
+ 		<!-- 这里用单个<mapper>标签。如果用<package>标签扫描，则需写作 EmpMapper.xml,与EmpMapper.java名字一致 。-->
+ 		<mapper resource="com/mybatis/multiple/mapper/emp-dept-mapper.xml"></mapper>
+ 		<mapper resource="com/mybatis/multiple/mapper/dept-mapper.xml"></mapper>
  	</mappers>
  </configuration>
