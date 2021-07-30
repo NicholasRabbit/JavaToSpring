@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- 这里写<choose> <foreach>标签用法，都写在一起太乱 -->
+ <mapper  namespace="com.mybatis.dynamic.mapper.EmpMapper">
+ 	
+ 	
+ 	<!-- Emp getEmpById(Integer id); -->
+ 	<select id="getEmpById"  resultType="com.mybatis.dynamic.bean.Emp">
+ 		select id,ename,gender,age,did from emp
+ 		where id=#{id}
+ 	</select>
+ </mapper>

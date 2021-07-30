@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper  namespace="com.mybatis.dynamic.mapper.EmpMapper">
+ 	
+ 	<!--一，多条件静态查询： Emp getEmp(Emp emp) -->
+ 	<select id="getEmp"  resultType="com.mybatis.dynamic.bean.Emp">
+ 		
+ 		<!-- (1)这种and并联写法，一旦有一个条件为空或错误，即使别的条件对也查不出来，因此需要动态sql语句 -->
+ 		<!-- select id,ename,gender,age,did from emp
+ 		where id=#{id} and ename=#{ename} and gender=#{gender} and age=#{age} -->
+ 		 
+ 		 <!--(2)动态sql语句写法，加<if>标签，如果<if>中的值为空，则不使用，这样不影响其它条件的判断。
+ 		 	 这种写法有个缺陷，如果id为空的话，会造成sql语法错误，因为后面有and。解决办法，见下方，在第二条中解决。-->
+ 		select id,ename,gender,age,did from emp
+ 		where 
+		<if test="id != null">
+		id=#{id}
+		</if>
+		<if test="ename != null">
+		and	 ename=#{ename}
+		</if>
+		<if test="age != null">
+	    and	 age=#{age}
+		</if>
+ 	</select>
+ 	
+ 	<!-- 各标签作用
+ 	    <if test=" ">:通过判断拼接sql语句
+ 	    <where>:代理sql语句的where,并去掉拼接语句中多余的“and”
+ 	    <trim prefix=" " suffix=" " prefixOverrides=" " suffixOverrides=" ">:修剪截取拼接sql语句 
+ 	    prefix/suffix:在其内含的sql语句前面或后面添加关键字，如where ,on等等。
+ 	    prefixOverrides:把其内含的的sql语句前的某个词去掉
+ 	    suffixOverrides:把其内含的的sql语句后的某个词去掉
+ 	    -->
+ 	<!-- 二，多条件动态查询，动态sql用法，<where><if>用法，弥补第一条(2)中的缺陷:public abstract Emp getEmpDynamic(Emp emp);
+ 	                 第一条(2)中的缺陷有两种解决办法：
+ 	                 解决办法1：在where 后加恒等式  1=1，然后再id前加and即可 ；
+ 	                 解决办法2，在<if>外加<where>标签，可自动去掉条件为null时的“and”。原先sql语句的where不要用。-->
+ 	<select id="getEmpDynamic"  resultType="com.mybatis.dynamic.bean.Emp">
+ 		select id,ename,gender,age,did from emp
+ 		<!-- where 2=2 -->
+		<where>
+		<if test="id != null">
+		and  id=#{id}
+		</if>
+		<if test="ename != null or ename != ''">  <!-- 这里可以用or或and连接判断 ，String类型有为空“”的情况-->
+		and	 ename=#{ename}
+		</if>
+		<if test="age != null">
+	    and	 age=#{age}
+		</if>
+		</where>
+ 	</select>
+ 	
+ 	<!--三，多条件查询之<trim>的用法： List<Emp>  getEmpDynamic02(Emp emp) -->
+ 	<select id="getEmpDynamic02" resultType="com.mybatis.dynamic.bean.Emp">
+ 		select id,ename,gender,age,did from emp
+ 		<trim prefix="where" suffixOverrides="and|or" >   <!-- (1)suffixOverrides可去掉一个或多个后缀，防止多个条件为null造成sql语句中关键词没用上引起语法错误 -->
+ 			<if test="id != null">						  <!-- (2)注意：and | or之间是竖线 -->
+ 				id=#{id}  and 							  <!-- (3)两种情况都测试下，一，did=null,只写测试and是否被去除；二，did=22(正确值)，而ename为 null来测试or是否被删除 -->
+ 			</if>										  <!--suffixOverrides="and",只测试did=null时用，没有or以及后面的<if>-->
+ 			<if test="gender != null">
+ 				gender=#{gender}  and
+ 			</if>
+ 			<if test="age != null">
+ 				age=#{age}  and
+ 			</if>
+ 			<if test="did != null">     <!-- emp03=new Emp(4,null,"male",20,null); 新建对象时did为null,<if>标签不启用，上面sql语句就多了个“and”,因此用suffixOverrides去除，否则sql语法错误-->
+ 				did=#{did}  or          <!-- 如果did赋值正确，而下面ename又无赋值为null,则这里多个null,所以在and后加 | or。 -->       
+ 			</if>						
+ 			<if test="ename != null and ename !='' ">
+ 				ename=#{ename}     <!-- 这里写ename，上面的and语句中就不能出现ename了，因为MySql从一个emp对象中只能获取一个ename,即ename or ename语法冲突 -->
+ 			</if>
+ 		</trim>
+ 	</select> 
+  		
+ 	
+ </mapper>
