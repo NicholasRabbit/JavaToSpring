@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.mybatis.dynamic.mapper.EmpMapper">
+ 	
+ 	<!--一，批量增加员工： Integer addEmpsByList(List<Emp> emp) -->
+ 	<insert id="addEmpsByList">
+ 		insert into emp (id,ename,gender,age) values
+ 		<foreach collection="list" item="emp" separator=",">    <!-- 这里item就是给每个集合中的元素起了个别名，代表这个元素，跟foreach(Emp emp : empList)中emp同理。 -->
+ 			(#{emp.id},#{emp.ename},#{emp.gender},#{emp.age})   <!-- 注意这里小括号要写里面，不要用open,close表示，否则造成sql语法错误。 -->
+ 		</foreach>
+ 	</insert>
+ 	
+ 	<!--二，批量更新员工,用@Param自定义数组名称，赋值与映射文件中的collection,不用默认的"array"了。
+	    Integer updateEmpsByArray(@Param("empArray") Emp[] empArray);-->
+	<!--注意：(1)批量更新这里循环的是整个sql语句，在每句间要加分号“；” 
+	        (2)因为这里是循环多个sql语句，所以要在配置文件jdbc.properties中url行加../ssm?allowMultiQueries=true,否则报sql语法错误-->
+	<update id="updateEmpsByArray">
+		<foreach collection="empArray" item="emp"  separator=";">  
+			update emp set ename=#{emp.ename},did=#{emp.did} where id=#{emp.id}  <!-- 分号写在sql语句最后这里，或用separator表示都可以 -->
+		</foreach>
+	</update>
+	
+	
+	<!--三，<sql>标签用法测试:Emp selectEmpById(Integer id); -->
+	<sql id="empSelectSql">select id,ename,gender,age,did from emp </sql>  
+	<select id="selectEmpById"  resultType="com.mybatis.dynamic.bean.Emp">
+		<include refid="empSelectSql"></include> where id=#{id}
+	</select> 
+	
+	
+ </mapper>
