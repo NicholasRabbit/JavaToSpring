@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.mybatis.cache.mapper.EmpMapper">
+ 	
+ 	<!-- 开启二级缓存（第三方的） -->
+ 	<cache  type="org.mybatis.caches.ehcache.EhcacheCache"></cache>  
+ 	
+ 	<sql id="mySelectSql">select id,ename,gender,age,did from emp</sql>   <!-- 写好公共 sql语句，复习<sql>用法 -->
+ 	
+ 	<!--增删改查标签，有个flushCache属性，指是否刷新缓存，同时清除一级，二级缓存
+ 	 <select  flushCache="false">:默认值是false
+ 	 <delete><insert><update flushCache="true">:默认值是true,因此可知两次查询之间有增删改的操作的话，则原来的缓存就清除了。 -->
+ 	
+ 	<!-- 测试二级缓存,第三方的：Emp getEmpById(Integer id); -->
+ 	<select id="getEmpById"  resultType="com.mybatis.cache.bean.Emp"  flushCache="false">
+ 		 <include  refid="mySelectSql"></include> where id=#{id}
+ 	</select>
+ 	
+ 	<!-- 删除员工：Integer deleteEmpById(Integer id); -->
+ 	<delete id="deleteEmpById" flushCache="true">
+ 		delete from emp where id=#{id}
+ 	</delete>
+ </mapper>

@@ -7,9 +7,77 @@
  <mapper  namespace="com.mybatis.dynamic.mapper.EmpMapper">
  	
  	
- 	<!-- Emp getEmpById(Integer id); -->
- 	<select id="getEmpById"  resultType="com.mybatis.dynamic.bean.Emp">
+ 	<!-- 四，<choose>用法，1，根据id,ename,gender,age,did的其中一个条件查询员工:List<Emp> getEmpByChoose(Emp emp)
+ 		   其内部的<when><otherwise>跟if...esle if ...else用法类似，只能有一个条件执行,一旦这个条件执行，后面的不执行。else可不用，同理<otherwise>也可不用。 -->
+ 	<select id="getEmpByChoose"  resultType="com.mybatis.dynamic.bean.Emp">
  		select id,ename,gender,age,did from emp
- 		where id=#{id}
+ 		where
+ 		<choose>
+ 			<when test="id != null">     
+ 				id=#{id}
+ 			</when>
+ 			<when test="ename != null and ename != ''">
+ 				ename=#{ename}
+ 			</when>
+ 			<when test="gender != null">
+ 				gender=#{gender}
+ 			</when>
+ 			<when test="age">
+ 				age=#{}
+ 			</when>
+ 			<otherwise>		
+ 				did=#{did}    
+ 			</otherwise>
+ 		</choose>
  	</select>
+ 	
+ 	<!-- 四，<choose>用法，2，添加用户时，在<choose>中进行判断，通过数字判断，把相应的单词添加到数据库。因为在除了数字外，String中别的值不能用恒等号比较-->
+ 	<!-- Integer insertEmpByChoose(Emp emp) -->   
+ 	<insert id="insertEmpByChoose">
+ 		insert into emp (id,ename,gender,age) values 
+ 		( #{id},#{ename},
+ 		<choose>
+ 			<when test="gender == 1">'male'</when>     <!-- 这里的字母要加引号，当前mysql设置不支持中文，暂时用英文 -->
+ 			<when test="gender == 0">'female'</when>
+ 			<otherwise>'unknown'</otherwise>
+ 		</choose>
+ 		,#{age}    <!-- <choose>只是对性别进行判断，再和sql语句拼接，因此别忘了#{age}前加逗号“，”，以及前后加括号“()” -->
+ 		)
+ 	</insert> 
+ 	
+ 	
+ 	
+ 	<!-- 五，<foreach>用法，<foreach collection="" item=""  open="" close="" seperator=""  index="">用法 
+ 			collection: 指要遍历的集合或数组，List集合默认用"list"表示，数组Array[]默认用"array"表示。针对的是xxxMapper.java接口中方法的形参类型。
+ 			item: 设置别名
+ 			open: 设置for循环开始符号,例如:“(”
+ 			close:设置for循环结束符号，例：“)”
+ 			seperator:设定要插入的分隔符，因为遍历的元素之间要用符号隔开，否则sql语法错误。例：sql语句中in后面括号内条件要用逗号隔开，..where id in (1,2,3);
+ 			index: 若遍历集合是List,则表示下标。若遍历Map结合，则表示键key-->
+ 	<!--(1) 批量删除，数组方式: void deleteEmpsByArray(Integer[] ids) -->
+ 	<delete id="deleteEmpsByArray">
+ 		delete from emp where id in (    
+ 		<foreach collection="array" item="id" separator=",">   <!-- 形参是数组，因此用"array"赋值。就是遍历数组，然后加个逗号和前后文拼接成sql语句。 -->
+ 			#{id}											   <!-- item="id",就是把集合中得到的数据命名为id,然后赋值于下方的#{}。集合用法同理。 -->
+ 		</foreach>
+ 		)
+ 	</delete> 
+ 	
+ 	<!--(2)批量删除，集合方式：Integer deleteEmpsByList(List<Emp> empList),有返回值表示删除成功条数，可在主测试程序中获取，这里不用写 resultType,写了反而报错  -->
+ 	<delete id="deleteEmpsByList">    
+ 		delete from emp where id in
+ 		<foreach collection="list" item="id" separator=","  open="("  close=")">  <!-- 可以用open,close的形式添加括号“()”，不用手动写了 -->
+ 			#{id}	   <!-- 这里不能写变量名idList,需写默认的名子，但是使用@Param可自定义集合的名字，见EmpMapper.java -->
+ 		</foreach>
+ 	</delete>  
+ 	
+ 	<!-- (3)批量删除，集合方式使用@Param注解自定义集合名字为myIds;Integer deleteEmpsByListParam(@Param("myIds") List<Integer> idList) -->
+ 	<delete id="deleteEmpsByListParam">
+ 		delete from emp where id in
+ 		<foreach collection="myIds" item="id" separator="," open="(" close=")">
+ 			#{id}
+ 		</foreach>
+ 	</delete>
+ 	
+ 	
  </mapper>

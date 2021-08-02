@@ -60,7 +60,7 @@
  		select id,ename,gender,age,did from emp
  		<trim prefix="where" suffixOverrides="and|or" >   <!-- (1)suffixOverrides可去掉一个或多个后缀，防止多个条件为null造成sql语句中关键词没用上引起语法错误 -->
  			<if test="id != null">						  <!-- (2)注意：and | or之间是竖线 -->
- 				id=#{id}  and 							  <!-- (3)两种情况都测试下，一，did=null,只写测试and是否被去除；二，did=22(正确值)，而ename为 null来测试or是否被删除 -->
+ 				id=#{id}  and 							  <!-- (3)两种情况都测试下，一，did=null,只写测试suffixOverrides="and"是否被去除；二，did=22(正确值)，而ename为 null来测试or是否被删除 -->
  			</if>										  <!--suffixOverrides="and",只测试did=null时用，没有or以及后面的<if>-->
  			<if test="gender != null">
  				gender=#{gender}  and

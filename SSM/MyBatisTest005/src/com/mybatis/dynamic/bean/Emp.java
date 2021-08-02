@@ -12,6 +12,15 @@ public class Emp {
 	}
 	
 	
+	
+	public Emp(Integer id, String ename) {
+		super();
+		this.id = id;
+		this.ename = ename;
+	}
+
+
+
 	public Emp(Integer id, String ename, String gender, Integer age, Integer did) {
 		super();
 		this.id = id;
