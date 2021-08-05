@@ -1,0 +1,39 @@
+搭建环境是JavaEE,以SpringMVC为主，进行整合其它两个框架
+1,导入各框架所需的jar包,放到WebContent/WEB-INF/lib下，会自动加载，无需手动add to build path
+	Spring:
+	SpringMVC:
+	MyBatis:除了本身所需jar包外，还需MyBatis适配Spring的包mybatis-spring.jar
+	以及第三方支持jar包：commons-logging,log4j,pageHelper,AspectJ,jackson,jstl
+2,搭建SpringMVC:
+	(1)配置web.xml
+	    <DispathcerServlet>:处理请求的转发器
+		<HiddenMethodFilter>:Rest风格过滤器
+		<CharacterEncodingFilter>:中文乱码解决方案，编码过滤器
+		<listener>:配置监听器，整合Spring,SpringMVC
+	(2)配置springmvc.xml
+		<context:component-scan base-package="">:设定SpringMVC所在的控制层的扫描范围。
+		<bean id="" class="InternalResouceViewResolver">:设置视图转发器
+		<mvc:default-servlet-handler />：配置defalut-handler
+		<mvc:annotation-driven />:开启注解驱动
+		<mvc:interceptors>:使用拦截器（可选）
+		<bean id="" class="MultipartResolver">:上传下载使用的组件（可选）
+3，整合Spring和SpringMVC
+	(1)web.xml文件进行配置监听器来整合<listener>:
+		监听器有两种方式，
+		一，自定义监听器实现ServletContextListener；
+		二，ContextLoaderListener:使用Spring框架自带的监听器。
+	(2)spring.xml配置文件中扫描排除SpringMVC的控制层Controller，springmvc.xml的扫描也要排除Spring的Service层
+4，搭建MyBatis:
+	配置全局配置文件；
+	配置xxxMapper.xml映射文件；
+	写好xxxMapper.java接口；
+	如果开启二级缓存，POJO要继承Serializable接口
+5，Spring配置文件，整合MyBatis,实际就是要Spring框架来管理MyBatis的相关对象
+	spring.xml中配置
+	(1)引入外部资源文件，数据库链接信息文件如jdbc.properties,要用到Druid相关jar包
+	(2)配置事务管理器<bean id="" class="...DataSourceTransactionManager">
+	(3)开启事务注解驱动<tx:annotation-driven>
+	(4)接管MyBatis所用的对象SqlSessionFactoryBean
+	(5)使用MapperSacnnerConfigurer,管理MyBatis的映射文件
+	   
+	
