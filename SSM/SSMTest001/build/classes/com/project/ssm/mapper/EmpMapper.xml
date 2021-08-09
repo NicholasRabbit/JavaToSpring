@@ -9,5 +9,44 @@
  		<select id="getAllEmpsByList"  resultType="com.project.ssm.bean.Emp">
  			select id,ename,gender,age,did from emp   
  		</select>
- 
+ 		
+ 		<!-- 展示单个员工信息详情,包括部门名称，两表联查 :Emp getEmpById(Integer id)-->
+ 		<resultMap type="com.project.ssm.bean.Emp" id="empMap">
+ 			<id column="id"  property="id"></id>
+ 			<result column="ename"  property="ename"></result>
+ 			<result column="gender"  property="gender"></result>
+ 			<result column="age"  property="age"></result>
+ 			<result column="did"  property="did"></result>
+ 			<association  property="dept"  javaType="com.project.ssm.bean.Dept">
+ 				<id column="did"  property="did"></id>
+ 				<result column="dname"  property="dname"></result>
+ 			</association>
+ 		</resultMap>
+ 		<select id="getEmpById"  resultMap="empMap">
+ 			select e.id,e.ename,e.gender,e.age,e.did,d.dname 
+ 			from emp as e
+ 			left outer join dept as d
+ 			on e.did=d.did
+ 			where id=#{id}
+ 		</select>
+ 		
+ 		<!--删除单个员工： Integer deleteEmpById(Integer id); -->
+ 		<delete id="deleteEmpById">
+ 			delete from emp where id=#{id}
+ 		</delete>
+ 		
+ 		<!--增加单个员工: Integer addEmp(Emp emp) -->   <!-- 增加单个员工，赋值时直接写属性名就行，如#{id},不用写#{emp.id},否则报错：no getter method for emp -->
+ 		<insert id="addEmp">
+ 			insert into emp (id,ename,gender,age,did)  values (#{id},#{ename},#{gender},#{age},#{did})
+ 		</insert>
+ 		
+ 		<!--获取最大id,使得增加员工时依次排序: Integer getMaxId(); -->
+ 		<select id="getMaxId"  resultType="java.lang.Integer">
+ 			select max(id) from emp;
+ 		</select>
+ 		
+ 		<!--更新员工信息: Integer updateEmp(Emp emp) -->   <!-- 更行单个员工也是，赋值时直接写属性名就行，如#{id},不用写#{emp.id},否则报错：no getter method for emp -->
+ 		<update id="updateEmp">
+ 			update emp set ename=#{ename},gender=#{gender},age=#{age},did=#{did} where id=#{id}   <!-- 如果用${ }的形式，String类型的要加引号:“${ename}” ，否则报错MySqlSyntax  error-->
+ 		</update>
  </mapper>

@@ -2,6 +2,7 @@ package com.project.ssm.bean;
 
 import java.io.Serializable;
 
+
 public class Emp implements Serializable {
 	
 	private Integer id;
@@ -9,6 +10,7 @@ public class Emp implements Serializable {
 	private String gender;
 	private Integer age;
 	private Integer did;
+	private Dept dept;
 	
 	public Emp() {
 	
@@ -32,6 +34,18 @@ public class Emp implements Serializable {
 		this.age = age;
 		this.did = did;
 	}
+
+	
+
+	public Emp(Integer id, String ename, String gender, Integer age, Integer did, Dept dept) {
+		this.id = id;
+		this.ename = ename;
+		this.gender = gender;
+		this.age = age;
+		this.did = did;
+		this.dept = dept;
+	}
+
 
 
 	public Integer getDid() {
@@ -71,19 +85,25 @@ public class Emp implements Serializable {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	public Dept getDept() {
+		return dept;
+	}
+
+
+
+	public void setDept(Dept dept) {
+		this.dept = dept;
+	}
 
 
 
 	@Override
 	public String toString() {
-		return "Emp [id=" + id + ", ename=" + ename + ", gender=" + gender + ", age=" + age + ", did=" + did + "]";
+		return "Emp [id=" + id + ", ename=" + ename + ", gender=" + gender + ", age=" + age + ", did=" + did + ", dept="
+				+ dept + "]";
 	}
 
-	
-
-	
-
-	
 	
 	
 }

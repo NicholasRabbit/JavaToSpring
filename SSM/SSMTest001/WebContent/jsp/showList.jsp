@@ -13,15 +13,23 @@
 	<%-- ${empList}   --%>
 	<table>
 		<tr>
-			<th>员工编号</th> <th>姓名</th> <th>性别</th> <th>年龄</th> <th>部门</th>
+			<th colspan="6">员工列表</th>
+		</tr>
+		<tr>
+			<th>员工编号</th> <th>姓名</th> <th>性别</th> <th>年龄</th> <th>部门</th> <th>编辑(<a href="/SSMTest001/jsp/add.jsp">添加</a>)</th>   <!-- 超链接静态页面别忘加后缀，add.jsp -->
 		</tr>
 		<c:forEach items="${empList}"  var="emp">  <!-- 和foreach用法类似，这里forEach，E大写 -->
 			<tr>
 				<td>${emp.id }</td>
 				<td>${emp.ename}</td>
-				<td>${emp.gender }</td>
+				<td>${emp.gender}</td>
 				<td>${emp.age }</td>
 				<td>${emp.did }</td>
+				<td>
+				<a href="delete/${emp.id}">删除</a> &nbsp; 
+				<a href="update/${emp.id }">修改</a>  &nbsp;
+				<a href="emp?id=${emp.id }">详情</a>   <!-- 复习uri普通传数据的写法：……/uri?id=1001&name=Tom -->
+				</td>
 			</tr>
 		</c:forEach>	
 			
