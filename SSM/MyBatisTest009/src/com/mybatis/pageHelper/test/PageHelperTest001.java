@@ -75,7 +75,7 @@ public class PageHelperTest001 {
 			
 			/*PageInfo.java的用法，
 			 * 这里使用PageInfo的有参构造public PageInfo(List<T> list, int navigatePages)
-			 * navigatePages指在上面startPage(4,2)设定显示第4页，每页2条的基础上，改为每页展示4条，即前后各加1条表示过渡，方便用户阅读。*/
+			 * navigatePages指在上面startPage(4,2)设定显示第4页，每页2条的基础上，最下面展示4个页码，例1-4或2-5，方便用户阅读。*/
 			PageInfo<Emp>  pageInfo=new PageInfo<Emp>(empList02,4);  
 			System.out.println("navigatepageNums==>"+Arrays.toString(pageInfo.getNavigatepageNums()));
 			

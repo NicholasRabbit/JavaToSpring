@@ -25,14 +25,21 @@
 				<td>${emp.gender}</td>
 				<td>${emp.age }</td>
 				<td>${emp.did }</td>
-				<td>
-				<a href="delete/${emp.id}">删除</a> &nbsp; 
-				<a href="update/${emp.id }">修改</a>  &nbsp;
-				<a href="emp?id=${emp.id }">详情</a>   <!-- 复习uri普通传数据的写法：……/uri?id=1001&name=Tom -->
+				
+				<!-- 这里如果写相对路径 :delete/..，因为个人测试分页的请求路径是/page_helper，所以最后实际路径变成了:/SSMTest001/page_helper/emp?id=11,
+					  使用相对路径写法时，最后一个uri（delete）会被被替换为page_helper。所以要用绝对路径写法，SSMTest001/delete/1是正确路径。
+				 -->
+				<td>     
+				<a href="${pageContext.servletContext.contextPath }/delete/${emp.id}">删除</a> &nbsp;    
+				<a href="${pageContext.servletContext.contextPath }/update/${emp.id }">修改</a>  &nbsp;
+				<a href="${pageContext.servletContext.contextPath }/emp?id=${emp.id }">详情</a>   <!-- 复习uri普通传数据的写法：……/uri?id=1001&name=Tom -->
 				</td>
 			</tr>
-		</c:forEach>	
-		
+		</c:forEach>
+		<tr>
+			<td colspan="6">${pageInfo}</td>    <!-- pageInfo对象里就含有超链接<a> 标签 -->
+		</tr>	
 	</table>
+	
 </body>
 </html>

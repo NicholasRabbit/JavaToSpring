@@ -86,7 +86,8 @@ public class EmpController {
 		//更新员工信息
 		Integer count=si.updateEmp(emp);
 		System.out.println("更新成功条数==>"+count);
-		return "redirect:/all_emps";
+		Integer id=emp.getId();
+		return "redirect:/all_emps";     
 	}
 	
 }
