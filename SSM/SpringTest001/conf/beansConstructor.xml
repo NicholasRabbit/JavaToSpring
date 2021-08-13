@@ -34,7 +34,7 @@
 <bean id="stu04" class="com.javaframe.spring.Student" p:num="100124" p:age="30" p:name="Adam"  p:score="36.5" p:teacher-ref="th"></bean>
 																												 <!-- 注意引用和p连用时的写法 -->
 
-<!--属性为引用时，给引用赋值的写法范例,注意引用赋值不可用value,而是用ref-->
+<!--第五个Stutent对象,属性为引用时，给引用赋值的写法范例,注意引用赋值不可用value,而是用ref-->
 <bean id="stu05" class="com.javaframe.spring.Student">
 	<property name="num"  value="100125"></property>
 	<property name="name" value="Andy"></property>
@@ -42,26 +42,32 @@
 	<property name="teacher"  ref="th"></property>   <!--对象引用赋值用ref属性-->
 </bean>                            <!-- 这个th指的是下面的id="th" -->
 
-<!-- 通过Student对象给其内部Teacher类属性teacher的属性赋值范例 -->
+<!--第六个Stutent对象， 通过Student对象给其内部Teacher类属性teacher的属性赋值范例 -->
 <bean id="stu06" class="com.javaframe.spring.Student">
 	<property name="num" value="100126"></property>
 	<property name="name" value="Matt"></property>
 	<property name="age" value="46"></property>
 	<property name="score" value="30.5"></property>
-	<property name="teacher" ref="th"></property>
-	       
-	<property name="teacher.tname" value="刘老师"></property>   <!-- 给老师teacher对象内部属性赋值方式，注意先要给对象引用teacher赋值 ，然后调用teacher.name进行赋值-->
-	<property name="teacher.age" value="46"></property>       <!-- 这里的teacher.name的 teacher是Stdent对象内的属性名，不是下面Teacher对象的id："th.name"，要注意！！，因为Student对象内部只认teacher这个变量名，还没有th给它赋值 -->
+	<property name="teacher" ref="th"></property>    
+	<!--1,给老师teacher对象内部属性赋值方式，注意先要给对象引用teacher赋值th,th必须是存在的，是一个teacher对象的id；
+		2,然后调用teacher.name进行级联赋值，teacher.name的 teacher是Stdent对象内的属性名，不是下面Teacher对象的id："th.name"，要注意！！，因为Student对象内部只认teacher这个变量名，还没有th给它赋值
+		3,这里赋值ref为th的话，则下面新赋值会覆盖下面id是“th”的bean对象原有的值 
+	-->      
+	<property name="teacher.tname" value="李老师"></property>   
+	<property name="teacher.age" value="46"></property>       <!--  -->
 	<property name="teacher.subject"  value="数学"></property>
 	
 </bean>
 
 <!-- Teacher对象赋值-->
 <bean id="th"  class="com.javaframe.spring.Teacher">
-	<property name="age" value="60"></property>
+	<property name="age" value="60"></property>          
 	<property name="tname" value="刘老师"></property>
 	<property name="subject"  value="美术"></property>
 </bean>
+
+
+
 
 
 </beans>

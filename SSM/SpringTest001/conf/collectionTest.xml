@@ -56,7 +56,7 @@
 				<key>
 					<value>1</value>
 				</key>     <!-- 这里一个<entry>标签表示Map集合中的一个键值对 -->
-				<value>赵老师</value>
+				<value>赵老师</value>    <!-- 如果Map集合的值value是对象，须写作：<ref bean="t01"></ref>-->
 			</entry>
 			<entry>
 				<key>
@@ -69,27 +69,19 @@
 </bean>
 
 <!-- 除了以上在<property>内部写List,Map对象意外，也可在外部命名标签块，把id赋予Student的<bean>对象
-	注意，写<util>标签块要在文件开头引入声明语句：xmlns:util="http://www.springframework.org/schema/util"，
-	还要在加上：xsi:schemaLocation=http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-4.0.xsd
-	后面这两行网址也要加上，否则报错:XmlBeanDefinitionStoreException
+	注意，写<util>标签块要在文件开头引入声明语句：xmlns:util="http://www.springframework.org/schema/util"，否则报错
  -->
 <bean id="stu13" class="com.javaframe.spring002.Student002">
-	<property name="num" value="20103"></property>
-	<property name="name" value="Mathias"></property>
+	<property name="num" value="200103"></property>
+	<property name="name" value="Mathas"></property>
 	<property name="myList" ref="list01"></property>
-	<property name="teachers" ref="list02"></property>
 	<property name="maps" ref="map01"></property>   <!-- 集合属于引用，因此要用ref来表示，不可用value -->
 </bean>
 
 <util:list id="list01">
-		<value>A</value>  <!-- 集合内元素为String类型时的写法 -->
-		<value>B</value>
-		<value>C</value>
-</util:list>
-
-<util:list id="list02">
-	<ref bean="t01"></ref>
-	<ref bean="t02"></ref>
+	<value>a</value>
+	<value>sunlit</value>
+	<value>courtyard</value>
 </util:list>
 
 <util:map  id="map01">
@@ -106,7 +98,7 @@
 			</key>
 			<value>孟老师</value>
 		</entry>
-
+	
 </util:map>
 	   
 	   
