@@ -46,7 +46,7 @@ public class MyLogAop {
 	(2)属性value赋值也可使用通配符，这里仅为个人熟悉，不写通配符
 	*/																//注意，如果方法名写错的话，AOP就无法用，这个后置通知也不会被调用
 	@After(value="execution(public int com.springframe.aop.Caculator.divide(int,int))")   //注意这个全限定名的切入点只针对Caculator.divide(..)方法有效，即后置通知只会加在这个方法之后，别的不起作用
-	public void afterHandler() {        
+	public void afterHandler() {        //
 		System.out.println("后置通知");
 	}
 	
@@ -84,8 +84,8 @@ public class MyLogAop {
 			
 			System.out.println("@Around: 返回通知");   //返回通知写在这里，下面返回值
 			return retValue;  
-		}catch(Throwable e) {
-			System.out.println("@Around: 异常通知");
+		}catch(Throwable e) {   
+			System.out.println("@Around: 异常通知"+e);  //这里的e接收目标类方法抛出的异常
 			e.printStackTrace();
 		}finally {
 			System.out.println("@Around: 后置通知");     //后置通知要写到finally语句中，因为不管抛不抛异常后置通知都要执行
