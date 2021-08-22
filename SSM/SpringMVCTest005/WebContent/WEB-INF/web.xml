@@ -11,7 +11,7 @@
 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	<init-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:springMVC_CRM.xml</param-value>
+		<param-value>classpath:springMVC_CRM.xml</param-value> <!-- 这里classpath指的是将来在Tomcat部署项目时，springMVC_CRM.xml要放在/WEB-INF/classes文件夹下，即类加载路径下 -->
 	</init-param>
 	
 </servlet>
