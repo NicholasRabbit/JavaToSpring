@@ -88,14 +88,14 @@ public class SpringJdbcTest001 {
 		
 		//(2)queryForObject(String sql,Object[] args, RowMapper rowMapper),也是查询单条结果并封装到RowMapper里，执行的sql语句所得到的结果必须是单行的，否则报错，底层是执行的PreparedStatement语句
 		String sql07="select id,name,gender,tel,addr from t_user where id=?";
-		Object[] objs07= {3};      //查询id=3的单行的数据
+		Object[] objs07= {3};      //查询id=3的单行的数据 ，也可以多条件查询，例如：objs07={3,"Tom"},注意要与sql语句通配符对应上
 		RowMapper<User> rowMapper07=new BeanPropertyRowMapper<>(User.class);    //后面的泛型可不写，钻石型写法，默认是User类
 		User u07=jtp.queryForObject(sql07,objs07,rowMapper07);                  //返回值是单个的类
 		System.out.println("u07==>"+u07);
 		
 		//(3)queryForObject(String sql, Object[] args, Class<T> requiredType) ,底层执行的是PreparedStatement语句
 		String sql08="select name from t_user where id=?";
-		String name08=jtp.queryForObject(sql08, new Object[] {8}, String.class);
+		String name08=jtp.queryForObject(sql08, new Object[] {8}, String.class);  //这里也可多条件查询，例如：new Object[]{8,"Tom"},设置两个条件
 		System.out.println("name08==>"+name08);
 		
 		
