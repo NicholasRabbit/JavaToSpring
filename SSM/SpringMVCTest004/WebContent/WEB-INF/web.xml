@@ -27,6 +27,7 @@
 <!-- 表单输入中文乱码解决方法，乱码原因跟Servlet中一样，浏览器传数据默认是ISO-8859-1,不支持中文，且不可更改，因此需要解码 
 	(1)可调用Spring框架自带的类，CharacterEncodingFilter,进行解码
 	(2)<param-name>的值是这个类中的属性，名字不可乱写
+	(3)必须把这个解决乱码的过滤器放到所有过滤器最前边，如果这个web.xml里还有其他过滤器如Rest的HiddenHttpMethodFilter等，因为要先设置好编码格式，否则不能解决乱码
 -->
 <filter>
 	<filter-name>encoding_filter</filter-name>
