@@ -26,7 +26,7 @@ public class ModelAndViewTest {
 	@RequestMapping(value="/mav",method=RequestMethod.POST)
 	public ModelAndView mavTest(User user) {       //想要被Spring框架调取到个人创建的ModelAndView对象，这里返回值不可写为空void,需写ModelAndView, 否则无法实现后续的跳转等功能
 		ModelAndView mav=new ModelAndView();      
-		mav.addObject("age",new Integer(25));      //向request作用域种放值
+		mav.addObject("age",new Integer(25));      //向request作用域种放值，可以在转发到的目的页面用<%=request.getAttribute(user01)%>得到
 		mav.addObject("user01",user);              //也可把含有浏览器数据的User对象添加进去
 		mav.setViewName("done");                   //设置视图的名称，会被视图转发器DispatcherServlet识别，并转到这个名字“done”的页面
 		System.out.println("mav==>"+mav);                                                           // 这里是浏览器用户输入的数据
