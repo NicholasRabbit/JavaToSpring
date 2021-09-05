@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="<%=pageContext.getServletContext().getContextPath()  %>/js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript">
 		$(function () {
-			$(".del").click(function () {     //这里的“del”是超链接<a>标签的class名，
+			$(".del").click(function () {     //这里的“del”是超链接delete所在，<a>标签的class名，一定要加上
 				//submit()将所获得的form元素提交
 				if(confirm("确认删除吗？")){
 					$("form").attr("action", this.href).submit();   //“form”是下面的form表单标签名
@@ -56,7 +56,7 @@
 	</table>
 	
 	<form method="post">
-		<input type="hidden" name="_method" value="DELETE"></input>
+		<input type="hidden" name="_method" value="DELETE"></input>   <!-- 和上面的jQuery结合使用，把超链接的get转化为delete -->
 	</form>
 </body>
 
