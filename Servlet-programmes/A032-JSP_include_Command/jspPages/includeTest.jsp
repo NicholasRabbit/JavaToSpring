@@ -6,7 +6,8 @@
 (1)注意include指令在jsp页面也是按照自上而下执行顺序，如本例结果是：World ! Hello,后输出Hello
 (2)执行include指令后，把include指向页面includedPage.jsp和本页面一起编译到了一个java程序里，在编译阶段就完成了,这属于静态联编
 (3)由此可知使用include指令后，在一个页面声明变量，另一个页面也可用，注意执行顺序
-(4)可以在一个jsp页面中使用多个include
+(4)可以在一个jsp页面中使用多个include;
+(5)a.jsp可以将b.jsp包含进来，当然被包含的资源不一定是jsp，也可能是其它的网络资源，如css,js文件等
 
 include的用途：
 
