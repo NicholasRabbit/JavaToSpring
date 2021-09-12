@@ -1,0 +1,5 @@
+问题：浏览器输入中文，到后台Mysql数据库内显示乱码，员工列表还是乱码，数据库建表时设置好utf-8了，SpringMVC也设置好中文过滤器为utf-8了，但是还是乱码
+
+原因，需在链接数据库的资源文件如jdbc.properties中加上：
+jdbc.url=jdbc:mysql://localhost:3306/oa?useUnicode=true&characterEncoding=utf8
+注意：jdbc.properties文件要用&隔开，jdbc.xml类型的要用分号“；”隔开
