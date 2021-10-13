@@ -8,6 +8,8 @@
  	
  	<!-- #{}和${}用法的区别 -->
  	<!--1， void addEmp(Emp emp) -->
+	<!--添加数据时获取数据库表内自动递增的id值，用userGeneratedKeys和keyProperty, 注意keyProperty的id时对象emp的属性，
+	    添加成功后mybatis自动会把数据库的自动递增的id值赋予emp内的属性，直接emp.getId()获取即可-->
  	<insert id="addEmp"  useGeneratedKeys="true" keyProperty="id">
  		<!-- 以下这两句作用一样，都对，注意区分#{}和${}的区别 -->
  		<!-- insert into emp (id,ename,gender,age,did) values (#{id},#{ename},#{gender},#{age},#{did}) -->   <!-- #{}底层是PreparedStatement，会自动添加引号 -->
