@@ -28,7 +28,8 @@ public class PageUtil {
 		//拼接页数，即在网页可视范围内，总共有多少页码，例，从1-10，或2-11
 		int[] pagesNums=pageInfo.getNavigatepageNums();  //获取总共显示多少页，返回值是数组
 		for(int i=0; i<pagesNums.length; i++) {
-			if(pagesNums[i] == pageInfo.getPageNum()) {   //条件解释，如果循环页等于pageInfo所代表的当前页面，则设置红色高亮显示，注意拼接的写法。
+			//条件解释，如果循环页等于pageInfo所代表的当前页面(当前页由PageHelper.startPage(pageNum, pageSize)的pageNum参数确定)，则设置红色高亮显示，注意拼接的写法。
+			if(pagesNums[i] == pageInfo.getPageNum()) {
 				buffer.append("<a href='"+path+"/emps/"+pagesNums[i]+"'><font color='red'>"+pagesNums[i]+"</font></a>"+"&nbsp;");
 			}else {
 				//其他非当前页也得显示，只是不用高亮，这行要放到else里面，否则上面if语句用没加break，其页码会输出两次
