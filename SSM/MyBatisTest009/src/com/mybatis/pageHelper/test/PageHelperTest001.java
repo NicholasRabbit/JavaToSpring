@@ -37,8 +37,9 @@ public class PageHelperTest001 {
 			
 			//(1)使用PageHelper进行分页，注意一定要在EmpMapper.java对象调用方法之前。
 			PageHelper.startPage(1, 4);   //startPage(int pageNum, int pageSize)：第一个参数表示要展示的页码，第二个是设定每页的条数
+			//对应的sql语句：select id,ename,gender,age,did from emp LIMIT 0, 4 : 即从下表0开始，取四条数据
 			
-			//(2)上面设置好之后，这里一查询完成，MyBatis的插件就把全部的查询结果放到了一个Page对象里，例如有10条数据，则每页4条，10条的话总共是3页
+			//(2)上面设置好之后，这里一查询完成，MyBatis的插件就把查询到的四条结果放到了一个Page对象里，例如有10条数据，则每页4条，10条的话总共是3页
 			List<Emp>  empList=mapper.getAllEmpsByList();     //上面设置好之后，每次向集合就存两条，有多个集合，每页就是一个集合对象。
 			System.out.println("empList ==> " + empList);
 			System.out.println("empList长度==>"+empList.size());  //empList长度==>2
@@ -73,7 +74,7 @@ public class PageHelperTest001 {
 			SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(in);
 			SqlSession sqlSession=sqlSessionFactory.openSession();
 			EmpMapper mapper=sqlSession.getMapper(EmpMapper.class);
-			PageHelper.startPage(4, 2);
+			PageHelper.startPage(4, 2);   //对应的sql语句：select id,ename,gender,age,did from emp LIMIT 6,2
 			
 			List<Emp>  empList02=mapper.getAllEmpsByList();   
 			
