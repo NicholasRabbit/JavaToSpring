@@ -19,7 +19,9 @@ import com.mybatis.pageHelper.mapper.EmpMapper;
 /*PageHelper的用处，数据库中查询结果太多时，可把查询结果在后台分页，然后根据客户请求看第几页，在网页端进行分页展示。
  * 使用PageHelper步骤
  *1，导入相关的jar包，有两个，jsqlparser-0.9.5.jar，pagehelper-5.0.0.jar
- *2，在全局配置文件mybatis-pagehepler-config.xml中配置<plugins>标签，引入PageInterceptor类。*/
+ *2，在全局配置文件mybatis-pagehepler-config.xml中配置<plugins>标签，引入PageInterceptor类。
+ *3，分页插件PageHelper.java的底层原理就是用到了sql的limit语法
+ * */
 public class PageHelperTest001 {
 	
 	@Test
@@ -71,7 +73,7 @@ public class PageHelperTest001 {
 			SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(in);
 			SqlSession sqlSession=sqlSessionFactory.openSession();
 			EmpMapper mapper=sqlSession.getMapper(EmpMapper.class);
-			PageHelper.startPage(4, 2);   
+			PageHelper.startPage(4, 2);
 			
 			List<Emp>  empList02=mapper.getAllEmpsByList();   
 			
