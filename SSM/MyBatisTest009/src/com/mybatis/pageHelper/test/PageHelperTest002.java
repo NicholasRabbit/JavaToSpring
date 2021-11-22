@@ -33,11 +33,11 @@ public class PageHelperTest002 {
 			SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(in);
 			SqlSession sqlSession=sqlSessionFactory.openSession();
 			EmpMapper mapper=sqlSession.getMapper(EmpMapper.class);
-			PageHelper.startPage(4, 2);     //当前页是第3页，每页显示2行
+			PageHelper.startPage(4, 2);     //当前页是第4页，每页显示2行
 			
 			List<Emp>  empList02=mapper.getAllEmpsByList();   
 			
-			PageInfo<Emp>  pageInfo=new PageInfo<Emp>(empList02,4);  
+			PageInfo<Emp>  pageInfo=new PageInfo<Emp>(empList02,4);   //参数4对应navigatePages,即在网页可视范围内，底部页码条总共有多少页码，例，从1-10，或2-11
 			System.out.println(pageInfo.getPageNum());
 			String buffer=PageUtil.getPageInfo(pageInfo, null);
 			System.out.println("buffer页数拼接==>"+buffer);
