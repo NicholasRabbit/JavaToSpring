@@ -2,10 +2,10 @@
 public class SparseArrayTest001 {
 
 	public static void main(String[] args){
-		test();
+		sparseArray();
 	}
 
-	public static void test(){
+	public static void sparseArray(){
 		
 		/*用二维数组模拟五子棋盘，然后用稀疏数组表示其中的棋子
 		  用1表示白子，0表示空子，2表示黑子
@@ -56,5 +56,30 @@ public class SparseArrayTest001 {
 			System.out.printf("%d\t%d\t%d\t\n",sparseArray[i][0],sparseArray[i][1],sparseArray[i][2]);  //一个%d定义一个参数，最后\n是换行
 		}
 
+		//(2)把稀疏数组还原为二维数组
+		toNormalArray(sparseArray);
+
+	}
+
+
+	public static void toNormalArray(int[][] sparseArray){
+		int hight = sparseArray[0][0];  //普通二位数组的长度
+		int width = sparseArray[0][1];  //宽度，即其内作为元素的一维数组的长度
+		//创建好二维数组
+		int[][] normalArray = new int[hight][width]; 
+		//赋值,因为前面已经定好了普通二维数组的长度，这里就从1即第二行开始遍历赋值
+		for(int i=1; i< sparseArray.length; i++){
+			int y = sparseArray[i][0];		//棋子的纵向y轴的坐标，按上面普通二维数组输出的结果来看，坐标系以右上角为0点
+			int x = sparseArray[i][1];      //横向x周坐标
+			int chess = sparseArray[i][2];  //棋子的值，即稀疏数组的最后一列的值
+			normalArray[y][x] = chess;      //给指定好位置的二维数组赋值  
+		}
+		System.out.println("分割线===================");
+		for(int i = 0; i < normalArray.length; i++){
+			for(int j = 0; j < normalArray[i].length; j++ ){
+				System.out.printf("%d\t",normalArray[i][j]);    //\t是制表符tab
+			}
+			System.out.println();
+		}
 	}
 }
