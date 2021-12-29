@@ -24,7 +24,7 @@ public class CompareAndSwapTest{
 					int oldValue = cas.getValue();  //获取旧址，即赋新值前的期望值
 					Random r = new Random();
 					boolean success = cas.compareAndSet(oldValue, r.nextInt(101));
-					System.out.println(success);
+					System.out.println(success +" : "+cas.getValue() );
 				}
 			});
 
@@ -42,7 +42,7 @@ class CompareAndSwap {
 
 	private int value;
 
-	//这几个方法都要加synchronized修饰符
+	//这几个方法都要加synchronized修饰，默认锁住的是this，保证线程安全，防止别的线程调用
 	public synchronized int getValue(){
 		return this.value;
 	}
