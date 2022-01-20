@@ -59,6 +59,11 @@ public class ArrayQueue {
 
 	//7,展示所有队列内的元素
 	public void showAll(){
+		//这里加个判断队列为空，防止展示旧的数据
+		if(isEmpty()){
+			System.out.println("队列为空！没有数据！");
+			return;
+		}
 		for (int i=0; i<arr.length; i++ ){
 			System.out.println(i + "==>" + arr[i]);
 		}
