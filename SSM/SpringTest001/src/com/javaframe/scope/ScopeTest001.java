@@ -38,7 +38,7 @@ public class ScopeTest001 {
 		System.out.println("c3==>"+c3+",HashCode==>"+c3.hashCode());  //多例模式，输出结果不同，内存地址也不同，说明有多个对象
 		System.out.println("c4==>"+c4+",HashCode==>"+c4.hashCode());
 		
-		//(3)一次请求创建一个bean对象，后面再学scope=request,session的用法
+		//(3)一次请求创建一个bean对象，与Web相关，后面再学scope=request,session的用法
 		/*Customer03 c5=app.getBean(Customer03.class);
 		System.out.println("c5==>"+c5);*/
 		
