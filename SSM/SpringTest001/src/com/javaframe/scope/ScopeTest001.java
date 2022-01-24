@@ -42,6 +42,12 @@ public class ScopeTest001 {
 		/*Customer03 c5=app.getBean(Customer03.class);
 		System.out.println("c5==>"+c5);*/
 		
+		/*bean作用域补充
+		 * (3):作用域：request,每次Http请求都会创建一个新的bean, 该作用域仅适用于Web的Spring WebApplicationContext环境下
+		 * (4):作用域：session,同一个session同一个bean,每次会话都会创建一个新的bean,该作用域仅适用于Web的Spring WebApplicationContext环境下
+		 * (5):作用域：application,只一个bean作用域为ServletContext的整个生命周期，该作用域仅适用于Web的Spring WebApplicationContext环境下
+		 * */
+		
 		
 		
 	}
