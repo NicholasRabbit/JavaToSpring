@@ -9,7 +9,7 @@ public class InetAddressTest001 {
 
         try {
             //1,getLocalHost(..)获取代表本机的InetAddress对象。静态方法。
-            InetAddress localhost = InetAddress.getLocalHost();
+            InetAddress localhost = InetAddress.getLocalHost();  //输出：DESKTOP-FNRT4BQ/192.168.139.1
             System.out.println("localhost==>" + localhost);
 
             //2,(1) getByName(..)根据指定主机名，获取它的InetAddress对象。静态方法。

@@ -1,18 +1,22 @@
-package com.network.b_Socket;
+package com.network.b_Socket01;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Socket网络编程简单范例
+ * Socket TCP方式网络编程简单范例
  * 1，客户端，服务端实际就是两个Socket对象，通过IO流，把网络当作通道进行数据传输
+ * 2，本例使用字节流发送数据
+ * 3，启动时必须先启动服务器端，因为要设定好地址及监听端口
  * */
 public class SocketServerDemo {
 
     public static void main(String[] args) {
         InputStream in = null;
+        OutputStream out = null;
         Socket server = null;
         ServerSocket serverSocket = null;
         try {
@@ -32,12 +36,19 @@ public class SocketServerDemo {
             while( (readCount = in.read(bytes)) != -1 ){
                 System.out.println(new String(bytes,0,readCount));
             }
+            //4,给客户端发送数据
+            out = server.getOutputStream();
+            out.write("Hey client!".getBytes());
+            //5, 发送完毕后，调用shutdownOutput(),表示后面不再发送消息了，否则服务端客户端都会处于等待状态，因为不知道后面还发不发消息，只有等待
+            server.shutdownOutput();
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-           //4, 关闭IO流和通信流，这里还要关闭ServerSocket,减少资源占用
+           //6, 关闭IO流和通信流，这里还要关闭ServerSocket,减少资源占用
             try {
                 if(in != null) in.close();
+                if(out != null) out.close();
                 if(server != null) server.close();
                 if(serverSocket != null) serverSocket.close();
             } catch (IOException e) {
