@@ -39,6 +39,7 @@ public class SocketServerDemo {
             //4,给客户端发送数据
             out = server.getOutputStream();
             out.write("Hey client!".getBytes());
+            out.flush();  //输出流写完数据要刷新下
             //5, 发送完毕后，调用shutdownOutput(),表示后面不再发送消息了，否则服务端客户端都会处于等待状态，因为不知道后面还发不发消息，只有等待
             server.shutdownOutput();
 
