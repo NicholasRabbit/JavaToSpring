@@ -6,11 +6,12 @@
   version="3.0"
   metadata-complete="true">
 
-<!--人工设置欢迎页面，即只输入项目名(A008-DefaultHomepateTest)，不需输入uri名：/welcome,就可以访问该页面
+<!--(1)人工设置欢迎页面，即只输入项目名(A008-DefaultHomepateTest)，不需输入uri名：/welcome,就可以访问该页面
 	如果不设置则默认访问项目根目录下的index.html(如果有的话)
+	(2)此种自定义的方式要配合一个Servlet使用，否则无法访问
 -->
 <welcome-file-list>
-	<welcome-file>welcome</welcome-file>  <!--名称与下面的url-pattern一致，但是名称welcome不需加“/”-->
+	<welcome-file>welcome</welcome-file>  <!--名称与下面的url-pattern一致，否无设置的欢迎页面无效，但是名称welcome不需加“/”-->
 </welcome-file-list>                      <!--默认欢迎页面也可以是静态页面，如html/defaultHomepage.html,注意：html文件夹前也不加“/”-->
 
 <servlet>
