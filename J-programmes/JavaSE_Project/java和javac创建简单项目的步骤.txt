@@ -34,4 +34,12 @@ User可换做UserController.java
 其他
 javac -verbose   User.java: 输出详细的编译信息 
 
+注意引入多个jar包不能用: javac  -classpath  ./lib/*.jar  报错
+要一个一个写，用分号隔开, 但是最后不要写分号 ，这不是sql语句，例：
+javac -encoding utf-8 src/com/springmvc/test/*.java -sourcepath src -d classes -g -classpath ./lib/commons-logging-1.2.jar;./lib/spring-aop-4.0.0.RELEASE.jar;./lib/spring-beans-4.0.0.RELEASE.jar;./lib/spring-context-4.0.0.RELEASE.jar;./lib/spring-expression-4.0.0.RELEASE.jar;./lib/spring-web-4.0.0.RELEASE.jar;./lib/spring-webmvc-4.0.0.RELEASE.jar
+
+
+
+
+
 

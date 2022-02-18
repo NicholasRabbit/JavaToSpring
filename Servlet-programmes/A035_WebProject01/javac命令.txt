@@ -1,0 +1,1 @@
+javac -encoding utf-8 src/com/springmvc/test/*.java -sourcepath src -d classes -g -classpath ./lib/commons-logging-1.2.jar;./lib/spring-aop-4.0.0.RELEASE.jar;./lib/spring-beans-4.0.0.RELEASE.jar;./lib/spring-context-4.0.0.RELEASE.jar;./lib/spring-expression-4.0.0.RELEASE.jar;./lib/spring-web-4.0.0.RELEASE.jar;./lib/spring-webmvc-4.0.0.RELEASE.jar
