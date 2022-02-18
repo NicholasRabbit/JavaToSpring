@@ -129,8 +129,8 @@ public class UpAndDownloadTest {
 		
 		File file=new File(filePath);   //创建目的路径文件对象，即要复制到的位置
 		try {
-			uploadFile.transferTo(file);    //把接收到的文件转换为目的路径的文件，接收到的文件封装在MultipartFile对象uploadFile里
-		} catch (IllegalStateException e) {   
+			uploadFile.transferTo(file);     //把接收到的文件转换为目的路径的文件，接收到的文件封装在MultipartFile对象uploadFile里
+		} catch (IllegalStateException e) {  //注意保存的路径在war包的目录下，即out目录下，不在源码的upload_file目录下  
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
