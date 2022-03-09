@@ -9,3 +9,4 @@
    ....
    <Context path="/files" docBase="D:\tomcat_files" reloadable="true" />
  </Host>
+ 3,如果docBase="\tomcat_files\photos"是相对路径，则默认从项目所在磁盘为根路径
