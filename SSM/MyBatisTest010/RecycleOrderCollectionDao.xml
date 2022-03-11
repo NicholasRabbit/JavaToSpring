@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.recycle.dao.RecycleOrderCollectionDao">
+	
+
+	<!--批量添加单个订单的多个废品类型数据: public abstract int insertAllCollections(List<RecycleOrderCollection> recycleOrderCollectionList)-->
+	<insert id="insertAllCollections" useGeneratedKeys="true">
+		insert into recycle_order_collection
+			(id,order_id,collection_id)
+		values
+		<foreach collection="list" item="oc"  separator=",">
+			( #{oc.id},#{oc.orderId},#{oc.collectionId} )      <!--括号要加这里，不能写 open="(" close=")"，会报错，因为不符合 sql语法-->
+		</foreach>
+	</insert>
+
+</mapper>
