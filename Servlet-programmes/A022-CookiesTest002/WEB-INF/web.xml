@@ -9,9 +9,9 @@
 <welcome-file-list>
 	<!--(1)设置带验证cookie的Servlet程序为欢迎页面，用户登录项目则自动登录此页面，
 		(2)如果浏览器没有发送cookie,在<url-pattern>cookieLogin对应的Servlet程序中设置重定向转到login.html即可，详见CookieLogin.java
-	    (3)欢迎页面路径最前面不加"/"
+	    (3)欢迎页面路径最前面不加"/"，这里设置的“欢迎页面”是访问servlet服务“<servlet-name>cookieLogin</servlet-name>”，不是页面
 	-->
-	<welcome-file>cookieLogin</welcome-file>   
+	<welcome-file>cookieLogin</welcome-file>     
 </welcome-file-list>
 
 
