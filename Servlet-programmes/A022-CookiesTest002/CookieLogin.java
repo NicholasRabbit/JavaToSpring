@@ -40,6 +40,8 @@ public class CookieLogin extends HttpServlet{
 				password=cookies[i].getValue();
 				System.out.println(userName+"="+password);
 			}
+		} else {
+			//这里缺少没有cookie时的跳转代码
 		}
 
 		//链接数据库，进行判断
