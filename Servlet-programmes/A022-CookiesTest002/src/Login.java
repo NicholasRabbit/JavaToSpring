@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 		System.out.println(userName+"="+password);
 
 		//使用IO流结合Properties.java获取数据库配置文件数据
-		FileInputStream in = new FileInputStream("config\\jdbc.properties");  
+		FileInputStream in = new FileInputStream("config/jdbc.properties");   //路径写成“config\\jdbc.properties”报错，原因未知 
 		Properties properties = new Properties();
 		properties.load(in);
 		String jdbcDriver = properties.getProperty("driver");
@@ -60,7 +60,7 @@ public class Login extends HttpServlet {
 			connect.setAutoCommit(false);  //事务开启手动提交
 			
 			//第三步
-			String sqlQuery="select * from user where userName=? and password=?";
+			String sqlQuery="select * from user where user_name=? and password=?";
 			ps=connect.prepareStatement(sqlQuery);
 			ps.setString(1,userName);
 			ps.setString(2,password);
@@ -69,8 +69,8 @@ public class Login extends HttpServlet {
 			//第五步
 			rs=ps.getResultSet();
 			if(rs.next()){   
-				realName=rs.getString("realName");
-				System.out.println(rs.getString("userName")+"="+rs.getString("password"));
+				realName=rs.getString("real_name");
+				System.out.println(rs.getString("user_name")+"="+rs.getString("password"));
 				loginSuccess=true;
 			}
 

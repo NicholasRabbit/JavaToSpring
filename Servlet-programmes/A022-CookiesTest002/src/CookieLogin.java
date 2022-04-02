@@ -36,14 +36,17 @@ public class CookieLogin extends HttpServlet{
 		Cookie[] cookies=request.getCookies();
 		if(cookies != null){
 			for(int i=0; i<cookies.length; i++){
-				userName=cookies[i].getName();
-				password=cookies[i].getValue();
-				System.out.println(userName+"="+password);
+				String cookieName = cookies[i].getName();
+				if("userName".equals(cookieName)){
+					userName = cookies[i].getValue();
+				}else if("password".equals(cookieName)){
+					password = cookies[i].getValue();
+				}	
 			}
 		}
 
 		//使用IO流结合Properties.java获取数据库配置文件数据
-		FileInputStream in = new FileInputStream("config\\jdbc.properties");  
+		FileInputStream in = new FileInputStream("config/jdbc.properties");   //路径写成“config\\jdbc.properties”报错，原因未知
 		Properties properties = new Properties();
 		properties.load(in);
 		String jdbcDriver = properties.getProperty("driver");
@@ -65,7 +68,7 @@ public class CookieLogin extends HttpServlet{
 				connect=DriverManager.getConnection(jdbcUrl,jdbcUser,jdbcPassword);
 				connect.setAutoCommit(false);  //开启事务机制，取消自动提交，设置手动提交
 				//第三步，获取操作数据库对象
-				String sqlCode="select userName,password from t_user where userName=? and password=?";
+				String sqlCode="select user_name,password,real_name from user where user_name=? and password=?";
 				ps=connect.prepareStatement(sqlCode);
 				//第四步，执行操作
 				ps.setString(1,userName);
@@ -73,9 +76,10 @@ public class CookieLogin extends HttpServlet{
 				ps.executeQuery();    //注意不要忘了执行查询操作
 				//第五步，获取查询结果集,并进行判断
 				rs=ps.getResultSet();
-				if(rs != null || rs.next()){
+				if(rs.next()){
 					hasCookie=true;   //后面跳转判断要用到hasCookie
-					System.out.println(rs.getString("userName")+"="+rs.getString("password"));  //输出验证一下
+					realName = rs.getString("real_name");
+					System.out.println(rs.getString("user_name")+"="+rs.getString("password"));  //输出验证一下
 				}else{
 					System.out.println("there isn't any ResultSet.");
 				}
@@ -140,7 +144,7 @@ public class CookieLogin extends HttpServlet{
 			}
 	
 		}else {  //Cookie信息不全则跳转到登陆页面
-            response.sendRedirect("/A022-CookiesTest002/html/Login.html");
+            response.sendRedirect("/A022-CookiesTest002/html/login.html");
         }
 
 	}
