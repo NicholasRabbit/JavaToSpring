@@ -42,6 +42,7 @@ public class Login extends HttpServlet {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		boolean loginSuccess=false;
+		String realName=null;
 		try{
 			//第一步			
 			Class c=Class.forName("com.mysql.jdbc.Driver");
@@ -63,6 +64,7 @@ public class Login extends HttpServlet {
 			//第五步
 			rs=ps.getResultSet();
 			if(rs.next()){   
+				realName=rs.getString("realName");
 				System.out.println(rs.getString("userName")+"="+rs.getString("password"));
 				loginSuccess=true;
 			}
@@ -104,6 +106,27 @@ public class Login extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+		}
+
+		//如果登陆验证成功，跳转到欢迎页面
+		if(loginSuccess){
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			writer.print("<html>");
+			writer.print("<head>");
+			writer.print("<title>");
+			writer.print("登陆成功");
+			writer.print("</title>");
+			writer.print("<body>");
+			writer.print("欢迎：{");
+			writer.print(realName);
+			writer.print("}登陆");
+			writer.print("</body>");
+			writer.print("</head>");
+			writer.print("</html>");
+		}else{
+			//如果cookie内信息错误则跳转到失败页面
+			response.sendRedirect("/A022-CookiesTest002/html/loginError.html");
 		}
 
 		 //创建cookie，并发给浏览器
