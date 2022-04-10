@@ -1,0 +1,61 @@
+<html>
+
+    <head>
+	    <title>表格的制作</title>
+
+		<body>
+		
+		    <table width="50%" border="2px">
+			    
+				<tr>  <!--tr表示横的行-->
+				   <td>1</td> <td>2</td> <td>3</td>   <!--td标签表示竖的列-->
+				</tr>
+
+				<tr>
+				   <td>1</td> <td>2</td> <td>3</td>
+				</tr>
+			
+			</table>
+
+			<br><br>
+			------------------------
+
+			<table width="50%"  border="3px" >
+			    
+				<tr align="center">    <!--align表示对齐方式-->
+				   <td>1</td> <td colspan="2">2</td>  <!--"<td>3</td>"-->
+				   <!--colspan表示合并左右的单元格，把3号删掉，2号单元格前加此参数，赋值“2”表示合并2个-->
+				</tr>
+
+				<tr align="left">
+				   <td>1</td> <td>2</td> <td>3</td>
+				</tr>
+			    
+			</table>
+
+			<br>
+			------------------------
+
+			<table width="50%"  border="3px">
+			    <tr>  
+				   <td>1</td> <td >2</td>  <td rowspan="3">3</td>
+				   <!--rowspan表示上下的单元格合并，参数3表示合并3个,被合并的单元格要删掉-->
+				</tr>
+
+				<tr>
+				   <td>1</td> <td>2</td> <!--"<td>3</td>"此处删掉-->
+				</tr>
+
+				<tr>
+				   <td>1</td> <td>2</td> <!--"<td>3</td>"此处删掉--> 
+				</tr>
+			    
+			</table>
+		
+		</body>
+
+	</head>
+
+
+
+</html>

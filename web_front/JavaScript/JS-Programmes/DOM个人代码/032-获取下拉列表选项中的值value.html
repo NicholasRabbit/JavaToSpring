@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>032-获取下拉列表选项中的值value</title>
+
+</head>
+<body>
+
+	<!--onchange句柄，第一种加javaScript代码的方式-->
+	学历<select name="degree" onchange=alert(this.value)>  
+			<option value="college" >专科</option>
+			<option value="university" selected>本科</option>  <!--加selected表示默认选中-->
+			<option value="master">硕士</option>
+			<option value="doctor">博士</option>
+	    </select>
+        <br><br>
+    <!--第二种，在JavaScript代码块里获取value值-->
+	<script type="text/javascript">
+	
+		window.onload=function getValue(){
+			
+			var levelObj=document.getElementById("myLevel");
+			levelObj.onchange=function get(){
+				alert(this.value);
+			}
+		}
+	</script>
+     
+	 <select name="level" id="myLevel" >  
+		<option value="a" >一级</option>
+		<option value="b" selected>二级</option>  <!--加selected表示默认选中-->
+		<option value="c">三级</option>
+		<option value="d">四级</option>
+	 </select>
+
+     <!--此功能常用于向用户返回一个指定的列表，例如用户选择学历，则后台返回一个相关列表
+	 -->
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- init-method和destroy-method属性后面赋值是bean对象内的方法名 ，分别定义初始化，和销毁时执行的方法，
+	方法名可自定义，不一定是init()和destroy()
+	注意赋值时，方法名后的小括号不写
+-->
+<bean id="u02" class="com.javaframe.beanprocessor.User02" init-method="init"  destroy-method="destroy"> 
+	<property name="id" value="1001"></property>
+	<property name="name" value="Peter"></property>
+</bean>
+
+<!-- 把bean后处理类写到<bean>标签里面，这样就可以被spring框架识别并加入到原有的五个步骤里面 -->
+<bean  class="com.javaframe.beanprocessor.AfterHandlerTest"></bean>
+
+
+</beans>

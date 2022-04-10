@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 配合mybatis-config02.xml使用 ,验证各标签的用法-->
+
+
+<mapper namespace="com.mybatis.mapper.UserMapper">
+<!-- <select id="getUserById"  resultType="com.mybatis.bean.User"> -->
+<select id="getUserById"  resultType="MyUser">   <!-- 因为在mybatis-config02.xml里设置了全限定名的别名为MyUser,这里可以直接用，不用写全限定名了 -->
+
+<!-- select * from user where id = #{id}  -->
+
+
+ <!-- 
+ User属性是name,而MySql中列名是user_name,所以主程序 sout输出：name=null
+ *解决办法如下：在UserMapper.xml映射文件改sql语句，把user_name改个别名为name,与User中一致即可 
+ -->
+select id, user_name as name, gender,age from user where id=#{id};
+
+ </select>
+ 
+</mapper>

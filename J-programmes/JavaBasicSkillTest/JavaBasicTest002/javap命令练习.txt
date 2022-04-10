@@ -1,0 +1,7 @@
+(1)javap是个反编译命令
+(2)语法格式   后缀.class可省略
+   javap HelloWorld.class     (HelloWorld是个.class文件)   //只生成简单的反编译信息
+   javap -c HelloWorld.class  //此命令生成编译相关jvm相关信息
+
+   带有包机制的class文件
+   javap com/javase/test/HelloWorld.class    //相对路径,cmd在src目录下打开，即和com文件夹同目录下

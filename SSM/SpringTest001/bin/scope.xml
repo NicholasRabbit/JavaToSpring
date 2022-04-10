@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- bean作用域属性scope范例
+	scope属性包括：
+	singleton:单例模式，唯一实例
+	prototype:多例模式，原型
+	request:在一次请求中创建一个bean
+	session:在一次会话中创建一个bean
+ -->
+
+<!-- 单例模式，即一个类只能创建 --> <!--单例模式只限制一个<bean>标签，即只针对id="customer01"所代表的对象，如果还是重新建个同名的Customer的<bean>对象，不受此限制-->
+<bean id="customer01"  class="com.javaframe.scope.Customer"  scope="singleton"></bean> <!-- 如果不写scope,默认值是“singleton”单例模式 -->
+
+<!-- 多例模式，可创建多个对象 -->
+<bean id="customer02" class="com.javaframe.scope.Customer02"  scope="prototype"></bean>
+
+<!-- 测试验证单例或多例模式情况下，spring何时创建bean对象 -->
+<bean id="customer03" class="com.javaframe.scope.Customer03"  scope="singleton"></bean>
+
+
+<!-- 使用scope="request"/"session" 需要在命名空间namespace里加入命名语句，目前没学 -->
+	
+</beans>

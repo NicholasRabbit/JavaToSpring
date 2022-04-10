@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+<bean id="t01" class="com.javaframe.spring.Teacher">
+	<property name="age" value="56"></property>
+	<property name="subject" value="数学"></property>
+	<property name="tname" value="王老师"></property>
+</bean>
+<bean id="t02" class="com.javaframe.spring.Teacher">
+	<property name="age" value="46"></property>
+	<property name="subject" value="英语"></property>
+	<property name="tname" value="杜老师"></property>
+</bean>
+
+<bean id="stu10" class="com.javaframe.spring002.Student002">
+	<property name="num" value="20100"></property>
+	<property name="name" value="Jackson"></property>
+	<property name="myList">
+		<list>
+			<value>catch</value>     <!-- 给对象中(泛型是String类型的)List<String>类属性赋值写法，直接在标签<list>里面写<value>标签赋值就可以 -->
+			<value>a</value>
+			<value>glimpse</value>
+			<value>of</value>
+		</list>
+	</property>	
+</bean>	
+
+
+<!-- 当List泛型是对象时赋值的写法-->   
+<bean id="stu11" class="com.javaframe.spring002.Student002">
+	<property name="num" value="20101"></property>
+	<property name="name" value="Lurrence"></property>
+	<property name="teachers">
+		<list>
+			<ref bean="t01"></ref>   <!-- 这里bean属性就表示集合内的一个元素：老师对象，后面赋值是对象的id值 -->
+			<ref bean="t02"></ref>
+		</list>
+	</property>
+</bean>
+
+<!--第12个学生对象  -->
+<bean id="stu12" class="com.javaframe.spring002.Student002">
+	<property name="num" value="20102"></property>
+	<property name="name" value="MacDonald"></property>
+	<property name="maps">
+		<map>
+			<!-- <entry>			
+				<key>1</key>   //<key>标签中间不可直接写值，目前所学标签中只有<value>中间可写值       
+				<value>赵老师</value>
+			</entry> -->
+			<entry>
+				<key>
+					<value>1</value>
+				</key>     <!-- 这里一个<entry>标签表示Map集合中的一个键值对 -->
+				<value>赵老师</value>    <!-- 如果Map集合的值value是对象，须写作：<ref bean="t01"></ref>-->
+			</entry>
+			<entry>
+				<key>
+					<value>2</value>
+				</key>    
+				<value>钱老师</value>
+			</entry>
+		</map>
+	</property>
+</bean>
+
+<!-- 除了以上在<property>内部写List,Map对象意外，也可在外部命名标签块，把id赋予Student的<bean>对象
+	注意，写<util>标签块要在文件开头引入声明语句：xmlns:util="http://www.springframework.org/schema/util"，否则报错
+ -->
+<bean id="stu13" class="com.javaframe.spring002.Student002">
+	<property name="num" value="200103"></property>
+	<property name="name" value="Mathas"></property>
+	<property name="myList" ref="list01"></property>
+	<property name="maps" ref="map01"></property>   <!-- 集合属于引用，因此要用ref来表示，不可用value -->
+</bean>
+
+<util:list id="list01">
+	<value>a</value>
+	<value>sunlit</value>
+	<value>courtyard</value>
+</util:list>
+
+<util:map  id="map01">
+	
+		<entry>
+			<key>
+				<value>3</value>
+			</key>
+			<value>胡老师</value>
+		</entry>
+		<entry>
+			<key>
+				<value>4</value>
+			</key>
+			<value>孟老师</value>
+		</entry>
+	
+</util:map>
+	   
+	   
+</beans>

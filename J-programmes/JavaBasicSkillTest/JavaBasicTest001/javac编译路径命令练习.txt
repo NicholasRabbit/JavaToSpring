@@ -1,0 +1,43 @@
+(1)javac命令后输入路径命令练习
+(2)一个简单的javac编译
+
+新建两个文件夹,src和 build src/com/yp/test/HelloWorld.java build/
+
+├─build
+└─src
+    └─com
+        └─yp
+            └─test
+                    HelloWorld.java
+
+java文件非常简单
+
+package com.yp.test;
+public class HelloWorld {
+
+    public static void main(String[] args) {
+        System.out.println("helloWorld");
+    }
+}
+
+编译: javac src/com/yp/test/HelloWorld.java -d build
+
+-d 表示编译到 build文件夹下
+
+查看build文件夹
+├─build
+│  └─com
+│      └─yp
+│          └─test
+│                  HelloWorld.class
+│
+└─src
+    └─com
+        └─yp
+            └─test
+                    HelloWorld.java
+
+运行文件
+
+    E:\codeplace\n_learn\java\javacmd> java com/yp/test/HelloWorld.class 错误: 找不到或无法加载主类 build.com.yp.test.HelloWorld.class
+    运行时要指定main E:\codeplace\n_learn\java\javacmd\build> java com.yp.test.HelloWorld helloWorld

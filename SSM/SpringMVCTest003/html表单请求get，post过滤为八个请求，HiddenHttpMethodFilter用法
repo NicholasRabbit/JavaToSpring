@@ -1,0 +1,5 @@
+因为html的<form>标签的method属性只有两个值，get对应的是查询，post对应的是增加，另外两个改put，删delete没有对应的值，所以都用post请求代表put，delete，但是需要在<input>标签中设置，
+注意name=”_method”，_method是固定写法，不可变
+实际是Spring框架的过滤器在中间起作用了，把_method对应的值PUT替换了POST，并传给了后台程序，对应上了@RequestMapping中的值 “method=RequestMethod.PUT。
+实现delete请求同理。
+*不能用超链接加问号的方式发送PUT，DELETE等方法，因为超链接发送的是get请求，不是post

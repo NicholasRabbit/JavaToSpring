@@ -1,0 +1,4 @@
+<!--web.xml文件也可以在这里被使用-->
+name=Jerry
+age=20
+password=123

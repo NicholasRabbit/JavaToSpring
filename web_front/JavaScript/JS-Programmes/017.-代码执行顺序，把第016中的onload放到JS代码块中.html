@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>把onload属性放到JavaScript代码块中调用</title>
+</head>
+<body>
+
+	<!--第016中的方法改良，可以不在body标签中加属性onload,把它写在JS代码块中也可
+	-->
+	<script type="text/javascript">
+	
+		/*
+		  window.onload=prepare(); 
+		  以上这种写法报错，个人推测：因为只写函数名，后面的整个函数还是有可能被别的方面调用，
+		  会被浏览器编译，编译时找不到"blankA"
+		*/
+		window.onload=function prepare(){
+			var blankObj=document.getElementById("blankA");
+			blankObj.onkeydown=method;
+		}
+		
+		function method(){
+			alert("method execute");
+		}
+
+		
+
+		/*  匿名函数的写法,双层匿名函数,onload后面也是一个匿名函数
+		window.onload=function(){
+			document.getElementById("blankA").onkeydown=function(){
+				alert("Hello");
+		    }
+		}
+		*/
+
+	</script>
+
+	<input type="text" id="blankA">请输入</input>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+
+ <mapper namespace="com.mybatis.param.mapper.EmpParamMapper">
+ 	
+ 	<!-- #{}和${}用法的区别 -->
+ 	<!--1， void addEmp(Emp emp) -->
+	<!--添加数据时获取数据库表内自动递增的id值，用userGeneratedKeys和keyProperty, 注意keyProperty的id时对象emp的属性，
+	    添加成功后mybatis自动会把数据库的自动递增的id值赋予emp内的属性，直接emp.getId()获取即可-->
+ 	<insert id="addEmp"  useGeneratedKeys="true" keyProperty="id">
+ 		<!-- 以下这两句作用一样，都对，注意区分#{}和${}的区别 -->
+ 		<!-- insert into emp (id,ename,gender,age,did) values (#{id},#{ename},#{gender},#{age},#{did}) -->   <!-- #{}底层是PreparedStatement，会自动添加引号 -->
+ 		insert into emp (id,ename,gender,age,did) values (null,'${ename}','${gender}',${age},${did})  <!-- ${}对应的是Statement，所以String类型的要加引号，因为系统不会自动添加 -->      
+ 	</insert>
+ 	
+ 	<!--2，只根据一个id查询单个员工，单条件时可以用变量名。: Emp getEmpById(Integer id); -->
+ 	<select id="getEmpById" resultType="com.mybatis.param.bean.Emp">
+ 		<!--(1)#{}使用时这里的变量名写成idabc，与EmpParamMapper.java中的变量名不一样也不报错 ,此情况只适用于只有一个变量的情况
+ 			原因：PrepareStatement的sql语句是按占位符"?"的顺序依次进行赋值的，与变量名没关系，但是建议写一致，好区分-->
+ 		<!-- select id,ename,gender,age,did from emp where id=#{idabc} -->   
+		
+		<!--(2)${}使用时，须在大括号里面写value或_parameter,不能写变量名${id}， 因为Statement不支持占位符“？” --> 		
+ 		select id,ename,gender,age,did from emp where id=${_parameter}    <!-- ${value}也行 -->
+ 	</select>
+ 	
+ 	<!--3，根据多个变量查询员工:Emp getEmpByArgs(Integer id,String ename); -->
+ 	<select id="getEmpByArgs"  resultType="com.mybatis.param.bean.Emp">
+ 		<!-- 多条件查询时不可用变量名，要用下标，或指定格式的:param1,param2等。单条件时可以用变量名。 -->
+ 		<!-- select id,ename,gender,age,did from emp where id=#{id} and ename=#{ename}  错误 -->	
+ 		<!-- (1)#{}多个变量时，括号内可用下标arg0,arg1,或param1,2...等 ,有的版本可直接用0,1等下标，这里不能用，原因待查？？？？
+ 			 (2)${}多个变量时，只能用param1,2..等，且String类型的要加引号：“”
+ 			 (3)实际MyBatis底层把查询条件封装进了Map集合，集合的键key默认时param1,2..或0,1...等-->
+ 		 <!-- select id,ename,gender,age,did from emp where id=#{param1} and ename=#{param2}  正确-->	
+ 		 select id,ename,gender,age,did from emp where id=${param1} and ename="${param2}"	 <!-- 正确 -->
+ 	</select>
+ 	
+ 	<!--4,根据Map集合查询单个员工信息，把查询条件封装进Map集合，返回查询结果Emp对象:Emp getEmpByMap(Map<Object,Object> map);
+ 		在ParamTest.java中个人自定义好了键key的名字，【注意：与5中区分，自定义Map集合的方式，不能用MyBatis默认的param1,2...】  -->
+ 	<select id="getEmpByMap"  resultType="com.mybatis.param.bean.Emp">
+ 		select id,ename,gender,age,did from emp where id=#{myId} and ename=#{myEname}	 <!-- 自定义key之后，#{}${}的用法也和3中一样 -->
+ 		<!-- select id,ename,gender,age,did from emp where id=${myid} and ename="${myename}" -->
+ 			 
+ 	</select>
+ 	
+ 	<!-- 5，注解@Param自定义Map集合的key名字，不用4中的声明Map集合了。@Param的value就是自定义的key名称,【注意：与4中区分，@Param方式，仍然可用MyBatis默认的param1,2...，4中不可用】。
+ 	Emp getEmpByAtParam(@Param("myId") Integer id, @Param("myEname")String ename) -->
+ 	<select id="getEmpByAtParam"  resultType="com.mybatis.param.bean.Emp">
+ 		<!-- 以下两种方式都行 -->
+ 		<!-- select id,ename,gender,age,did from emp where id=#{myId} and ename=#{myEname} -->   
+ 		select id,ename,gender,age,did from emp where id=#{param1} and ename=#{param2}	   <!-- 这里仍然可用MyBatis默认的param1,2 -->
+ 	</select>
+ 	
+ </mapper>

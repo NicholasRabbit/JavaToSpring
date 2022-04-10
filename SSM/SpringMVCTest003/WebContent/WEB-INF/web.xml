@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>SpringMVCTest003</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+ <servlet>
+ 	<servlet-name>mvcrest</servlet-name>
+ 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+ </servlet>     
+ <servlet-mapping>
+ 	<servlet-name>mvcrest</servlet-name>
+ 	<url-pattern>/</url-pattern>     <!-- 斜线表示只有请求才会被处理 -->
+ </servlet-mapping>
+ 
+ <!-- 把put,delete等请求转换为post实际是用到了<input>标签里的一种赋值方式，name="_method" value="put",
+    真正提交时，HiddenHttpMethodFilter实际把post替换为了put,这就实现了转换 -->
+ <filter>
+ 	<filter-name>HiddenHttpMethodFilter</filter-name>
+ 	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+ </filter>
+ <filter-mapping>
+ 	<filter-name>HiddenHttpMethodFilter</filter-name>
+ 	<url-pattern>/*</url-pattern>    <!-- "/*"表示过滤所有请求，注意与上面的DispatcherServlet里的“/”区分 -->
+ </filter-mapping>
+</web-app>

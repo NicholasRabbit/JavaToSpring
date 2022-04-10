@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper  namespace="com.project.ssm.mapper.DeptMapper">
+ 	
+ 	<!--获取部门信息： Dept getDeptByDid(Integer did) -->
+ 	<select id="getDeptByDid"  resultType="com.project.ssm.bean.Dept">
+ 		select did,dname from dept where did=#{did}
+ 	</select>
+ 	
+ 	<!--获取所有部门信息： List<Dept> getAllDeptAsList() -->
+ 	<select id="getAllDeptAsList"  resultType="com.project.ssm.bean.Dept">  <!-- 虽然方法返回值是List<Dept>，但是集合内元素是 Dept,因此resutType="Dept"-->
+ 		select did,dname from dept
+ 	</select>
+ </mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 第三步，创建映射文件，实现两个绑定：
+1，给namespace赋值，把接口UserMapper.java的全类名赋给它 
+2，标签<select>中的id属性值要与接口UserMapper.java中的方法名一致
+备注：
+1,<select>标签里写的是定义的查询语句
+2，id是设置sql语句的唯一标识
+3,resultType的值是方法的返回值类型的全类名
+-->
+
+
+<mapper namespace="com.mybatis.mapper.UserMapper">
+<select id="getUserById"  resultType="com.mybatis.bean.User">
+<!--  <select id="getUserById"  resultType="MyUser"> -->   <!--  -->
+
+select * from user where id = #{id} 
+
+ <!-- 
+ User属性是name,而MySql中列名是user_name,所以主程序 sout输出：name=null
+ *解决办法：在UserMapper.xml映射文件改sql语句，把user_name改个别名为name,与User中一致即可 
+ -->
+ <!-- select id, user_name as name, gender,age from user where id=#{id}; -->  
+
+ </select>
+ <!-- (1)上面的#{id}写法，实际对应的是PreparedStatement预编译对象，相当于占位符"?",即通过底层反射机制等，把MyBatisTest001.java中的userMapper.getUserById(1)实参赋值给了这里的id 
+ 	  (2)也可以写作${value},这个写法对应的Statement编译对象	
+ -->
+</mapper>

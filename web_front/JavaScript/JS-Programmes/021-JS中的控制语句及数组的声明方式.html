@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>控制语句</title>
+</head>
+<body>
+	<!--JavaScript中的控制语句大部分与Java一样，if,for,while,do..while,switch,break,continue等等
+		有个for..in不一样，java中没有
+	-->
+	<script type="text/javascript">
+		/*(1)数组的声明方式
+			JS中数组没那么严谨，数组内元素类型可以不同，且长度随意，可随意添加元素改变长度
+		*/
+		var arr=[true,"Jane",2,6.33,null];  //注意新建数组用中括号"[]"不是大括号
+		//一般for循环遍历数组
+		for(var i=0;i<arr.length;i++){
+			alert(arr[i]);
+		}
+
+		//for..in遍历
+		for(var i in arr){
+			alert(i);  //这里的i是下标，与java中的for each不一样
+			alert(arr[i]);  
+		}
+
+		//for..in遍历对象中的属性
+		function User(name,age){
+			this.name=name;
+			this.age=age;
+		}
+		var u=new User("Jane Austen",36);
+
+		for(var field in u){
+			alert(field);         //注意遍历出的是属性名，要得到值得通过对象调用获得
+			alert(typeof field);  //结果是"string"，说明遍历出的结果field是String类型,JS中获得属性值有一种格式:u["name"]
+			alert(u[field]);      //因此此处可得到属性值
+		}
+		
+	</script>
+
+
+
+</body>
+
+</html>

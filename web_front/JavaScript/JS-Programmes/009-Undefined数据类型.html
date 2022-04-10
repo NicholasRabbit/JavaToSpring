@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="ANSI">
+<html>
+<head>
+	<title>Undefined数据类型</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+	
+		/*Undefined数据类型只有一个值，当一个变量没有赋值时，系统默认赋值undefined
+		也可以手动赋值undefined。
+		  注意此处与带引号的typeof运算结果“undefined”不一样
+		*/
+
+		var a;
+		var b=undefined;
+		alert(a);
+		alert(b);
+		alert(a==b);
+
+		var c="undefined";
+		var d=typeof a;
+		alert(a==c);  //false，此处为假
+		alert(a==d);  //false，此处为假
+
+	</script>
+
+</body>
+
+</html>

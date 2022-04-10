@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+						http://www.springframework.org/schema/beans/spring-beans.xsd  
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" >
+
+<!-- Spring整合Mybatis进行配置 -->
+
+<!-- 设定扫描范围，多个范围可用逗号隔开，或者用<context:execlude-filter >排除控制层controller也可 -->
+<context:component-scan base-package="com.project.ssm.service,com.project.ssm.mapper"></context:component-scan>
+
+
+<!-- 引入外部资源文件 -->
+<bean  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="location" value="classpath:jdbc.properties"></property>     <!-- 在web项目环境下，不可直接写文件名，和单纯Spring环境不一样，要加classpath -->
+</bean>
+
+<!-- 数据源 -->
+<bean id="data" class="com.alibaba.druid.pool.DruidDataSource">
+	<property name="driverClassName"  value="${jdbc.driver}"></property>
+	<property name="url" value="${jdbc.url}"></property>
+	<property name="username" value="${jdbc.user}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+</bean>
+
+
+
+<!-- 配置事务管理器 -->
+<bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="data"></property>   <!-- 把上面DruidDataSource的赋值于属性dataSource,完成数据源的传递 -->
+</bean>
+
+
+<!--开启事务注解机制,对事物相关的注解进行扫描-->
+<tx:annotation-driven transaction-manager="dataSourceTransactionManager"></tx:annotation-driven>
+
+<!-- 重点，接管MyBatis所用的对象，管理操作数据库的SqlSession -->
+<bean  class="org.mybatis.spring.SqlSessionFactoryBean">
+	
+	<!-- 配置MyBatis的全局配置文件，获取SqlSession对象必须要通过这个配置文件 -->
+	<property name="configLocation" value="classpath:mybatis-config.xml"></property>    <!-- 在web项目环境下，不可直接写文件名，和单纯Spring环境不一样，要加classpath -->
+	
+	<!-- 配置数据源，这里配置好，mybatis-config.xml里就不用写了 -->
+	<property name="dataSource"  ref="data"></property>   <!-- 使用的就是上面DruidDataSource的数据源“data” -->
+	
+	<!-- 配置xxxMapper.xml映射文件，实际mapper就相当于dao层， MyBatis就属于DAO层
+		   这种设置方式相当于mybatis-config.xml中的<packge>作用，即映射文件和接口在同一路径下，且同名。
+		 注意最后还要写上映射文件的名字，写具体名或通配符都行。 -->
+	<property name="mapperLocations"  value="classpath:com/project/ssm/mapper/*.xml"></property>   <!-- 注意，这里用磁盘路径写法 -->  
+
+</bean>
+
+<!-- 在所扫描范围内，将所有接口生成动态代理实现类，跟sqlSession.getMapper(..)作用一样 -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage"  value="com.project.ssm.mapper"></property>  <!-- 这里用全类名 -->  
+</bean>
+
+
+</beans>						

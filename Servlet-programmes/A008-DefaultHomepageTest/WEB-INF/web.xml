@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+<!--(1)人工设置欢迎页面，即只输入项目名(A008-DefaultHomepateTest)，不需输入uri名：/welcome,就可以访问该页面
+	如果不设置则默认访问项目根目录下的index.html(如果有的话)
+	(2)此种自定义的方式不是访问一个静态页面，而是访问项目根路径默认转到一个servlet请求，要配合一个Servlet使用，否则无法访问
+	(3)设置静态的欢迎页面的方式,不需要写servlet对象
+		<welcome-file>login.html</welcome-file>
+-->
+<welcome-file-list>
+	<welcome-file>welcome</welcome-file>  <!--名称与下面的url-pattern一致，否无设置的欢迎页面无效，但是名称welcome不需加“/”-->
+</welcome-file-list>                      <!--默认欢迎页面也可以是静态页面，如html/defaultHomepage.html,注意：html文件夹前也不加“/”-->
+
+<servlet>
+	<servlet-name>defalutPage</servlet-name>
+	<servlet-class>ServletHomepageTest001</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>defalutPage</servlet-name>
+	<url-pattern>/welcome</url-pattern>
+</servlet-mapping>
+
+<!--第二个Servlet,测试Java代码错误时显示页面-->
+<servlet>
+	<servlet-name>errorServlet</servlet-name>
+	<servlet-class>ErrorPageTest001</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>errorServlet</servlet-name>
+	<url-pattern>/genocide</url-pattern>   <!--路径名无实际意义，随便写的-->
+</servlet-mapping>
+
+<!--个人配置自定义错误代码对应的界面-->
+<error-page>
+	<error-code>404</error-code>   <!--错误代码404，表示路径错误，自定义404错误页面-->
+	<location>/error/error.html</location>
+</error-page>
+<error-page>
+	<error-code>500</error-code>  <!--错误代码500，表示Servlet inner error,一般时java代码错误-->
+	<location>/error/ServletCodeError.html</location>
+</error-page>
+
+</web-app>

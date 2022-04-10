@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+ <configuration>
+ 
+ 	<properties resource="crud.properties"></properties>   <!-- 属性文件可mybatis-crud-config.xml在同一目录下，直接写名字就可以 -->
+ 	
+ 	<environments default="mysql">   <!-- 设置默认的数据库 -->
+ 		<environment id="mysql">     <!-- id是数据库类型的唯一标识 -->
+ 			<transactionManager type="JDBC"></transactionManager>   <!-- type属性设置管理事务的的是JDBC最原始的方式，即手动提交和回滚等 -->
+ 			<dataSource type="POOLED">
+ 				<property name="driver" value="${jdbc.driver}"></property>
+ 				<property name="url" value="${jdbc.url}"></property>
+ 				<property name="username" value="${jdbc.user}"></property>
+ 				<property name="password" value="${jdbc.password}"></property>
+ 			</dataSource>
+ 		</environment>
+ 	</environments>
+ 	
+ 	<mappers>
+ 	    <!-- 使用这种单独写的方式定位映射文件，其名字可自定义，不必和EmpMapper.java接口名一致。但是使用<package>标签必须一致 -->
+ 	    <!-- <mapper resource="emp-mapper.xml"></mapper>  
+ 		<mapper resource="dept-mapper.xml"></mapper> -->
+ 		
+ 		<!--  这里每个映射文件都要如上面写上，如果mapper.xml文件多的话就太臃肿了，可添加<package>标签来解决此问题 
+ 		(1)注意使用<package>时，emp-mapper.xml文件要和对应的EmpMapper.java接口在同目录下，本项目中虽然在conf目录下，但是给emp-mapper的包路径是和src目录下EmpMapper.java的路径名一样的
+ 		实际打开Navigator视图，它们都在bin目录下同一个位置，即实际运行时它们被复制或编译到bin这一个地方了
+ 		(2)也可以直接把EmpMapper.xml放到src目录下，和EmpMapper.java放一起，最后效果都一样，都会到bin目录下
+ 		(3)注意，用package报的方式扫描映射文件，则映射文件的名字要和接口名一致，不可自定义，例EmpMapper.xml<==>EmpMapper.java
+ 		    否则报错：BindingException-->
+ 		<package name="com.mybatis.crud.mapper"></package> 
+    </mappers>
+ </configuration>

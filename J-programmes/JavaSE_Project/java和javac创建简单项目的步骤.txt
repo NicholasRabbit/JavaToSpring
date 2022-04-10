@@ -1,0 +1,45 @@
+源码：src/com/javase/project/entity/User.java
+类文件：build/com/javase/project/entity/User.class
+===============
+生成可运行的jar包
+1, 编译，在project目录下执行，把编译后的User.class放到build目录下，即上面类文件的全路径
+javac -encoding utf-8 -d build src/com/javase/project/entity/User.java
+运行:
+..project/build/-->: java com.javase.project.User
+
+2,打jar包，jar包里有META-INF配置目录
+..project/build/-->: jar cvf project.jar * 
+测试输出,后面加全路径名，指定Main类：
+java -cp project.jar com.javase.project.entity.User  
+
+3,生成可以运行的jar包，许要指定应用程序入口点
+..project/build/-->： jar cvfe project.jar com.javase.project.entity.User *
+指定了Main类后，jar包里面的 META-INF/MANIFEST.MF,比原来多了一行
+Main-Class: com.javase.project.entity.User    // 这就是程序的入口
+测试输出,后面加全路径名，指定Main类：
+java -cp project.jar com.javase.project.entity.User    //-cp 表示指定查找用户类文件和注释处理器的位置
+
+=====================
+模拟web项目编译
+User可换做UserController.java
+1,以log4j.jar为例，测试加载外部jar包，跟项目中类似，lib目录放到project根目录下
+..project/--> : javac -encoding utf-8 src/com/javase/project/entity/User.java -sourcepath src -d build -g -classpath ./lib/*.jar
+解释：-classpath ./lib/*.jar  : 是引入外部jar的路径，星号也可写具体名字
+2,把log4j.xml配置文件放到src根目录和build目录下，以及build目录下也要放lib/log4j.jar
+3,运行：在build目录下，不同的引用的class文件中间用分号隔开，build目录就是项目编译完的后实际运行的地方
+..project/build/-->: java -cp ../lib/log4j.jar;../build com.javase.project.entity.User      //这里../lib/log4j.jar使用的是src目录下的lib，使用注意这里的og4j.jar不能写作*.jar, 否则报错找不到Class
+..project/build/-->: java -cp lib/log4j.jar;../build com.javase.project.entity.User         //这里lib/log4j.jar使用的是build目录下的lib
+======
+
+其他
+javac -verbose   User.java: 输出详细的编译信息 
+
+注意引入多个jar包不能用: javac  -classpath  ./lib/*.jar  报错
+要一个一个写，用分号隔开, 但是最后不要写分号 ，这不是sql语句，例：
+javac -encoding utf-8 src/com/springmvc/test/*.java -sourcepath src -d classes -g -classpath ./lib/commons-logging-1.2.jar;./lib/spring-aop-4.0.0.RELEASE.jar;./lib/spring-beans-4.0.0.RELEASE.jar;./lib/spring-context-4.0.0.RELEASE.jar;./lib/spring-expression-4.0.0.RELEASE.jar;./lib/spring-web-4.0.0.RELEASE.jar;./lib/spring-webmvc-4.0.0.RELEASE.jar
+
+
+
+
+
+

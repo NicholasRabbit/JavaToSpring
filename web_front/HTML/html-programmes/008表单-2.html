@@ -1,0 +1,43 @@
+<!--表单结合表格练习-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>表单练习-2</title>
+	</head>
+
+	<body>
+		
+		<form action="192.168.0.102:8080/html/dir">  <!--form在最外边,table在里边，表示里边内容按表格显示-->
+		<table width="15%" height="70px">
+			<tr>  <!--tr表示一行，即table row。td表示一列-->
+				<td align="center">  
+					用户名
+				</td>
+				<td align="center">
+					<input type="text" name="username"></input> 
+				</td>
+			</tr>
+
+			<tr align="center">
+				<td>
+					密码
+				</td>
+				<td>
+					<input type="password" name="pw" />
+				</td>
+			</tr>
+
+			<tr>
+				<td align="center">
+					<input type="submit" value="登录"></input>
+				</td>
+				<td align="right">
+					<input type="reset" value="清空" />
+				</td>
+			</tr>
+		
+		</table>
+		</form>
+	</body>
+
+</html>

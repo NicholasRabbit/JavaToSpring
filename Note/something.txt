@@ -1,0 +1,9 @@
+About this repository
+The purpose of building this repository is to create backups for my codes.
+Hence,I can learn how to use git.
+It is diffcult for a aged man to learn Java.
+Sometimes I remembered a poem which was written by Wang Guo Zhen.It said: I don't know if I can succeed,I will go when I choose the destination no matter how heavy the rain or how strong the wind is.
+Maybe this will never been read by anybody.At least it is a shot memoir of mine.
+No country for old man.
+That's it.
+

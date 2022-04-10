@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>json对象</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+	window.onload = function(){
+		var jsonObj = {"id":1001,
+					   "name":"Tom",
+					   "doing":function(){
+								 alert("Jogging,Swimming");
+								 
+					           }
+					  }
+		//调用属性值为一般类型的方式
+		alert(jsonObj.name);
+		//调用值为方法的json键，需要加括号
+		jsonObj.doing();
+
+	}
+
+	
+</script>
+
+</body>
