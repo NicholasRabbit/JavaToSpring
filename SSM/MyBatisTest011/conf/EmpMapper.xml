@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.pageHelper.mapper.EmpMapper">
+
+    <!--MyBatis模糊查询范例-->
+    <select id="getStationList" parameterType="RecycleStation" resultType="RecycleStation">
+		SELECT
+			a.id AS "id",
+			a.sta_name AS "staName",
+			a.sta_addr AS "staAddr",
+			a.state AS "state",
+			a.del_flag AS "delFlag",
+			a.province AS "province",
+			a.city AS "city",
+			a.district AS "district"
+		FROM
+			recycle_station a
+		WHERE
+			a.province LIKE CONCAT('%',#{province},'%') AND a.city LIKE CONCAT('%',#{city},'%') AND a.district LIKE CONCAT('%',#{district},'%')
+	</select>
+
+</mapper>

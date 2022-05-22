@@ -28,7 +28,18 @@
 	<sql id="empSelectSql">select id,ename,gender,age,did from emp </sql>  
 	<select id="selectEmpById"  resultType="com.mybatis.dynamic.bean.Emp">
 		<include refid="empSelectSql"></include> where id=#{id}
-	</select> 
+	</select>
+
+	<!--四，update使用<trim>标签范例，注意："SET"写到trim标签里面，suffixOverride=","s会覆盖后面多余的逗号“，”-->
+	<update id="update" parameterType="Emp">
+		update emp
+		<trim prefix="SET"  suffixOverrides=",">
+			<if test="ename != null and ename != ''">ename=#{ename},</if>
+			<if test="sal != null and sal != ''">sal=#{sal},</if>
+			<if test="deptno != null and deptno != ''">deptno=#{deptno},</if>
+		</trim>
+		where order_id = #{orderId}
+	</update>
 	
 	
  </mapper>

@@ -35,6 +35,7 @@ public class AboutParameterTest {
 	
 	/*二，@RequestHeaders注解，用法与@ReqeustParam一样，两者内含属性也一致。即属性value,required,defaultValue用法一样
 	 * 可接收浏览器传来的表头信息,value值要与浏览器的名称对应一致，否则无法接收
+	 * @RequestHeader可以和@RequestBody连用，后者接收json格式的请求，但是这两个都不可和@RequestParam连用，因为前两者会关闭优先获取请求流，用完并关闭
 	 * */
 	@RequestMapping(value="header",method=RequestMethod.POST)
 	public String testHeader(@RequestHeader(value="Content-Type") String cache_Control,@RequestHeader("Cookie") String cookieValue) {

@@ -1,0 +1,90 @@
+   
+
+### 2.8、[mybatis](https://so.csdn.net/so/search?q=mybatis&spm=1001.2101.3001.7020)的模糊查询
+
+#### 方式一：
+
+> 手动添加"%"通配符
+
+- xml配置：
+
+```xml
+<!--模糊查询-->
+<select id="fuzzyQuery" resultType="com.bin.pojo.Book">
+    select * from mybatis.book where bookName like #{info};
+</select>
+1234
+```
+
+- 测试：
+
+```java
+@Test
+public void fuzzyQuery(){
+    SqlSession sqlSession = MybatisUtils.getSqlSession();
+    BookMapper mapper = sqlSession.getMapper(BookMapper.class);
+    List<Book> books = mapper.fuzzyQuery("%萨%");
+    for (Book book : books) {
+        System.out.println(book);
+    }
+    sqlSession.close();
+}
+12345678910
+```
+
+**说明：**需要手动添加"%"通配符，显然这种方式很麻烦，并且如果忘记添加通配符的话就会变成普通的查询语句，匹配全部字符查询。
+
+- 缺点：   
+  - 麻烦
+  - 易出错
+
+#### 方式二：
+
+> 在[xml](https://so.csdn.net/so/search?q=xml&spm=1001.2101.3001.7020)配置文件中添加"%"通配符，拼接字符串形式
+
+```xml
+<select id="fuzzyQuery" resultType="com.bin.pojo.Book">
+    select * from mybatis.book where bookName like '%${info}%';
+</select>
+123
+```
+
+**说明：**在mapper.xml配置文件中添加"%"通配符，但是需要用单引号将其包裹住，但是用单引号裹住之后#{}就无法被识别，要改成${}这种拼接字符串的形式。虽然通过方式二优化了方式一的缺点，但同时也造成了SQL安全性的问题，也就是用户可以进行SQL注入。
+
+- 缺点：   
+  - 不安全，可进行SQL注入
+
+#### 方式三：
+
+> 在xml配置文件中添加"%"通配符，借助mysql函数
+
+```xml
+<select id="fuzzyQuery" resultType="com.bin.pojo.Book">
+    select * from mybatis.book where bookName like 
+    concat('%',#{info},'%');
+</select>
+1234
+```
+
+**说明：**解决了SQL注入且能在配置文件中写"%"通配符的问题，完美实现了模糊查询
+
+- 优点：   
+  - 安全
+  - 方便
+
+#### 方式四：
+
+> 与方式三一样使用mysqk函数，但使的用是${}形式，不过需要用单引号包裹住
+
+```xml
+<select id="fuzzyQuery" resultType="com.bin.pojo.Book">
+    select * from mybatis.book where bookName like 
+    concat('%','${info}','%');
+</select>
+1234
+```
+
+#### 总结：
+
+- \#{}是预编译处理，mybatis在处理#{}时，会将其替换成"?"，再调用PreparedStatement的set方法来赋值。
+- ${}是拼接字符串，将接收到的参数的内容不加任何修饰的拼接在SQL语句中，会引发SQL注入问题。

@@ -65,7 +65,8 @@
   <!-- =================================================================== -->
   	
   	<!-- 四，一对多映射，用 <collection>,两表联查的方式，以Dept对象为主，在Dept.java中加属性List<Emp> empList表示一个部门中的所有员工。sql查询也是以dept表为主表。
-  	 List<Emp> getEmpsAsListByDept(Dept did); -->
+  	 Dept getEmpsAsListByDept(Dept did);
+  	 注意：使用这种一对多查询时，主表查询的结果必须只有一个，否则报错:Ambiguous..-->
   	<resultMap type="com.mybatis.multiple.bean.Dept"  id="deptMap">
   		<id column="did"  property="did"></id>
   		<result column="dname"  property="dname"></result>
@@ -89,6 +90,9 @@
   <!-- =================================================================== -->
   
   <!-- 五，一对多，分步查询 -->
+	<!--public abstract List<Emp> getEmpsByDid(Integer did);    // 获取一个部门的多个员工，放进List集合
+	public abstract Dept getDeptOnlyByDid(Integer did);		//获取单个部门-->
+
  	<!-- 获取一个部门的员工，放进List集合，List<Emp> getEmpsByDid(Integer did) -->
 	<select id="getEmpsByDid" resultType="com.mybatis.multiple.bean.Emp">
 		select id,ename,gender,age from emp where did=#{did}       	<!-- 3 -->
