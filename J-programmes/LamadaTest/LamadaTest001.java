@@ -8,7 +8,7 @@ public class LamadaTest001 {
 		mt.start();
 		System.out.println(Thread.currentThread().getName() + " execute!");
 
-		//Lamada表达式写法，相对来说更简洁。
+		//Lamada表达式写法，相对来说更简洁。这里又是一个新的线程，类似于匿名内部类，不是用的下面的MyThread.java
 		new Thread(() -> System.out.println(Thread.currentThread().getName() + " lamada run!")).start();
 	}
 
