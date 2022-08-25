@@ -30,7 +30,7 @@ public class LambdaTest002 {
 			System.out.println("set01==>" + s);
 		}
 		//(2),使用Lambda表达式的方式创建匿名内部类
-		Comparator<String> comparator02 = (x,y) -> Integer.compare(x.length(),y.length());
+		Comparator<String> comparator02 = (x,y) -> Integer.compare(x.length(),y.length());   //注意Comparator要加泛型
 		TreeSet<String> set02 = new TreeSet<>(comparator02);
 		set02.add("123");
 		set02.add("123456");
@@ -39,4 +39,5 @@ public class LambdaTest002 {
 		}
 
 	}
+
 }
