@@ -27,7 +27,7 @@ public class ThreadTest005 {
 
         try{
 		   //这里调用futureTask.get()方法会造成所在主线程阻塞，有异常要捕捉
-		   //线程执行完才会获取结果，因此这种方式可用于闭锁，见JUC的CountDownLatch相关代码
+		   //t.start()的线程执行完才会获取结果，因此这种方式可用于闭锁，见JUC的CountDownLatch相关代码
 		   Object retValue=futureTask.get();  
 		   System.out.println(retValue); 
 		}catch(InterruptedException | ExecutionException e ){
