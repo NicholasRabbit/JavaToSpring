@@ -3,7 +3,7 @@
 ===============
 生成可运行的jar包
 1, 编译，在project目录下执行，把编译后的User.class放到build目录下，即上面类文件的全路径
-javac -encoding utf-8 -d build src/com/javase/project/entity/User.java
+..project/-->javac -encoding utf-8 -d build src/com/javase/project/entity/User.java
 运行:
 ..project/build/-->: java com.javase.project.User
 
@@ -30,6 +30,21 @@ User可换做UserController.java
 ..project/build/-->: java -cp ../lib/log4j.jar;../build com.javase.project.entity.User      //这里../lib/log4j.jar使用的是src目录下的lib，使用注意这里的og4j.jar不能写作*.jar, 否则报错找不到Class
 ..project/build/-->: java -cp lib/log4j.jar;../build com.javase.project.entity.User         //这里lib/log4j.jar使用的是build目录下的lib
 ======
+
+javac -classpath使用注意：
+当设置需要设置多个目录作为classpath时，在不同平台的写法不大一样
+
+Linux/Unix平台
+javac -cp "path1/*:path2/*" sourcefiles
+javac -classpath "path1/*:path2/*" sourcefiles
+
+Windows平台
+javac -cp "path1\*;path2\*" sourcefiles
+javac -classpath "path1\*;path2\*" sourcefiles
+
+不同点仅在于多个目录间使用 : 还是 ; 作为路径分割符、目录分割符是 / (Linux)还是 \(Windows)
+
+========
 
 其他
 javac -verbose   User.java: 输出详细的编译信息 
