@@ -1,0 +1,11 @@
+在spring ioc中有四种依赖注入，分别是：
+
+a.接口注入
+
+b.setter方法注入
+
+c.构造方法注入
+
+d.注解方式注入
+
+参考：https://zhuanlan.zhihu.com/p/34405799
