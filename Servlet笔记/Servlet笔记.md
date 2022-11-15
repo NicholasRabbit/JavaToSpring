@@ -1,4 +1,4 @@
-### 1，Servelt的FilterChain
+### 1，Servlet的FilterChain
 
 javax.servlet 包中提供了一个 FilterChain 接口，该接口由容器实现。容器将其实例对象作为参数传入 Filter 对象的  doFilter() 方法中。Filter 对象可以使用 FilterChain 对象调用链中下一个 Filter 的 doFilter()  方法，若该 Filter 是链中最后一个过滤器，则调用目标资源的 service() 方法。FilterChain 接口中只有一个方法，如下表。
 
@@ -15,3 +15,7 @@ javax.servlet 包中提供了一个 FilterChain 接口，该接口由容器实�
 参考：http://c.biancheng.net/view/4031.html
 
 http://c.biancheng.net/servlet2/filterchain.html
+
+### 2，Servlet源码在tomcat的源码里
+
+因为Tomcat实现了Servlet，所以它的源码里也有Servlet的源码
