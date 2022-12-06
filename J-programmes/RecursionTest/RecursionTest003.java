@@ -1,3 +1,4 @@
+//Ê¹ÓÃµÝ¹é¼ÆËã½×³Ë
 public class RecursionTest003{
     public static void main(String[] args){
 	    int q=multiple(1);
