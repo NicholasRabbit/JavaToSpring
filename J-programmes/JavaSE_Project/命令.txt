@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Java编译不在当前目录下的源码命令：
 --project
 	--src/com/test/Test.java
@@ -6,6 +7,8 @@ project/--> : javac -encoding utf-8 out /src/com/test/Test.java :编译Test.java
 运行：
 out/--> : java com.test.Test
 
+=======
+>>>>>>> d3f476e7cbcdec68bc40a41731b9333532734208
 javac -encoding utf-8 src/com/javaweb/controller/WebController.java -sourcepath src -d build -g -cp ./lib/*.jar
 
 java -cp lib/log4j.jar;../build com.javaweb.controller.WebController

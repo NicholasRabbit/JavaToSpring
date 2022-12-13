@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 /*
 Java编译不在当前目录下的源码命令：
@@ -19,6 +20,8 @@ out/--> : java com.test.Test
 */
 
 
+=======
+>>>>>>> d3f476e7cbcdec68bc40a41731b9333532734208
 package com.cctv.sports.programmes;   //注意后面不要忘加分号
 
 public class PackageImportTest001 {
