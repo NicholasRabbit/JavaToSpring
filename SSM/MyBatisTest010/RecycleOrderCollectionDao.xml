@@ -13,8 +13,7 @@
 		</foreach>
 	</insert>
 
-<<<<<<< HEAD
-</mapper>
+
 
 <!--使用case when 批量更新范例，他人范例，本项目没有对应的表-->
 <!-- 批量修改入库商品库存数量信息
@@ -36,6 +35,6 @@ shopGoodsSeedService.updateShopGoodsSeedStockNumber(shopGoodsSeedList);
                 #{item.goodsId}
             </foreach>
     </update>
-=======
+
 </mapper>
->>>>>>> d3f476e7cbcdec68bc40a41731b9333532734208
+

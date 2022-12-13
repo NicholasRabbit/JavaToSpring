@@ -1,34 +1,31 @@
-<<<<<<< HEAD
 
 /*
-Java±àÒë²»ÔÚµ±Ç°Ä¿Â¼ÏÂµÄÔ´ÂëÃüÁî£º
-(1)±àÒë
+Javaç¼–è¯‘ä¸åœ¨å½“å‰ç›®å½•ä¸‹çš„æºç å‘½ä»¤ï¼š
+(1)ç¼–è¯‘
 --project
 	--src/com/test/Test.java
-	--out/com/test/Test.class (±àÒëºóµÄ½á¹û)
-project/--> : javac -encoding utf-8 out /src/com/test/Test.java :±àÒëTest.javaµ½outÄ¿Â¼ÏÂ
-×¢Òâ:Èç¹ûTest.javaÖĞÒıÈëÁË±ğµÄ°üÒªÒ»Æğ±àÒë£¬·ñÔò±àÒë±¨´í£¬Àı:FactoryTest.javaÖĞÒıÈëÁËorderºÍentity±¨ÏÂµÄÀà£¬ËùÒÔÒªÒ»Æğ±àÒë£¬´ËÀıÎªÉè¼ÆÄ£Ê½ÖĞµÄ¹¤³§Ä£Ê½ÖĞµÄ·¶Àı
+	--out/com/test/Test.class (ç¼–è¯‘åçš„ç»“æœ)
+project/--> : javac -encoding utf-8 out /src/com/test/Test.java :ç¼–è¯‘Test.javaåˆ°outç›®å½•ä¸‹
+æ³¨æ„:å¦‚æœTest.javaä¸­å¼•å…¥äº†åˆ«çš„åŒ…è¦ä¸€èµ·ç¼–è¯‘ï¼Œå¦åˆ™ç¼–è¯‘æŠ¥é”™ï¼Œä¾‹:FactoryTest.javaä¸­å¼•å…¥äº†orderå’ŒentityæŠ¥ä¸‹çš„ç±»ï¼Œæ‰€ä»¥è¦ä¸€èµ·ç¼–è¯‘ï¼Œæ­¤ä¾‹ä¸ºè®¾è®¡æ¨¡å¼ä¸­çš„å·¥å‚æ¨¡å¼ä¸­çš„èŒƒä¾‹
 javac -encoding utf-8 -d out src/com/factory/test/FactoryTest.java 
 							 src/com/factory/order/*.java  
 							 src/com/factory/entity/*.java
-ÁíÍâ£¬Í¬Ò»¸ö°üÏÂµÄÀà£¬»¥ÏàÊ¹ÓÃµ½ÁËµÄ»°£¬Ò²ÒªÒ»Æğ±àÒë£¬²»ÄÜÖ»±àÒëÒ»¸ö£¬»á±¨´í
-Àı£ºcom/prototype/no/Sheep.java,SheepTest.java
-SheepTest.javaÓÃµ½ÁËSheep.java,±àÒëÊ±Ò²ÒªÍ¬Ê±±àÒë
+å¦å¤–ï¼ŒåŒä¸€ä¸ªåŒ…ä¸‹çš„ç±»ï¼Œäº’ç›¸ä½¿ç”¨åˆ°äº†çš„è¯ï¼Œä¹Ÿè¦ä¸€èµ·ç¼–è¯‘ï¼Œä¸èƒ½åªç¼–è¯‘ä¸€ä¸ªï¼Œä¼šæŠ¥é”™
+ä¾‹ï¼šcom/prototype/no/Sheep.java,SheepTest.java
+SheepTest.javaç”¨åˆ°äº†Sheep.java,ç¼–è¯‘æ—¶ä¹Ÿè¦åŒæ—¶ç¼–è¯‘
 
-(2)ÔËĞĞ£º
+(2)è¿è¡Œï¼š
 out/--> : java com.test.Test
 */
 
 
-=======
->>>>>>> d3f476e7cbcdec68bc40a41731b9333532734208
-package com.cctv.sports.programmes;   //×¢ÒâºóÃæ²»ÒªÍü¼Ó·ÖºÅ
+package com.cctv.sports.programmes;   //æ³¨æ„åé¢ä¸è¦å¿˜åŠ åˆ†å·
 
 public class PackageImportTest001 {
 
     public static void main(String[] args){
 	
-	    System.out.println("main·½·¨°ü²âÊÔÊä³ö¡£");
+	    System.out.println("mainæ–¹æ³•åŒ…æµ‹è¯•è¾“å‡ºã€‚");
 	}
 
 }

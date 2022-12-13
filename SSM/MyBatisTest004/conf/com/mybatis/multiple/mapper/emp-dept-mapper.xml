@@ -103,12 +103,8 @@
  		<id column="did"  property="did"></id>
  		<result column="dname"  property="dname"></result>						
  		<!-- multiple-select-config中设置全局延迟加载后，可在此使用fetchType属性单独设置是否延迟加载，“lazy”是默认值，“eager”表示这里不延迟加载 -->	
-<<<<<<< HEAD
  		<!--这里根据1出的did来通过上面的getEmpsByDid查询该部门员工,把查询结果放到Dept 的List<Emp> empList里-->
-		<collection property="empList" select="com.mybatis.multiple.mapper.EmpDeptMapper.getEmpsByDid"  column="did"  fetchType="lazy"> <!-- 底层是Map集合，也可写作:column={did=did} -->
-=======
  		<collection property="empList" select="com.mybatis.multiple.mapper.EmpDeptMapper.getEmpsByDid"  column="did"  fetchType="lazy"> <!-- 底层是Map集合，也可写作:column={did=did} -->
->>>>>>> d3f476e7cbcdec68bc40a41731b9333532734208
  			<id column="id"  property="id"></id>														<!-- 2 -->
   			<result column="ename"  property="ename"></result>                   
   			<result column="gender"  property="gender"></result>

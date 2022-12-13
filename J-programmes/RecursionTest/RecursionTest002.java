@@ -1,7 +1,5 @@
-<<<<<<< HEAD
+
 //使用递归计算累加
-=======
->>>>>>> d3f476e7cbcdec68bc40a41731b9333532734208
 public class RecursionTest002{
     public static void main(String[] args){
 	     

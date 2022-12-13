@@ -3,7 +3,6 @@
 ===============
 生成可运行的jar包
 1, 编译，在project目录下执行，把编译后的User.class放到build目录下，即上面类文件的全路径
-
 ..project/-->javac -encoding utf-8 -d build src/com/javase/project/entity/User.java
 
 运行:
