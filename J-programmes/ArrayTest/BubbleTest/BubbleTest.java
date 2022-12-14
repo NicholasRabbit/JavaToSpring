@@ -1,4 +1,6 @@
 
+import java.util.Arrays;
+
 /*
 * 对数组进行从小到大排序：{6,5,4,3,2,1}
 * 思路：
@@ -28,19 +30,21 @@
 */
 
 public class BubbleTest {
-    public static void main(String[] args){
-	    bubbleMethod();    
+    
+	public static void main(String[] args){
+	    bubbleMethod();
+		bubbleMethod2(); 
 	}
-	//排序方法
+	
+	//排序方法，此方法是一直检查到最后一轮，可以优化，如果有一轮已经排序完成后，后面不需要排序了。
 	public static void bubbleMethod(){
 	
 	   int[] arrs={6,5,4,3,2,1}; 
        int count=0;
 	   for(int i=arrs.length-1;i>0;i--){
-	       
 	       /*
-		   * 比较的下标，a > b ? a的下标每次都是从0开始，因为每次比较完，数组最后一个数就确定了，
-		   * 所以这里的条件是 j < i
+		   * 判断条件 j=0，j<i，表示每次都从第一个开始判断j和j+1位置的大小
+		   * 例，第一轮，当i=5时，判断0-4 < 5，判断了5次，符合上面的思路分析。
 		   */
 		   for(int j=0;j<i;j++){
                count++;  		   
@@ -62,5 +66,43 @@ public class BubbleTest {
 	   }
 	
 	}
+
+
+	//冒泡测试优化，当排序完成后，后面就不要再进行检查了
+	public static void bubbleMethod2(){
+	
+	   int[] arrs={3,2,1,6,5,4,}; 
+       int count=0;
+	   
+	   for(int i=arrs.length-1;i>0;i--){
+		   boolean flag = false;  //是否进行下一轮的标志
+	       count ++;  //轮数
+	       /*
+		   * 判断条件 j=0，j<i，表示每次都从第一个开始判断j和j+1位置的大小
+		   * 例，第一轮，当i=5时，判断0-4 < 5，判断了5次，符合上面的思路分析。
+		   */
+		   for(int j=0;j<i;j++){
+                		   
+		       if(arrs[j]>arrs[j+1]){
+			       flag = true;  //如果进行了交换，则设置为true
+				   int temp;
+			       temp=arrs[j];      //此处temp必须写在前面，因为要给局部变量赋值，写成arrs[j]=temp就错了。
+				   arrs[j]=arrs[j+1]; //因为java先计算等号右边的结果，再把得到的值赋给左边，temp不能在左边。
+				   arrs[j+1]=temp;
+			   
+			   }
+
+		   }
+		   if(!flag){
+			  break;
+		   }
+		   System.out.println("轮数==>" + count + ":" + Arrays.toString(arrs));
+
+	   }
+       
+	
+	}	
+
+
 
 }
