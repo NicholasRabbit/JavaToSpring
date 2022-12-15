@@ -1,4 +1,4 @@
-public class MyIntTest003 {
+public class MyIntTest {
 
     public static void main(String[] args){
 	
