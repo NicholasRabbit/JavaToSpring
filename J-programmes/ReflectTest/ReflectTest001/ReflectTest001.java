@@ -23,7 +23,7 @@ public class ReflectTest001 {
 		System.out.println(c3==c1);  //true，因为c1,c3都指向方法区内存里的String字节码文件
 		
 		MyClass mc=new MyClass();
-        Class c4=mc.getClass();
+        Class c4=mc.getClass();   
 		System.out.println(c4);
 
 		//第三种方式，任何类型（包括基本类型）.class

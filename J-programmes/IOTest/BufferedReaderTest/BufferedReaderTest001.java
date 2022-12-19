@@ -15,6 +15,7 @@ public class BufferedReaderTest001 {
 		    fr=new FileReader("E:\\Learning\\Computer\\Java\\J-programmes\\IOTest\\file03.txt");
 			br=new BufferedReader(fr);   //此处调用有参构造：public BufferedReader(Reader  in);
 
+			//注意readLine()方法不读取行尾的终止符(指“\n”"\r")等不同系统的换行符。
 			String firstLine=br.readLine();  //一行一行的读取字符,如果读取不到，就返回null，可根据此特征写while循环
             String secondLine=br.readLine(); //读第二行，是个空行
 			System.out.println(firstLine);   //readLine()读取一行，不读取换行符，因此这里用println，否则就成只有一行了

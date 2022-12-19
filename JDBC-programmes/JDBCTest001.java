@@ -19,7 +19,7 @@ public class JDBCTest001 {
 		   //第二步，获取链接，即通过url，用户名，密码来链接,这三者都是String类型,返回值是mysql实现类的Connection对象
 		   String url="jdbc:mysql://192.168.0.102:3306/mydatabase";
 		   String user="root";
-		   String password="nicholas1200";
+		   String password="123456";
 		   connect=DriverManager.getConnection(url,user,password);  //这里获取的是mysql实现类对象
 		   System.out.println("数据库链接对象："+connect);  //输出：数据库链接对象：com.mysql.jdbc.JDBC4Connection@41cf53f9
 
