@@ -32,8 +32,15 @@ User可换做UserController.java
 
 3,运行：在build目录下，不同的引用的class文件中间用分号隔开，build目录就是项目编译完的后实际运行的地方
 ..project/build/-->: java -cp lib/log4j.jar;../build com.javaweb.controller.WebController      
-//这里../lib/log4j.jar使用的是src目录下的lib，使用注意这里的og4j.jar不能写作*.jar, 否则报错找不到Class
+  (1)这里 lib/log4j.jar 使用的是build目录下的lib，使用注意这里的og4j.jar不能写作*.jar, 否则报错找不到Class
+  (2)-cp lib/log4j.jar;../build 最后的../build是 -cp的参数，表示-classpath，.class文件的寻找路径
+  (3)com.javaweb.controller.WebController : 这个参数指定main方法入口。
 
+注意：引入多个jar包不能用: javac  -classpath  ./lib/*.jar  报错
+要一个一个写，用分号隔开, 但是最后不要写分号 ，这不是sql语句，例：
+javac -encoding utf-8 src/com/springmvc/test/*.java -sourcepath src -d classes -g -classpath ./lib/commons-logging-1.2.jar;./lib/spring-aop-4.0.0.RELEASE.jar;./lib/spring-beans-4.0.0.RELEASE.jar;./lib/spring-context-4.0.0.RELEASE.jar;./lib/spring-expression-4.0.0.RELEASE.jar;./lib/spring-web-4.0.0.RELEASE.jar;./lib/spring-webmvc-4.0.0.RELEASE.jar
+
+其他个人范例：DesignPattern-->13_Proxy-->3_CGLibProxy中使用了Cgli和asm的jar包
 ======
 
 
@@ -57,7 +64,7 @@ javac -classpath "path1\*;path2\*" sourcefiles
 其他
 javac -verbose   User.java: 输出详细的编译信息 
 
-注意引入多个jar包不能用: javac  -classpath  ./lib/*.jar  报错
+注意：引入多个jar包不能用: javac  -classpath  ./lib/*.jar  报错
 要一个一个写，用分号隔开, 但是最后不要写分号 ，这不是sql语句，例：
 javac -encoding utf-8 src/com/springmvc/test/*.java -sourcepath src -d classes -g -classpath ./lib/commons-logging-1.2.jar;./lib/spring-aop-4.0.0.RELEASE.jar;./lib/spring-beans-4.0.0.RELEASE.jar;./lib/spring-context-4.0.0.RELEASE.jar;./lib/spring-expression-4.0.0.RELEASE.jar;./lib/spring-web-4.0.0.RELEASE.jar;./lib/spring-webmvc-4.0.0.RELEASE.jar
 
