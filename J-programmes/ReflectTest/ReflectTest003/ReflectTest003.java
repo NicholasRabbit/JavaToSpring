@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 /*
 反射机制的灵活性,本例是不用修改代码，只修改配置文件info.properties就可以创建不同的对象
-高级框架底层就是采用了这种原理
+高级框架底层就是采用了这种原理，例如：Spring Framework
 */
 public class ReflectTest003 {
 

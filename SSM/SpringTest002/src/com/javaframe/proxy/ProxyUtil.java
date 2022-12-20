@@ -18,7 +18,8 @@ public class ProxyUtil {
 	
 	public Object getProxy() {
 		
-		ClassLoader cl=this.getClass().getClassLoader();       //获取ProxyUtil.java的类加载器，用来加载目标的相关反射类
+		//ClassLoader cl=this.getClass().getClassLoader();
+		ClassLoader cl=cacu.getClass().getClassLoader();       //使用的是cacu的类加载器，不是this，获取ProxyUtil.java的类加载器，用来加载目标的相关反射类
 		Class[]  interfaces=cacu.getClass().getInterfaces();   //获取被代理类Caculator的所有接口，返回值是一个Class数组，代理类回合目标类实现相同的接口
 		InvocationHandler h=new MyHandler(cacu);     //这里也可以写成匿名内部类的方式，见老师课堂源码  
 		Object proxyInstance=Proxy.newProxyInstance(cl,interfaces, h);   //这里实际是以CaculatorInterface接口创建了一个实例，供以后调用接口中加减乘除方法用
