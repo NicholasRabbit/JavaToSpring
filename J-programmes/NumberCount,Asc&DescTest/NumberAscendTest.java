@@ -7,13 +7,15 @@ public class NumberAscendTest {
 	public static void main(String[] args){
 		
 		int number = 123456;
-		ascendPrint(number);
-
+		//逆序打印
 		descendPrint(number);
+		//正序打印
+		ascendPrint(number);
+		
 	}
 
 	//逆序打印
-	public static void ascendPrint(int number){
+	public static void descendPrint(int number){
 		
 		//一，先分步打印，整理思路
 		//打印个位数
@@ -44,16 +46,18 @@ public class NumberAscendTest {
 
 	//正序打印，利用递归，栈的特点(LIFO)
 	//实际也是跟上面倒序的思路一样，进行/10 %10等运算，只是利用栈的特性先打印高位数。
-	public static void descendPrint(int number){
+	public static void ascendPrint(int number){
 	
 		//这里就是判断当参数小于等于9时，递归的最后一个方法打印完数组，return,弹栈，后续的所有方法持续弹栈
 		if(number <= 9){
 			System.out.println("descend==>" + number);
 			return;
 		}
-		descendPrint(number / 10);
+		ascendPrint(number / 10);
 		System.out.println("descend==>" + number % 10);
 		
 	}
+
+	
 
 }
