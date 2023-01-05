@@ -17,7 +17,7 @@ public class OuterClass {
 			System.out.println("pirvate实例内部类实例方法执行==>" + name);
 		}
 	}
-	//2，(2)外部要获取private修饰的内部类，需要通过此方式
+	//2，(2)外部要获取private修饰的内部类，需要通过此方式，跟获取私有属性一样。
 	public PrivateInnerClass getPrivate(){
 		return new PrivateInnerClass();
 	}
