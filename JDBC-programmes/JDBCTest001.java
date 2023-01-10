@@ -4,6 +4,14 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.Statement;
 
+/*
+* JDBC开发前的准备工作，
+* 先从官网下载对应的驱动jar包，然后将其配置到环境变量classpath当中。
+* classpath=.;D:\JDBC\resources\MySql Connector Java 5.1.23\mysql-connector-java-5.1.23-bin.jar
+* 以上的配置是针对于文本编辑器的方式开发，使用IDEA工具的时候，不需要配置以上的环境变量。
+* IDEA有自己的配置方式。
+*/
+
 public class JDBCTest001 {
 
 	public static void main(String[] args){
