@@ -5,11 +5,11 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 /*
-* JDBC¿ª·¢Ç°µÄ×¼±¸¹¤×÷£¬
-* ÏÈ´Ó¹ÙÍøÏÂÔØ¶ÔÓ¦µÄÇý¶¯jar°ü£¬È»ºó½«ÆäÅäÖÃµ½»·¾³±äÁ¿classpathµ±ÖÐ¡£
+* JDBCå¼€å‘å‰çš„å‡†å¤‡å·¥ä½œï¼Œ
+* å…ˆä»Žå®˜ç½‘ä¸‹è½½å¯¹åº”çš„é©±åŠ¨jaråŒ…ï¼Œç„¶åŽå°†å…¶é…ç½®åˆ°çŽ¯å¢ƒå˜é‡classpathå½“ä¸­ã€‚
 * classpath=.;D:\JDBC\resources\MySql Connector Java 5.1.23\mysql-connector-java-5.1.23-bin.jar
-* ÒÔÉÏµÄÅäÖÃÊÇÕë¶ÔÓÚÎÄ±¾±à¼­Æ÷µÄ·½Ê½¿ª·¢£¬Ê¹ÓÃIDEA¹¤¾ßµÄÊ±ºò£¬²»ÐèÒªÅäÖÃÒÔÉÏµÄ»·¾³±äÁ¿¡£
-* IDEAÓÐ×Ô¼ºµÄÅäÖÃ·½Ê½¡£
+* ä»¥ä¸Šçš„é…ç½®æ˜¯é’ˆå¯¹äºŽæ–‡æœ¬ç¼–è¾‘å™¨çš„æ–¹å¼å¼€å‘ï¼Œä½¿ç”¨IDEAå·¥å…·çš„æ—¶å€™ï¼Œä¸éœ€è¦é…ç½®ä»¥ä¸Šçš„çŽ¯å¢ƒå˜é‡ã€‚
+* IDEAæœ‰è‡ªå·±çš„é…ç½®æ–¹å¼ã€‚
 */
 
 public class JDBCTest001 {
@@ -19,38 +19,38 @@ public class JDBCTest001 {
 		Connection connect=null;
 		Statement state=null;
 		try{
-		   //JDBC±à³Ì²½Öè;
-    	   //µÚÒ»²½£¬×¢²áÇý¶¯£¬¸æËßjvmÒªÁ¬½ÓÄÄÖÖÊý¾Ý¿â
-		   Driver driver=new com.mysql.jdbc.Driver();  //ÕâÀïÊÇ¶àÌ¬£¬Ç°ÃæÄÇ¸öDriverÊÇjavaÖÐµÄ½Ó¿Ú£¬ºóÃæÊÇmysqlµÄÊµÏÖÀà
-		   DriverManager.registerDriver(driver);    //µ÷ÓÃDriverManagerÖÐµÄ¾²Ì¬·½·¨£¬°Ñdriver¶ÔÏó×¢²á½øÈ¥			
+		   //JDBCç¼–ç¨‹æ­¥éª¤;
+    	   //ç¬¬ä¸€æ­¥ï¼Œæ³¨å†Œé©±åŠ¨ï¼Œå‘Šè¯‰jvmè¦è¿žæŽ¥å“ªç§æ•°æ®åº“
+		   Driver driver=new com.mysql.jdbc.Driver();  //è¿™é‡Œæ˜¯å¤šæ€ï¼Œå‰é¢é‚£ä¸ªDriveræ˜¯javaä¸­çš„æŽ¥å£ï¼ŒåŽé¢æ˜¯mysqlçš„å®žçŽ°ç±»
+		   DriverManager.registerDriver(driver);    //è°ƒç”¨DriverManagerä¸­çš„é™æ€æ–¹æ³•ï¼ŒæŠŠdriverå¯¹è±¡æ³¨å†Œè¿›åŽ»			
 		   
-		   //µÚ¶þ²½£¬»ñÈ¡Á´½Ó£¬¼´Í¨¹ýurl£¬ÓÃ»§Ãû£¬ÃÜÂëÀ´Á´½Ó,ÕâÈýÕß¶¼ÊÇStringÀàÐÍ,·µ»ØÖµÊÇmysqlÊµÏÖÀàµÄConnection¶ÔÏó
-		   String url="jdbc:mysql://192.168.0.102:3306/mydatabase";
+		   //ç¬¬äºŒæ­¥ï¼ŒèŽ·å–é“¾æŽ¥ï¼Œå³é€šè¿‡urlï¼Œç”¨æˆ·åï¼Œå¯†ç æ¥é“¾æŽ¥,è¿™ä¸‰è€…éƒ½æ˜¯Stringç±»åž‹,è¿”å›žå€¼æ˜¯mysqlå®žçŽ°ç±»çš„Connectionå¯¹è±¡
+		   String url="jdbc:mysql://127.0.0.1:3306/company";
 		   String user="root";
 		   String password="123456";
-		   connect=DriverManager.getConnection(url,user,password);  //ÕâÀï»ñÈ¡µÄÊÇmysqlÊµÏÖÀà¶ÔÏó
-		   System.out.println("Êý¾Ý¿âÁ´½Ó¶ÔÏó£º"+connect);  //Êä³ö£ºÊý¾Ý¿âÁ´½Ó¶ÔÏó£ºcom.mysql.jdbc.JDBC4Connection@41cf53f9
+		   connect=DriverManager.getConnection(url,user,password);  //è¿™é‡ŒèŽ·å–çš„æ˜¯mysqlå®žçŽ°ç±»å¯¹è±¡
+		   System.out.println("æ•°æ®åº“é“¾æŽ¥å¯¹è±¡ï¼š"+connect);  //è¾“å‡ºï¼šæ•°æ®åº“é“¾æŽ¥å¯¹è±¡ï¼šcom.mysql.jdbc.JDBC4Connection@41cf53f9
 
-		   //µÚÈý²½£¬µ÷ÓÃconnect¶ÔÏóµÄ·½·¨²Ù×÷Êý¾Ý¿â,¼´Ö´ÐÐsqlÓï¾ä,
-		   state=connect.createStatement();  //Õâ¸östateÖ¸ÏòµÄÒ²ÊÇmysqlµÄÊµÏÖÀàStatementImpl
-		   System.out.println(state);                  //Êä³ö£ºcom.mysql.jdbc.StatementImpl@5a10411 
+		   //ç¬¬ä¸‰æ­¥ï¼Œè°ƒç”¨connectå¯¹è±¡çš„æ–¹æ³•æ“ä½œæ•°æ®åº“,å³æ‰§è¡Œsqlè¯­å¥,
+		   state=connect.createStatement();  //è¿™ä¸ªstateæŒ‡å‘çš„ä¹Ÿæ˜¯mysqlçš„å®žçŽ°ç±»StatementImpl
+		   System.out.println(state);                  //è¾“å‡ºï¼šcom.mysql.jdbc.StatementImpl@5a10411 
            
-		   /*µÚËÄ²½£¬Ö´ÐÐsqlÓï¾ä£¬Ö¸ÓÃstate¶ÔÏóµ÷ÓÃexecute(..)·½·¨À´Êä³ösqlÓï¾ä
-		             ·µ»ØÖµÖ¸Ó°ÏìÊý¾Ý¿âÖÐ¼ÇÂ¼ÌõÊý
+		   /*ç¬¬å››æ­¥ï¼Œæ‰§è¡Œsqlè¯­å¥ï¼ŒæŒ‡ç”¨stateå¯¹è±¡è°ƒç”¨execute(..)æ–¹æ³•æ¥è¾“å‡ºsqlè¯­å¥
+		             è¿”å›žå€¼æŒ‡å½±å“æ•°æ®åº“ä¸­è®°å½•æ¡æ•°
 		   */      
-		   int i=state.executeUpdate("insert into t_class (name,age) values ('Jerry',17) ");
+		   int i=state.executeUpdate("insert into emp (empno,ename) values (1001,'Tom') ");
 		   System.out.println(i);
-               //(1)javaÖÐÐ´mysqlÓï¾ä²»ÓÃ¼Ó·ÖºÅ¡°£»¡±  (2)×¢ÒâsqlÓï¾äÖÐ×Ö·û´´ÀàÐÍÊý¾Ý»¹ÊÇ¼Óµ¥ÒýºÅ:''
+               //(1)javaä¸­å†™mysqlè¯­å¥ä¸ç”¨åŠ åˆ†å·â€œï¼›â€  (2)æ³¨æ„sqlè¯­å¥ä¸­å­—ç¬¦åˆ›ç±»åž‹æ•°æ®è¿˜æ˜¯åŠ å•å¼•å·:''
                                                                  
-		   //µÚÎå²½£¬´¦Àí²éÑ¯½á¹û£¬Ö»Õë¶ÔµÚËÄ²½ÊÇÖ´ÐÐselectÓï¾äÊ±µÄÇé¿ö
+		   //ç¬¬äº”æ­¥ï¼Œå¤„ç†æŸ¥è¯¢ç»“æžœï¼Œåªé’ˆå¯¹ç¬¬å››æ­¥æ˜¯æ‰§è¡Œselectè¯­å¥æ—¶çš„æƒ…å†µ
 
 		}catch(SQLException e){
 		   e.printStackTrace();
 		}finally{
 		   	
-			/*µÚÁù²½£¬¹Ø±Õ½ø³Ì£¬ÊÍ·Å×ÊÔ´
-			  ×¢ÒâÎÊÌâ:(1)´ÓÐ¡µ½´óÒÀ´Î¹Ø±Õ   StatementÐ¡-->´óConnecttion
-					   (2)²»Í¬×ÊÔ´·Ö¿ªtry{},ÒòÎªÔÚtryÓï¾äÖÐ£¬ÓÐÒ»¸öÅ×Òì³££¬ÔòÆäÏÂÃæÓï¾ä²»Ö´ÐÐÁË£¬Ò²¾ÍÎÞ·¨ÊÍ·ÅÁË
+			/*ç¬¬å…­æ­¥ï¼Œå…³é—­è¿›ç¨‹ï¼Œé‡Šæ”¾èµ„æº
+			  æ³¨æ„é—®é¢˜:(1)ä»Žå°åˆ°å¤§ä¾æ¬¡å…³é—­   Statementå°-->å¤§Connecttion
+					   (2)ä¸åŒèµ„æºåˆ†å¼€try{},å› ä¸ºåœ¨tryè¯­å¥ä¸­ï¼Œæœ‰ä¸€ä¸ªæŠ›å¼‚å¸¸ï¼Œåˆ™å…¶ä¸‹é¢è¯­å¥ä¸æ‰§è¡Œäº†ï¼Œä¹Ÿå°±æ— æ³•é‡Šæ”¾äº†
 			*/
 			if(state !=null){
 			   try{

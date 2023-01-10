@@ -1,0 +1,5 @@
+1,Communications link failure
+  检查url的数据库名字是否正确。
+  如果解决不了问题则按下面的解决。
+  在MySQL中执行命令授权本地访问：
+  GRANT ALL PRIVILEGES ON *.* TO ‘root’@‘127.0.0.1’ IDENTIFIED BY ‘123456’;
