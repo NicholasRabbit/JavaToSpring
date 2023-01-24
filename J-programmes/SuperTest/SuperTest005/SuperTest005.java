@@ -10,14 +10,23 @@ public class SuperTest005 {
 
 	public static void main(String[] args){
 		
+		User user = new User();
+		int id = user.getId();
+		System.out.println("id==>" + id);
 	}
 }
 
 
 abstract class BaseEntity{
-	//私有的属性不会被继承，但是get
+	//私有的属性不会被继承，但是get方法是公共的，可以被继承。
 	private int id;
 	private String name;
 
-	public 
+	public int getId(){
+		return this.id;
+	}
+}
+
+class User extends BaseEntity {
+
 }

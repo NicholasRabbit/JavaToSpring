@@ -7,7 +7,8 @@
 
 
 
-    <filter>
+    <!--过滤器Filter按书写顺序从上到下执行-->
+	<filter>
         <filter-name>firstFilter</filter-name>
         <filter-class>com.servlet.filter.FirstFilter</filter-class>
     </filter>

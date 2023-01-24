@@ -15,7 +15,7 @@ public class User {
 	}
 
 	public int getNum(){
-		return this.node.number;   //这里就报错： 错误: number可以在NodeDemo中访问private
+		return this.node.number;   //这里就报错：报错信息： 错误: number可以在NodeDemo中访问private
 	}
 
 }
