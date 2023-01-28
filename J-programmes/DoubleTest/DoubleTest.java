@@ -17,6 +17,7 @@ public class DoubleTest {
 
 	public static void main(String[] args){
 		
+		//(1)double精度损失
 		double num = 1.022 * 0.2;
 		double a = 0.30d;
 		double b = 0.10d;
@@ -25,12 +26,17 @@ public class DoubleTest {
 		System.out.println("num = " + num);  //结果：0.20440000000000003
 		System.out.println("num2 = " + num2);  //结果：0.19999999999999998
 
+		
+		//(2)不能直接把double类型的数作为BigDecimal构造函数的实参
 		double num3 = 0.3;
-		//不能直接把double类型的数作为BigDecimal构造函数的实参
 		BigDecimal big1 = new BigDecimal(num3);
 		System.out.println("big1==>" + big1);   //转换结果错误：0.299999999999999988897769753748434595763683319091796875
 		//正确做法
 		BigDecimal big2 = new BigDecimal("0.3");
 		System.out.println("big2==>" + big2);
+
+		//(3)double类型的0.1+0.2等于多少？
+		double d = 0.1 +0.2;
+		System.out.println("0.1+0.2=" + d); //结果：0.30000000000000004
 	}
 }
