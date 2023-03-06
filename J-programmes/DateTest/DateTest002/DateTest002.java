@@ -9,7 +9,7 @@ public class DateTest002 {
 	    Date time1=new Date(2);  //实参2是long类型，毫秒数，表示从1970-1-1-00:00开始加上的毫秒数2之后的时间
 		System.out.println(time1);
 
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd,hh:MM:ss.SSS");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss.SSS");
 		String newtime=sdf.format(time1);
 		System.out.println(newtime);      //1970-01-01,08:01:00.002 ,8点代表北京所处时区东八区
 

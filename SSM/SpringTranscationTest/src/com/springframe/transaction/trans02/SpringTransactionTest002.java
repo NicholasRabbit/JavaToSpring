@@ -27,6 +27,7 @@ import com.springframe.transaction.trans02.controller.BookControllerInterface;
  *     <5>rollbackfor={..}，表示当前事务为指定的异常回滚，别的不回滚，赋值必须是异常类Exception.class数组
  * 		  noRollbackfor={..},表示不为指定异常回滚，发生这个异常不回滚,noRollbackFor需和REQUIRES_NEW连用(个人总结,待验证)
  *        rollbackforClassName,norollbackforClassName,与以上的作用一样，只是赋值只写写异常名，不加".class".
+ * (4)@Transactional注解一般不要加在Controller层
  * 注意以上属性都在BookService.java里的方法buyBook(..)上,不是Checkout.java里
  * 结合CheckOut.java,BookService.java内使用的@Transactional理解
  * */     

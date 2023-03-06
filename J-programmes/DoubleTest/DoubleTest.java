@@ -7,7 +7,8 @@ import java.math.*;
 *    这使得他们能够在广泛的数值范围内提供更精确的快速近似和计算，但是不能提供完全准确的计算结果。
 * 2，因为float,double是用科学计数法来表示数字的，不能表示任何有限长度的二进制，因此转换的时候就会有精度损失
 * 解决办法：
-* 使用BigDecimal来解决
+* 3，使用BigDecimal来解决
+* 因为BigDecimal的长度是不可变得，BigDecimal在处理的时候把十进制小数扩大N倍让它在整数上进行计算，并保留相应的精度信息
 * 注意：不能直接把double类型的数作为BigDecimal构造函数的实参，转换结果有误
 * 应换为String类型，见下例。
 * 参考：https://cloud.tencent.com/developer/article/1468551
