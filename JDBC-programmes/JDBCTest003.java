@@ -1,5 +1,5 @@
 /* 联合使用配置文件，资源绑定器ResourceBundle,反射机制编写JDBC代码范例
-
+ * 配置文件在类路径下才能被ResourceBundle绑定，在WEB-INF下的绑定不了，WEB-INF下的有别的方式绑定。
 */
 import java.util.ResourceBundle;
 import java.sql.Connection;

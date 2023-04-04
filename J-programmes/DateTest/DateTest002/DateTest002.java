@@ -6,7 +6,8 @@ public class DateTest002 {
 
     public static void main(String[] args) {
 	
-	    Date time1=new Date(2);  //实参2是long类型，毫秒数，表示从1970-1-1-00:00开始加上的毫秒数2之后的时间
+	    //实参2是long类型，毫秒数，表示从1970-1-1-00:00开始加上的毫秒数2之后的时间
+		Date time1=new Date(2);  
 		System.out.println(time1);
 
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss.SSS");

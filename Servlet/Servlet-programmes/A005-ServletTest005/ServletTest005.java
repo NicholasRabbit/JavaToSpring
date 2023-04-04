@@ -13,7 +13,7 @@ public class ServletTest005 implements Servlet {
 	/*(1)Servlet及其实现类的无参构造方法只执行一次
 	  (2)init(..)方法在初始化(即实例化之后才可以由Tomcat调用init())时执行一次，整个生命周期只执行一次；
 	     默认输入网址访问项目时实例化Servlet
-	  (3)service(..)方法执行多次，每次刷新，用户请求等等均会执行；
+	  (3)service(..)方法执行多次，每次刷新，用户请求对应路径等等均会执行；
 	  (4)destroy()方法只执行一次，在准备销毁Servlet对象时执行。
 	注意：
 	  (1)Servlet类在Web服务器启动时不会实例化，用户用到时才会由Web容器，即服务器Tomcat利用反射机制进行实例化

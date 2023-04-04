@@ -21,6 +21,12 @@ public class TomcatMy {
 		FileReader reader = null;
 		Properties pro = null;
 		try{
+			/*
+			* 1,Tomcat服务器负责解析web.xml文件
+			* 2,Tomcat服务器已经把所有处理流程代码写完了，就等程序员写好业务代码，配置文件等
+			* 3,web.xml头部内容是Servlet规范，不能修改。自定义配置信息，得按照格式，由程序员编写。
+			* 
+			*/
 			reader = new FileReader("web.xml");  //读取配置文件
 			pro = new Properties();        
 			pro.load(reader);		//把配置文件加载到Properties对象里

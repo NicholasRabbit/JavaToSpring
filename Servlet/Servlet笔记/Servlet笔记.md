@@ -7,6 +7,7 @@ servlet-project01(项目根目录)
 		|----css
 		|----javascript
 		|----WEB-INF
+				|----conf (配置文件，由ServletConttext中的方法可读取)
 				|----classes (放Servlet代码编译成的xxx.class文件)
 		        |----lib(放引用的外部 jar包)
 				|----index.html/index.jsp(默认的欢迎首页)	
