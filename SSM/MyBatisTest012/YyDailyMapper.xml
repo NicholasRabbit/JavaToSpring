@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.by4cloud.platform.wrzs.mapper.YyDailyMapper">
+
+  <resultMap id="yyDailyMap" type="com.by4cloud.platform.wrzs.entity.YyDaily">
+        <id property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="carNos" column="car_nos"/>
+        <result property="carNum" column="car_num"/>
+        <result property="carNum1" column="car_num1"/>
+        <result property="carNum2" column="car_num2"/>
+        <result property="carNum3" column="car_num3"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="endTime" column="end_time"/>
+        <result property="filedId" column="filed_id"/>
+        <result property="sendDate" column="send_date"/>
+        <result property="startTime" column="start_time"/>
+        <result property="stateFlag" column="state_flag"/>
+        <result property="status" column="status"/>
+  </resultMap>
+
+    
+	<!--
+	set 标签范例
+	int updateCarNum(YyDaily yyDaily);-->
+    <update id="updateCarNum">
+        UPDATE yy_daily
+        <set>
+            <if test="carNum2 != null">
+                car_num2 = car_num2 + 1,
+            </if>
+            <if test="carNum3 != null">
+                car_num3 = car_num3 + 1
+            </if>
+        </set>
+       WHERE id = #{id}
+    </update>
+
+
+
+</mapper>
