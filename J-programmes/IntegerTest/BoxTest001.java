@@ -35,6 +35,13 @@ public class BoxTest001 {
 		Integer x=1000;        //自动装箱，等同于 Integer x=new Integer(1000);
 		int retValue2=x;       //自动拆箱，等同于 int retValue2=x.intValue(); 引用x在这里自动拆箱了
 		System.out.println(retValue2);   // 输出int类字面值：1000 
+
+		//包装数据类型如果为null的话，和基本数据类型比较会报空指针java.lang.NullPointerException
+		Integer num = null;
+        if(1 == num){
+            
+        }
+
 	
 	
 	}

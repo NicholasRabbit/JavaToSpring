@@ -87,6 +87,8 @@ public class ServletContextTest001 implements Servlet {
 		u.setAge(20);
 		application.setAttribute("user02",u);  //与Map集合的put(key,value)类似，这里整个User对象u相当于一个value
 
+		application.setAttribute("user03","Jerry");  //测试另一个Servlet能否获取
+
 		Object userObj=application.getAttribute("user02");
 		System.out.println(userObj);
 

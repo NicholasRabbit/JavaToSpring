@@ -25,6 +25,10 @@ public class ServletContextTest002 implements Servlet {
 		ServletConfig config=getServletConfig();
 		ServletContext application=config.getServletContext();
 		System.out.println("ServletContext002: "+application);
+
+		//获取ServletContextTest001中在ServletContext存的属性
+		String user03 = (String)application.getAttribute("user03");
+        System.out.println("user03==>" + user03);
 		
 		
 	}
