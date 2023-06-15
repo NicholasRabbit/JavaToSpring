@@ -30,6 +30,7 @@ import com.springframe.transaction.trans02.controller.BookControllerInterface;
  * (4)@Transactional注解一般不要加在Controller层
  * 注意以上属性都在BookService.java里的方法buyBook(..)上,不是Checkout.java里
  * 结合CheckOut.java,BookService.java内使用的@Transactional理解
+ * (5)被本类内部的方法调用会失效，见Transactional失效情况分析.java
  * */     
 public class SpringTransactionTest002 {
 	
