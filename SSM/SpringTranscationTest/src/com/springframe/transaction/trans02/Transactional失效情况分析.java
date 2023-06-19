@@ -1,6 +1,9 @@
-方法被本类内部调用，加了@Transactional注解也不起作用
 
-```java
+
+/**
+* 方法被本类内部调用，加了@Transactional注解也不起作用
+* 参考：https://www.cnblogs.com/wochenjun/p/10840233.html
+*/
 public class ProductPlanOutputMainServiceImpl ...{
     @Override
 	public R saveOrUpdatePlanBatch(ProductPlanOutputMain productPlanOutputMain) {	
@@ -16,11 +19,12 @@ public class ProductPlanOutputMainServiceImpl ...{
 			throw new RuntimeException("保存计划失败");
 		}
 }
-```
 
+/**
 修改方法，把这个事务方法放到别的类，由Controller直接调用
+*/
 
-```java
+
 @Service
 public class PlanServiceImpl implements PlanService {
     @Override
@@ -32,11 +36,9 @@ public class PlanServiceImpl implements PlanService {
 			throw new RuntimeException("保存计划失败");
 		}
 }
-```
 
-Controller直接调用
 
-```java
+//Controller直接调用
 @PostMapping(value = "/savePlan")
     public R saveYearPlan(@RequestBody ProductPlanOutputMain productPlanOutputMain){
 		if(DateTypeConstants.DAY.equals(productPlanOutputMain.getType()) || DateTypeConstants.WEEK.equals(productPlanOutputMain.getType())){
@@ -44,7 +46,7 @@ Controller直接调用
 		}
 		return productPlanOutputMainService.saveOrUpdatePlanBatch(productPlanOutputMain);
 	}
-```
+
 
 
 
