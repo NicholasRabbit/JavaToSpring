@@ -14,7 +14,7 @@ public class OperatorTest001{
 
 	  int  c=300;
 	  //System.out.println(c++);    //此处结果300，因为系统调用int=c++
-	  System.out.println(++c);
+	  System.out.println("c: " + ++c);   //结果：301，系统底层是 int x = ++c，++在前面则先做自加1再赋值。
 
 
       
