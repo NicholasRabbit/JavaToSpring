@@ -2,7 +2,7 @@
 /*
 * Java中有六类运算符
 * 1，算数运算符(Arithmetic Operators): +,-,*,/,%
-* 2，赋值运算符(Assignment Operators): +=,-+,*=,/=,%=
+* 2，赋值运算符(Assignment Operators): =,+=,-+,*=,/=,%=
 * 3，关系运算符(Relational Operators): <,<=,>,>=,==,!=
 * 4，逻辑运算符(Logical Operators): |,||,&,&&,!
 * 5，自运算符(Unary Operators)：--,++,-(用于表示负数), +(表示正数，不常用)，!(用在布尔类型前取反)
