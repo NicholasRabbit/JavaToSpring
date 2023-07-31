@@ -1,4 +1,7 @@
-public class ForTest014 {
+/*
+ * Print a pyramid by using for loop.
+ * */
+public class PyramidDemo{
 
     public static void main(String[] args){
 	    java.util.Scanner num=new java.util.Scanner(System.in);
