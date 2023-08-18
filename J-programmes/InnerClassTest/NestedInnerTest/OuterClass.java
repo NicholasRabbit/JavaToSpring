@@ -2,7 +2,7 @@ public class OuterClass {
 	
 	private String name;
 
-	//public修饰的实例内部类
+	//1，public修饰的实例内部类，实例内部类可以直接访问外部类是实例变量
 	public class InnerClass {
 		public void inMethod(){
 			System.out.println("public实例内部类实例方法执行==>" + name);
@@ -27,5 +27,7 @@ public class OuterClass {
 		this.name = name;
 	}
 
+
+	
 
 }
