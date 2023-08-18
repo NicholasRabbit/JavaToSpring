@@ -6,6 +6,7 @@ public class InstanceInnerClassTest{
 		OuterClass outer = new OuterClass();
 		outer.setName("Tom");
 		//2.1,通过外部类.new的方式创建内部类对象，注意，这里的内部类是由public修饰的，如果是private修饰不能用此方式创建
+		//注意实例内部类的声明方式，注意和创建静态内部类的方式区分。
 		OuterClass.InnerClass inner = outer.new InnerClass();
 		inner.inMethod();
 
