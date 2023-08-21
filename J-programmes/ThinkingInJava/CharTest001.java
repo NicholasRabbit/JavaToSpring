@@ -15,8 +15,5 @@ public class CharTest001 {
 		System.out.println("c==>" + c);
 		System.out.println("x==>" + x);
 
-		int i = 10;
-		int j = 20;
-		System.out.println(i |= j);
 	}
 }

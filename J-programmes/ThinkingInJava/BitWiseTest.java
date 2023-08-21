@@ -40,6 +40,12 @@ public class BitWiseTest {
 		int y = ~x;
 		System.out.println("~x ==> " + Integer.toBinaryString(y)); //结果：11111111111111111111111111110011，按全位数的int类型数值取反了。
 
+		//6, |= : 或等运算，跟+=运算同理，不过它只适用于二进制，a |= b等同于 a = a | b
+		//同理有：+= -= *= /= %= &= ^= |= <<= >>= >>>=
+		int i = 10;
+		int j = 20;
+		System.out.println(i |= j);
+
 	}
 
 }
