@@ -78,6 +78,33 @@
  			#{id}
  		</foreach>
  	</delete>
- 	
- 	
- </mapper>
+
+	<!--if嵌套foreach范例，非本项目代码，个人工作中总结-->
+	<!-- xxxMapper.java : List<ProductPlanOutputMain> findMainAndPlanList(ProductPlanOutputMain productPlanOutputMain);-->
+	<resultMap id="planMap" type="com.by4cloud.platform.scdd.entity.ProductPlanOutputMain">
+		<id property="id" column="mId"/>
+
+		<collection property="empList" ofType="xxx.Emp">
+			<id property="id" column="pId"/>
+			<result property="name" column="name"/>
+
+		</collection>
+	</resultMap>
+
+	<select id="findMainAndPlanList" resultMap="planMap" parameterType="com.by4cloud.platform.scdd.entity.ProductPlanOutputMain">
+		SELECT
+		*
+		FROM
+		product_plan_output_main AS m
+		LEFT JOIN product_plan_output AS p
+		<where>
+			<if test="compIdList != null and compIdList.size() > 0">
+				AND m.comp_id IN
+				<foreach collection="compIdList" item="compId" open="(" close=")" separator="," index="">
+					#{compId}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+</mapper>
