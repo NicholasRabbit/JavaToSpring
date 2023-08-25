@@ -1,4 +1,4 @@
-public class ArrayTest006 {
+public class TwoDimensionalArrayTest {
     public static void main(String[] args){
          arrayMethod();
 
@@ -8,7 +8,7 @@ public class ArrayTest006 {
 
 
 
-        //二维数组，其内部没单个元素是一个数组，注意有两个中括号。
+        //1，静态初始化二维数组。其内部每单个元素是一个数组，注意有两个中括号。
         int[][]  array1 = {
                 {11,12,13,14,15},
                 {21,22,23},
@@ -35,6 +35,13 @@ public class ArrayTest006 {
             }
             System.out.print('\n');    //每个元素一维数组输出完后，换行。
         }
+		
+
+		//2，动态初始化二维数组的两种方式
+		//二维数组的第二种声明方式
+		int[][] array3 = new int[5][5];
+		int[] array2[] = new int[2][5];
+
 
 
 

@@ -14,8 +14,14 @@ public class AnnoInnerTest001 {
 		
 		*/
 		MyCaculator mc2=new MyCaculator();
-		mc2.sum(new Computer(){public int plus(int a, int b){return a+b;}   
-			                  } , 100 , 200);
+		mc2.sum(
+			new Computer(){
+				public int plus(int a, int b){
+					return a+b;
+				}   
+			},
+			100,
+			200);
 							               
 		                        
 	
