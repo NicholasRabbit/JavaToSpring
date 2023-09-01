@@ -79,7 +79,10 @@
  		</foreach>
  	</delete>
 
-	<!--if嵌套foreach范例，非本项目代码，个人工作中总结-->
+
+<!--================================个人工作中总结====================================================-->
+
+	<!--1, if嵌套foreach范例，非本项目代码，个人工作中总结-->
 	<!-- xxxMapper.java : List<ProductPlanOutputMain> findMainAndPlanList(ProductPlanOutputMain productPlanOutputMain);-->
 	<resultMap id="planMap" type="com.by4cloud.platform.scdd.entity.ProductPlanOutputMain">
 		<id property="id" column="mId"/>
@@ -106,5 +109,28 @@
 			</if>
 		</where>
 	</select>
+
+	<!--2，多个形参中包含集合，使用foreach标签-->
+	<!--xxxMapper.java :
+		List<ProductSale> sumSaleByDate(List<Long> compIdList, Date beginOfDate, Date endOfDate);-->
+	<select id="sumSaleByDate" resultMap="productSaleMap">
+		SELECT
+			sum( product_sale ) AS product_sale,
+			comp_id
+		FROM product_sale
+		WHERE del_flag = '0'
+		AND sale_date &gt;= #{param2}
+		AND sale_date &lt;= #{param3}
+		AND comp_id IN
+						<!--这里写param1对应第一个形参-->
+		<foreach collection="param1" item="compId" open="(" separator="," close=")">
+			#{compId}
+		</foreach>
+		GROUP BY
+		comp_id
+
+	</select>
+
+
 
 </mapper>
