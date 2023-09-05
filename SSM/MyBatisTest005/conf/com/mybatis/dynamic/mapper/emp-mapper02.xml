@@ -101,7 +101,10 @@
 		product_plan_output_main AS m
 		LEFT JOIN product_plan_output AS p
 		<where>
-			<if test="compIdList != null and compIdList.size() > 0"> <!--这里加if test可能导致报错：no getter for compIdList,去掉就不报错了。-->
+			<!--这里加if test可能导致报错：no getter for compIdList,去掉就不报错了。可以使用@Param注解在xxxMapper.java中指定这个集合-->
+			<!--使用\<where\>标签就不会导致报错-->
+			/*WHERE*/ <!--使用这个WHERE就会导致嵌套报错-->
+			<if test="compIdList != null and compIdList.size() > 0">
 				AND m.comp_id IN
 				<foreach collection="compIdList" item="compId" open="(" close=")" separator="," index="">
 					#{compId}
