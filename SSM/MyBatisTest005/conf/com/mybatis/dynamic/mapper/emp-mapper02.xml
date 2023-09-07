@@ -134,6 +134,20 @@
 
 	</select>
 
+    <!--3，foreach内嵌套if test,网上他人范例，未验证-->
+	<!--List<User> selectByName(@Param("names") List<String> names);-->
+	<select id="selectByName" resultMap="BaseResultMap">
+		select
+		*
+		from User
+		where 1=1
+		<if test="names != null and names.size()>0">
+			and Name in
+			<foreach collection="names" item="name" open="(" separator="," close=")">
+				#{name}
+			</foreach>
+		</if>
+	</select>
 
 
 </mapper>

@@ -41,7 +41,7 @@ class A {
 
 class B extends A {
 
-	//子类这里写覆盖父类的同名方法，返回值不能是父类中方法返回值的父类，可以是子类
+	//这里报错。子类这里写覆盖父类的同名方法，返回值不能是父类中方法返回值的父类，可以是子类
 	public Vehicle run(){
 		System.out.println("car run");
 		return null;
