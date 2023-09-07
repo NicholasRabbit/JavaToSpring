@@ -8,17 +8,17 @@
 运行:
 ..project/build/-->: java com.javase.project.User
 
-2,打jar包，jar包里有META-INF配置目录
-..project/build/-->: jar cvf project.jar * 
+2,打jar包，jar包里有META-INF配置目录(本步骤生成的jar包不能用 java -jar 直接运行，因为没有指定main入口类)
+..project/build/-->: jar -cvf project.jar * 
 测试输出,后面加全路径名，指定Main类：
 java -cp project.jar com.javase.project.entity.User  
 
 3,生成可以运行的jar包，许要指定应用程序入口点
-..project/build/-->： jar cvfe project.jar com.javase.project.entity.User *
+..project/build/-->： jar -cvfe project.jar com.javase.project.entity.User *  （注意一定要指定main入口类，类的全路径名一定要写对！！！个人练习时名称打错导致找不到原因……）
 指定了Main类后，jar包里面的 META-INF/MANIFEST.MF,比原来多了一行
 Main-Class: com.javase.project.entity.User    // 这就是程序的入口
 测试输出,后面加全路径名，指定Main类：
-java -cp project.jar com.javase.project.entity.User    //-cp 表示指定查找用户类文件和注释处理器的位置
+java -jar project.jar : 直接执行即可
 
 =====================
 引入外部jar包，模拟web项目编译，以project02项目为例
@@ -26,7 +26,7 @@ User可换做UserController.java
 
 1,以log4j.jar为例，测试加载外部jar包，跟项目中类似，lib目录放到project根目录下
 ..project/--> : javac -encoding utf-8 src/com/javaweb/controller/WebController.java -sourcepath src -d build -g -cp ./lib/*.jar
-解释：-classpath ./lib/*.jar  : 是引入外部jar的路径，星号也可写具体名字
+解释：-classpath或-cp ./lib/*.jar  : 是引入外部jar的路径，星号也可写具体名字
 
 2,把log4j.xml配置文件放到src根目录和build目录下，以及build目录下也要放lib/log4j.jar
 

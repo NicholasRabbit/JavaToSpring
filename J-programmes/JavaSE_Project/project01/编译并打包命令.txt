@@ -1,0 +1,11 @@
+
+实际web项目也是一样的原理
+
+1,编译
+project: javac -encoding utf-8 -d build src/com/web/demo/Application.java
+
+2，打包,全路径名称一定要写对
+build: jar -cvfe project01.jar com.web.demo.Application *
+
+3，运行。生成的jar跟springboot项目一样可以直接独立运行。
+build: java -jar project01.jar

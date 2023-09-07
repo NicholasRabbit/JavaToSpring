@@ -1,3 +1,9 @@
+
+
+/*
+ * \\p{p} : 所有标点符号正则表达式
+ *
+ * */
 public class ReplaceAllPunctuationTest {
 
     public static void main(String[] args) {
