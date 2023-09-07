@@ -1,0 +1,19 @@
+1，编译
+project02: javac -encoding utf-8 src/com/javaweb/controller/WebController.java -sourcepath src -d build -g -cp ./lib/*.jar
+
+编译完需要手动把lib/log4j.jar  log4j.xml复制到build目录下
+
+2，在个目录下执行打包命令会把build目录下所有文件包括依赖打进project02.jar。
+但是，jar包中的MANIFEST.MF缺少“Class-Path: lib/log4j.jar”来指定外部依赖。
+可以手动添加进去，但是需要指定每个依赖的名字，不能使用*.jar。依赖多就很麻烦。
+build：jar -cvfe project02.jar com.javaweb.controller.WebController * 
+
+========
+Manifest-Version: 1.0
+Created-By: 1.8.0_231 (Oracle Corporation)
+Class-Path: lib/log4j.jar    (手动添加的)
+Main-Class: com.javaweb.controller.WebController 
+==========
+
+3，这时候执行
+build: java -jar project02.jar 就不报错了
