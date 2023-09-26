@@ -33,6 +33,7 @@
  	
  	<!-- 四，<choose>用法，2，添加用户时，在<choose>中进行判断，通过数字判断，把相应的单词添加到数据库。因为在除了数字外，String中别的值不能用恒等号比较-->
  	<!-- Integer insertEmpByChoose(Emp emp) -->   
+	<!--对应mysql的 case..when..end语句-->
  	<insert id="insertEmpByChoose">
  		insert into emp (id,ename,gender,age) values 
  		( #{id},#{ename},

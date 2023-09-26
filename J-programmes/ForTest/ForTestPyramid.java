@@ -1,4 +1,4 @@
-public class ForTest014 {
+public class ForTestPyramid{
 
     public static void main(String[] args){
 	    java.util.Scanner num=new java.util.Scanner(System.in);
@@ -16,12 +16,11 @@ public class ForTest014 {
 	    for(int a=1;a<=n;a++){
 		      
 		    for(int b=1;b<=(n-a);b++){
-			
 			    System.out.print(' ');
 			}
-            int k=1+2*(a-1);
+
+            int k=1+2*(a-1);  //每行的 ‘*’数量
 			for(int c=1;c<=k;c++){
-			    
 			    System.out.print('*');
 			}
 
