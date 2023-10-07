@@ -17,10 +17,14 @@ public class MapForeachTest {
 
 
 	public static void forEach(Map<String,String> userMap){
-		userMap.forEach( (k,v) -> {
-			
-			System.out.println(k + "=" + v);
+		//1,use Entry
+		for(Map.Entry<String,String> entry : userMap.entrySet()){
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		}
 
+		//2,use forEach()
+		userMap.forEach( (k,v) -> {
+			System.out.println(k + "=" + v);
 		} );
 	}
 }
