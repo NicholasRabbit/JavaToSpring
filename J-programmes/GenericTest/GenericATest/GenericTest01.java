@@ -41,16 +41,28 @@ public class GenericTest01 {
 		BaseEntity entity = null;
 		entity = new User();  
 		//(2)数组使用多态语法也没错，因为数组中的元素User是BaseEntity的子类。
-		BaseEntity[] arr1 = null;
-		User[] arr2 = new User[10];
-		//(3)但是对于泛型不行，这里list1和list2是平级关系，不是继承。
-		List<BaseEntity> list1 = null;
-		List<User> list2 = new ArrayList<>();
-		//list1 = list2;   //报错：错误: 不兼容的类型: List<User>无法转换为List<BaseEntity>
+		BaseEntity[] arr1 = new User[10];
+		//(3)但是对于泛型不行，泛型不适用于多态语法，这里list1和list2是平级关系，不是继承。
+		List<BaseEntity> entityList = null;
+		List<User> userList = new ArrayList<User>();
+
+		//list1 = list2;   //报错：无法赋值，错误: 不兼容的类型: List<User>无法转换为List<BaseEntity>
+	
+		BaseDao baseDao = new BaseDao();
+
+		baseDao.saveBatch(entityList); //不报错
+
+		//baseDao.saveBatch(userList);  //错误: 不兼容的类型: List<User>无法转换为List<BaseEntity>
+								   
+		//(4)解决(3)中的问题, 可以使用上界通配符<? extends BaseEntity> 表示参数可以是BaseEntity的子类。
+		baseDao.update(userList);  //这里不报错
 		
-		//5.(4)多个泛型
-		BaseDao<BaseEntity,User,Student> baseDao = new BaseDao<BaseEntity,User,Student>();
-		baseDao.doSome(new BaseEntity(),new User(),new Student());
+		//(5)还有下界通配符<? super Student>，表示参数可以是指定泛型的类型，或者其父类直到Object都可以。
+		List<Student> studentList = new ArrayList<>();
+		baseDao.find(studentList);
+		baseDao.find(entityList);   //可以是其父类
+
+		
 	}
 
 
@@ -68,11 +80,25 @@ class Student extends BaseEntity {
 
 }
 
-//设置多个泛型
-class BaseDao<T,E,M> {
-	
-	public void doSome(T t,E e,M m){
-		System.out.println(t + ":" + e + ":" + m);
+class BaseDao {
+
+
+	//这里只能传入特定的<BaseEntity>泛型，不能传BaseEntity的子类
+	public boolean saveBatch(List<BaseEntity> list){
+		System.out.println("saveBatch");
+		return true;
 	}
+		
+	//使用<? extends ..>的形式，这样入参中List的泛型可以是BaseEntity的子类了。
+	public boolean update(List<? extends BaseEntity> list){
+		System.out.println("update...");
+		return true;
+	}
+
+	public boolean find(List<? super Student> list){
+		System.out.println("find...");
+		return true;
+	}
+
 
 }
