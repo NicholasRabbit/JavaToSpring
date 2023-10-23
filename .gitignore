@@ -11,7 +11,8 @@
 .mtj.tmp/
 
 # Package Files #
-# *.jar  #keep the jars
+*.jar 
+!/J-programmes/JavaSE_Project/*.jar
 *.war
 *.nar
 *.ear
