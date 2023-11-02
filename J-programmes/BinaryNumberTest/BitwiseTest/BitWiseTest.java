@@ -1,6 +1,7 @@
 
 
 //Java中常用的位运算，位运算针对二进制的位，其它进制的运算会转换成二进制再进行
+//二进数字制用0b或0B开头。
 
 public class BitWiseTest {
 
@@ -42,9 +43,27 @@ public class BitWiseTest {
 
 		//6, |= : 或等运算，跟+=运算同理，不过它只适用于二进制，a |= b等同于 a = a | b
 		//同理有：+= -= *= /= %= &= ^= |= <<= >>= >>>=
-		int i = 10;
-		int j = 20;
-		System.out.println(i |= j);
+		int m = 0B10001111;
+		int n = 0B01110000;
+		m |= n;  
+		System.out.println("m |= n==> " + Integer.toBinaryString(m));
+
+		//7, &= : 与等运算，同理
+		//byte数的范围-128~127（Java中规定在这个范围内的int自动向下转型），如果这里赋值0B11111111(255)超出范围，而且不加强制转换符号就会报错，
+		//这个数是255，实际底层用它来表示-1
+		//byte r = 0B11111111;  
+		byte r = 0B01111111;  //这个数是127
+		byte s = 0B00000000;
+		System.out.println("r=" + r);
+		r &= s;
+		System.out.println("r &= s==> " + Integer.toBinaryString(r));	
+
+		//8, ^= ： 异或等运算，同理，求完异或再赋值
+		r = 0B01111111;  //这个数是127
+		s = 0B00000000;
+		r ^= s;   // r = r ^ s;
+		System.out.println("r ^= s ==> " + Integer.toBinaryString(r));
+		
 
 	}
 
