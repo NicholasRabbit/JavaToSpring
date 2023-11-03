@@ -9,13 +9,6 @@ import java.util.stream.Stream;
 public class StreamListTest {
 
     public static void main(String[] args) {
-        String[] arr1 = {"A","B","C","D"};
-        String[] arr2 = {"C","D","E","F"};
-        List<String> list = Arrays.asList(arr1);
-        List<String> list1 = Arrays.asList(arr2);
-        List<String> collect = Stream.concat(list.stream(), list1.stream()).distinct().collect(Collectors.toList());
-        System.out.println(collect);
-
 
         //求和
         List<User> userList = new ArrayList<>();
