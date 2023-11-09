@@ -1,4 +1,3 @@
-package com.test.stream.comparator;
 
 import java.util.ArrayList;
 import java.util.Collections;

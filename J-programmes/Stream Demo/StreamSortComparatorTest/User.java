@@ -1,4 +1,3 @@
-package com.test.stream.comparator;
 
 public class User {
 
