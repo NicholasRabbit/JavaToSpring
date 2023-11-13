@@ -21,7 +21,7 @@ public class ConTest{
 		        d1.doOther();
          
 		ConTest iVisit=new ConTest();
-		        //iVisit.i;                     //此处只写iVisit.i为什么不行？
+		        //iVisit.i;                     //此处只写iVisit.i为什么不行？原因：iVisit.i是调用了一个属性，不能单独成句，可以当作等号右边赋值，或者当作实参等。
 				System.out.println(iVisit.i);   
 	
 	}
