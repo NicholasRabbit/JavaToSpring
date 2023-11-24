@@ -29,7 +29,7 @@ class A {
 class B extends A {
 	
 	/*
-	public  void method() throws Exception {           //此处编译错误，因为重写方法抛出的异常不能更多，只能更少（或范围更小）
+	public  void method() throws Exception {           //此处编译错误，因为重写方法抛出的异常不能更多(或范围大，父类异常)，只能更少（或范围更小）
 	    System.out.println("B's rewrited method");     //而且，子类中重写的方法也可以不抛出异常，这样也是更少抛出异常
 		return 1;
 	}

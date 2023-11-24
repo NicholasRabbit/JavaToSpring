@@ -26,6 +26,9 @@ public class FileInputStreamTest003 {
 			int readCount=0;
 			while((readCount=fis.read(bytes))!=-1){
 			    System.out.print(new String(bytes,0,readCount));  //此处想要输出连续则不换行print
+
+				//System.out.println(new String(bytes,0,readCount,Charset.forName("UTF-8")));   //如果有乱码则需要自定义编码格式和原文见的一致。
+
 			}
 		}catch(FileNotFoundException e){
 		    e.printStackTrace();
