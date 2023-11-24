@@ -26,6 +26,39 @@ public class ArrayTest001 {
         System.out.println("动态初始化数组，第一个数修改后："+array2[0]);
 
 
+		//注意：数组声明之后不能再用{...}的形式赋值
+		//原因：个人推测可能跟C中的原因类似，{...}做右值时表示引用而不是数组类型。
+		int[] array3;
+		int[] array4;
+
+		//array3 = {1,2,3};  //此行报错
+
+		//可以用以下两种方式赋值
+		array3 = new int[5];
+		array4 = new int[]{4,5,6};
+
+		//注意2：Java中不同数组引用间可以相互赋值，C语言中不可以
+		//以下相互赋值都不报错
+		int[] m = {1,2,3};
+		int[] n = {4,5,6};
+		int[] p = {7,8,9,10};
+		int[] r = new int[10];
+		m = n;
+		p = m;
+		r = m;
+		for(int i = 0; i < n.length; i++){
+			System.out.println("m:" + m[i]);		
+		}
+		for(int i = 0; i < p.length; i++){
+			System.out.println("p:" + p[i]);		
+		}
+		for(int i = 0; i < r.length; i++){
+			System.out.println("r:" + r[i]);		
+		}
+
+
+
+
     }
 
 }
