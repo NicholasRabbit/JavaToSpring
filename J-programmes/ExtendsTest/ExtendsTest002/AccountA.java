@@ -7,7 +7,7 @@ public class AccountA {
 	private long phoneNo;    
 	private String name;
 
-	public void setIdNo(int idNo){  //构造方法不可以可以被继承，其他方法可以继承
+	public void setIdNo(int idNo){  //构造方法不可以被继承，其他方法可以继承
 	
 	    this.idNo=idNo;
 	}
