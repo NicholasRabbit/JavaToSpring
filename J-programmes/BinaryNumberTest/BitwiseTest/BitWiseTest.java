@@ -17,7 +17,7 @@ public class BitWiseTest {
 		int l = i >> -3;
 		System.out.println("0b1100 >> 1 = " + Integer.toBinaryString(j));  //输出：110，这里直接打印j会默认输出十进制数，无法看到效果，因此使用toBinaryString()转换
 		System.out.println("0b1100 << 2 = " + Integer.toBinaryString(k));  //输出：110000
-		System.out.println("0b1100 >> -2 = " + Integer.toBinaryString(l)); //输出：0，原因待查
+		System.out.println("0b1100 >> -3 = " + Integer.toBinaryString(l)); //输出：0，原因待查
 	
 		//2, & : 按位与，即两个二进制数逐位进行“&”比较，例 1&1=1，1&0=0，0&0=0 
 		int a = 0b1001;
