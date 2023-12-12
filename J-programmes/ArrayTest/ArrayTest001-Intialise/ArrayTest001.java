@@ -1,5 +1,6 @@
 public class ArrayTest001 {
     public static void main(String[] args) {
+
         int[] array1={10,15,60,23,63};     //静态初始化数组。
         System.out.println("array1数组长度："+array1.length);
 
@@ -26,14 +27,16 @@ public class ArrayTest001 {
         System.out.println("动态初始化数组，第一个数修改后："+array2[0]);
 
 
-		//注意：数组声明之后不能再用{...}的形式赋值
-		//原因：个人推测可能跟C中的原因类似，{...}做右值时表示引用而不是数组类型。
+		//注意：数组声明之后不能再用{...}的形式赋值，这种形式只能用于初始化赋值。
+		//原因：个人推测可能跟C中的原因类似，{...}做右值时表示引用而不是数组类型, 而等号左边是数组类型。
 		int[] array3;
-		int[] array4;
-
 		//array3 = {1,2,3};  //此行报错
+		int[] array31 = {23,24,25};
+		//array31 = {31,32,33};  //此行报错
+
 
 		//可以用以下两种方式赋值
+		int[] array4;
 		array3 = new int[5];
 		array4 = new int[]{4,5,6};
 
