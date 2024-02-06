@@ -27,7 +27,7 @@ shopGoodsSeedService.updateShopGoodsSeedStockNumber(shopGoodsSeedList);
                 <trim prefix="stock_number =case" suffix="end,"> <!-- 库存数量 新增-->
                         <foreach collection="list" item="item" index="key">
                         <if test="item.stockNumber != null"> when id=#{item.goodsId} then  stock_number + #{item.stockNumber} </if>
-                        </foreach>
+                        </foreach>                                                        -- Caution: do not write stock_number=#{item.stockNumber}!!
                 </trim>
             </trim>
             where del_flag = '0' and goods_id in
