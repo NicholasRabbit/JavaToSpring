@@ -9,7 +9,7 @@ public class BitwiseTest03 {
         int i = -2;
         System.out.println("origin:" + Integer.toBinaryString(i));
         System.out.println(">>2   :" + Integer.toBinaryString(i >> 2));
-        System.out.println(">>>2  :" + Integer.toBinaryString(i >>> 2));
+        System.out.println(">>>2  :" + Integer.toBinaryString(i >>> 2));   //Two 0s at the begining weren't printed.
 
     }
 }
