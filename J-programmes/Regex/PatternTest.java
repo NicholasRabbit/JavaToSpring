@@ -20,13 +20,18 @@ public class PatternTest {
         boolean find = matcher.find();
         System.out.println("find: " + find);
 
-        //2, matches()
+        //2, Returns the input subsequence that matches the previous match.
+        String group = matcher.group();
+        System.out.println("group: " + group);
+
+        //3, matches(): this method will move the cursor to the next subsequence so the find2() won't find anything.
         boolean doesMatch = matcher.matches();
         System.out.println("doesMatch:" + doesMatch);
 
 
         boolean find2 = matcher.find();
         System.out.println("find: " + find2);  //false
+
 
 
     }
