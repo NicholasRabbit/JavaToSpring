@@ -19,18 +19,6 @@ public void doSome(){
 			});
 			//合计分公司数据
 			compSumReport = ScddBeanUtil.sumCompPlan(compEntry.getValue(),null);
-			//获取分公司审核人信息
-			Long parentId = compEntry.getValue().get(0).getParentId();
-			ReportApprovalJimu reportApprovalJimu = reportApprovalJimuService.getReportApproval(parentId, planDate, approvalType,ApprovalConstants.ReportTypeEnum.煤炭日报.getValue());
-			if(reportApprovalJimu != null){
-				compSumReport.setSubmitName(reportApprovalJimu.getPersonnelName());
-				compSumReport.setSubmitPhone(reportApprovalJimu.getSubmitPhone());
-				compSumReport.setLeaderName(reportApprovalJimu.getCompLeaderName());
-			}
-			//获取分公司值班领导
-			R<String> leaderNameR = leaderDutyManagementService.getLeaderDutyByCompIdADate(parentId, planDate);
-			if(leaderNameR.getData() != null)
-				compSumReport.setLeaderName(leaderNameR.getData());
 			compSumReport.setParentCompName("合计");
 			data.add(compSumReport);
 
