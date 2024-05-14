@@ -1,4 +1,8 @@
-### 1，不使用用IDE，手动部署Servlet项目到Tomcat，需设置classpath
+### 1，Build a servlet project
+
+#### 1) 手动部署Servlet项目到Tomcat
+
+不使用用IDE，手动部署Servlet项目到Tomcat，需设置classpath
 
 找到Tomcat中的servlet-api.jar路径
 
@@ -7,6 +11,10 @@
 把以上Tomcat路径中的servlet-api.jar包配置到classpath环境变量当中即可
 
 例: CALSSPATH=E:\Program Files\apache-tomcat-7.0.108\lib\servlet-api.jar;
+
+#### 2) Build a servlet with Maven in Idea
+
+[How to build a servlet wit Maven](https://medium.com/@backslash112/create-maven-project-with-servlet-in-intellij-idea-2018-be0d673bd9af)
 
 ### 2，Servlet源码及和Tomcat版本对应
 
