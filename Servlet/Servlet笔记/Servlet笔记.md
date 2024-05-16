@@ -14,7 +14,26 @@
 
 #### 2) Build a servlet with Maven in Idea
 
-[How to build a servlet wit Maven](https://medium.com/@backslash112/create-maven-project-with-servlet-in-intellij-idea-2018-be0d673bd9af)
+**2.1 How to build a servlet wit Maven?**
+
+See the related note in Idea.
+
+Note:  the \<scope\> is "provided"
+
+```xml
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>  <!--povided, NOT compile or anything else-->
+		</dependency>
+```
+
+**2.2 How to write web.xml**
+
+You can find the demo of `web.xml` in an example project in  Tomcat. Please make sure that the servelt version in the head of `web.xml` correspondent to the Tomcat's version.
+
+`...\apache-tomcat-8.5.87\webapps\examples\WEB-INF\web.xml`
 
 ### 2，Servlet源码及和Tomcat版本对应
 
@@ -30,11 +49,11 @@ servlet-project01(项目根目录)
 		|----html
 		|----css
 		|----javascript
+    	|----index.html/index.jsp(默认的欢迎首页)	
 		|----WEB-INF
 				|----conf (配置文件，由ServletConttext中的方法可读取)
 				|----classes (放Servlet代码编译成的xxx.class文件)
 		        |----lib(放引用的外部 jar包)
-				|----index.html/index.jsp(默认的欢迎首页)	
 				|----web.xml （Tomcat的配置文件）	
 
 访问方法：http://localhost:8080/servlet-project01 : 默认访问欢迎首页，可在web.xml里配置

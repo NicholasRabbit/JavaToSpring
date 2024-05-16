@@ -17,7 +17,7 @@ import java.io.IOException;
 public class HttpServletRequest_A extends HttpServlet { 
 
 	
-	//(11)void setAttrubute(String name,Object obj)，向本次请求生成的对象中添加属性
+	//(11)void setAttribute(String name,Object obj)，向本次请求生成的对象中添加属性
 	//注意，因为要从别的超链接访问此程序，超链接是发送get请求，所以这里要重写doGet(..)方法
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
 		String userName="Tom";
