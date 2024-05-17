@@ -25,3 +25,20 @@ In some cases, the internet domain name may not be a valid package  name. This c
 | `123name.example.com`         | `com.example._123name`        |
 
 [Naming Conventions](https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html)
+
+### 2, Anonymous Classes of Concrete Class
+
+We can override not only methods in interfaces or abstract classes  but also concrete class.
+
+`LoginServlet` is a class, not interface or abstract class.  Example : `TestLoginServletRefactor` in TDD and Unit Test.
+
+```java
+LoginServlet servlet = new LoginServlet() {
+            // Use fake instead of real thing. Namely return a fake "authenticator".
+            @Override
+            protected AuthenticationService getAuthenticationService() {
+                return authenticator;
+            }
+        };
+```
+
