@@ -31,6 +31,8 @@ public class MyBatisJunitTest001 {
 				UserMapper  userMapper=sqlSession.getMapper(UserMapper.class);  
 				System.out.println(userMapper.getClass().getName());       //输出：com.sun.proxy.$Proxy0，说明是个代理实现类
 				User user=userMapper.getUserById(1);
+
+				sqlSession.commit();
 						
 				/*以下输出：User [id=1, name=null, gender=male, age=30]，
 				*原因是User对象中的属性名要与对应的数据库中的列名一致，否则无法赋值
