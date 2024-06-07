@@ -3,7 +3,7 @@
 *  >> is an arithmetic shift and it will fill "1" if it is negative. It is signed shift.
 *  >>> is a logic shift and it will fill "0" if it is positive. It is unsigned shift.
 * */
-public class BitwiseTest03 {
+public class ShiftOperationTest{
 
     public static void main(String[] args) {
         int i = -2;
