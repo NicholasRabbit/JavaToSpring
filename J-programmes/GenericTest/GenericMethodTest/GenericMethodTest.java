@@ -16,7 +16,7 @@ public class GenericMethodTest {
 		Integer[] array = new Integer[]{1,2,3,4,5};
 		List<Integer> list = baseDao.toList(array);
 		System.out.println(list);
-	
+
 	}
 
 

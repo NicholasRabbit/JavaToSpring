@@ -1,3 +1,5 @@
+
+
 //继承中泛型使用的几种情况:
 public class BaseDao<T1,T2> {
 	
