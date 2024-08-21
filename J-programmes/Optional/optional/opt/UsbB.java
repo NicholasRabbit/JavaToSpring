@@ -1,6 +1,6 @@
 package com.test.optional.opt;
 
-public class UsbWithOptional {
+public class UsbB {
 
     private String version;
 
