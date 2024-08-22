@@ -63,11 +63,21 @@ public class OptionalTest {
          * There is still a null pointer exception, I will figure it out later.
          * */
         ComputerB comp = new ComputerB();
-        Optional<ComputerB>  computerOpt = Optional.ofNullable(comp);
-        String version2 = computerOpt.flatMap(ComputerB::getSoundCard)
+
+        SoundCardB soundCardB = new SoundCardB("Realtek");
+
+        //soundCardB.setUsb(Optional.of(new UsbB("3.0")));
+        soundCardB.setUsb(Optional.of(new UsbB()));
+
+        comp.setSoundCard(Optional.of(soundCardB));
+
+        Optional<ComputerB>  computerOpt = Optional.of(comp);
+
+        String version = computerOpt.flatMap(ComputerB::getSoundCard)
                 .flatMap(SoundCardB::getUsb)
                 .map(UsbB::getVersion)
                 .orElse("UNKNOWN");
+        System.out.println("version is " + version);
     }
 
     @Test
