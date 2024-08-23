@@ -155,7 +155,33 @@ public class OptionalTest {
     }
 
 
-    // 4.5 to be continued
+    // 4.5 "flatMap(...)"
+    @Test
+    public void testFlatMap() {
+        ComputerB c = new ComputerB();
+        SoundCardB sc = new SoundCardB();
+        UsbB u = new UsbB("3.0");
+        c.setSoundCard(Optional.of(sc));
+        sc.setUsb(Optional.of(u));
+        Optional<ComputerB> computer = Optional.of(c);
+
+        /*
+        * The following code doesn't compile because the return result of "computer.map(...)" is
+        * Optional<Optional<SoundCardB>> and the return result of "getSoundCard" is "Optional<SoundCardB>".
+        * As a result, the "SoundCardB::getUsb" is invalid.
+        * */
+        Optional<Optional<SoundCardB>> invalid = computer.map(ComputerB::getSoundCard);
+        /*computerB.map(ComputerB::getSoundCard)
+                .map(SoundCardB::getUsb)
+                .map(UsbB::getVersion);*/
+
+        // Using "flatMap()" can solve the problem.
+        String version = computer.flatMap(ComputerB::getSoundCard)
+                .flatMap(SoundCardB::getUsb)
+                .map(UsbB::getVersion)
+                .orElse("UNKNOWN");
+        System.out.println("version==> " + version);
+    }
 
 
 
