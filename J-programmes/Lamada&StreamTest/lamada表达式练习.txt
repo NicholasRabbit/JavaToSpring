@@ -1,1 +1,3 @@
 课程练习代码从002开始
+
+Lambda is also called closures which is as same as the concept in Lisp, I guess.
