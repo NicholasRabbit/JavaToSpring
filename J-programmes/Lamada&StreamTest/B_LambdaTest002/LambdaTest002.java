@@ -10,6 +10,7 @@ public class LambdaTest002 {
 	public static void main(String[] args){
 		
 		anonymousTest();
+		implementInterfaceWithLambda();
 
 	}
 
@@ -40,4 +41,32 @@ public class LambdaTest002 {
 
 	}
 
+	// 2, To represent an instance of an interface with Lambda expression.  (Ambiguous with LamdaTest001, but more elabrate)
+    public static void implementInterfaceWithLambda() {
+		// 2.1 The first approach to create an instace.
+        StringParser sp = (String name) -> {
+            int i = 10;
+            return i;
+        };
+
+		// 2.2 The second approach which is more concise
+        StringParser m2 = name -> name.length();
+		// We can also use a static method in the lambda expression.
+        StringParser m3 = name -> getLength(name); 
+
+        int tom = sp.getLength("Tom");
+        System.out.println(tom);
+    }
+
+    static int getLength(String str) {
+        return str.length();
+    }
+	
+
+}
+
+
+// An interface
+interface StringParser {
+    int getLength(String name);
 }
