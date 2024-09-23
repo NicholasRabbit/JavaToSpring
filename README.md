@@ -1,5 +1,5 @@
-### JavaSE to Spring  Framework
+### From Java to Spring  Framework
 
 #### Introduction
-These  codes were written  when I was learning JavaSE, Servlet, Spring Framewok and so on.
+ These codes were written when I was learning JavaSE, JavaEE, JDBC, MySQL, Spring Framewok and so forth. 
 

@@ -41,7 +41,7 @@ public class LambdaTest002 {
 
 	}
 
-	// 2, To represent an instance of an interface with Lambda expression.  (Ambiguous with LamdaTest001, but more elabrate)
+	// 2, To represent an instance of an interface with Lambda expression.  (Duplicate with LamdaTest001, but more elabrate)
     public static void implementInterfaceWithLambda() {
 		// 2.1 The first approach to create an instace.
         StringParser sp = (String name) -> {
