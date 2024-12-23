@@ -1,11 +1,11 @@
 About this repository
-The purpose of building this repository is to create backups of my codes.
-At the same time I can learn how to use git.
-It is diffcult for an middle aged man like me to learn Java and framework such as Spring, MyBatis, etc.
-Sometimes I remembered a poem which was written by Wang Guo Zhen.
+The purpose of building this repository is to make backup my codes.
+At the same time I can learn how to use "git".
+It is diffcult for a middle-aged man like me to learn Java and frameworks such as Spring, MyBatis, etc on my own.
+Sometimes I remember a poem written by Wang Guo Zhen.
 I quote "I don't know if I can succeed, but I will keep on going when I choose the destination 
-no matter how heavy the rain or how strong the wind is."
-Maybe this will never been read by anybody.At least it is a shot memoir of mine.
+no matter how heavy the rain or how strong the wind is." 
+Maybe this will never been read by anybody. At least it is a short memoir of mine.
 No country for old man.
 That's it.
 

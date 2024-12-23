@@ -33,7 +33,9 @@ public class StreamSortComparatorTest {
         }
 
         //第二种写法：
-        List<User> sortedList2 = userList.stream().sorted(Comparator.comparing(User::getName)).collect(Collectors.toList());
+        List<User> sortedList2 = userList.stream()
+			.sorted(Comparator.comparing(User::getName))
+			.collect(Collectors.toList());
 
         for(User u : sortedList2){
             System.out.println("after sorted 02=>" + u);

@@ -36,5 +36,36 @@ shopGoodsSeedService.updateShopGoodsSeedStockNumber(shopGoodsSeedList);
             </foreach>
     </update>
 
+
+    <!--Use 'case...when...' in 'where' clause
+        Set different 'startDate' according to different 'compId'
+    -->
+    <select id="testCaseWhen" resultType="com.by4cloud.platform.scdd.entity.ProductSale">
+        SELECT
+            sale_date,
+            comp_id,
+            product_sale
+        FROM `product_sale`
+        WHERE
+            del_flag = '0'
+        AND (
+        CASE
+        <foreach collection="list" item="item" >
+            WHEN comp_id = #{item.compId} THEN ( sale_date &gt;= #{item.startDate} )
+        </foreach>
+        ELSE FALSE END )
+    </select>
+    <!--The demo of SQL with 'case...when' in 'where'-->
+    <select id="">
+        SELECT column1, column2
+        FROM table_name
+        WHERE
+            CASE
+                WHEN condition1 THEN result1
+                WHEN condition2 THEN result2
+                ELSE result3
+                END = desired_value;
+    </select>
+
 </mapper>
 
