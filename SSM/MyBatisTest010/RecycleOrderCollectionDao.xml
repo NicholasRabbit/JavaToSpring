@@ -67,5 +67,16 @@ shopGoodsSeedService.updateShopGoodsSeedStockNumber(shopGoodsSeedList);
                 END = desired_value;
     </select>
 
+    <select id="aaa">
+        <!--list.size could be a condition in 'if' tag and 'list.size()' is also correct-->
+        <if test="excludeComps != null and excludeComps.size > 0">
+            AND pm.comp_id NOT IN
+            <foreach collection="excludeComps" item="compId" open="(" separator="," close=")">
+                #{compId}
+            </foreach>
+        </if>
+
+    </select>
+
 </mapper>
 
