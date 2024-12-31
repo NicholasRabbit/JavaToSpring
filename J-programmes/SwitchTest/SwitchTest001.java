@@ -1,8 +1,20 @@
+
+/*
+ * Only "int", "char" and "String" data type could be used as condition in "switch()".
+ * */
+
 public class SwitchTest001{
     public static void main(String[] args){
-    
+		condition_int();
+		condition_char('a');
+		condition_string("tom");
+
+		
+    }
+
+	public static void condition_int() {
      java.util.Scanner scan =new java.util.Scanner(System.in);
-     System.out.print("ÇëÊäÈëÊý×Ö£º ");
+     System.out.print("è¯·è¾“å…¥æ•°å­—ï¼š ");
      int  number=scan.nextInt();
      
          switch(number){
@@ -28,12 +40,47 @@ public class SwitchTest001{
               System.out.println("Sunday");
 			  break;
               default:
-              System.out.println("ÊäÈë´íÎó");
+              System.out.println("è¾“å…¥é”™è¯¯");
 
 
          }
+	}
 
-    }
+	public static void condition_char(char x) {
+		switch (x) {
+			case 'a' : 
+				System.out.printf("%c\n", x);
+				break;
+			default :
+				System.out.println("nothing");
+		
+		}
+	
+	}
+
+	public static void condition_string(String s) {
+		switch (s) {
+			case "tom" : 
+				System.out.printf("%s\n", s);
+				break;
+			default :
+				System.out.println("nothing");
+		
+		}
+	}
+
+	public static void condition_boolean(boolean b) {
+		// An exception is thrown out when the code is compiled. It is "incompatible types: boolean can not be converted to int."
+		switch (b) {  
+			case true : 
+				System.out.println(b);
+				break;
+			default :
+				System.out.println("nothing");
+		
+		}
+	
+	}
 
 
 
