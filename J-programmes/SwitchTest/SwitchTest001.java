@@ -47,14 +47,24 @@ public class SwitchTest001{
 	}
 
 	public static void condition_char(char x) {
-		switch (x) {
-			case 'a' : 
-				System.out.printf("%c\n", x);
-				break;
-			default :
-				System.out.println("nothing");
 		
+		for (int i = 0; i < 26; i++) {
+			int vowel = 'a' + i;
+			switch (vowel) {
+				case 'a' : 
+				case 'e' : 
+				case 'i' : 
+				case 'o' : 
+				case 'u' : 
+					System.out.printf("vowels ==> %c\n", vowel);
+					break;
+				default :
+					System.out.printf("consonants ==> %c\n", vowel);
+
+			}
 		}
+
+
 	
 	}
 
@@ -69,6 +79,7 @@ public class SwitchTest001{
 		}
 	}
 
+	/*
 	public static void condition_boolean(boolean b) {
 		// An exception is thrown out when the code is compiled. It is "incompatible types: boolean can not be converted to int."
 		switch (b) {  
@@ -81,7 +92,7 @@ public class SwitchTest001{
 		}
 	
 	}
-
+	*/
 
 
 }
