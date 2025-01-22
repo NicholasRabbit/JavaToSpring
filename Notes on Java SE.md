@@ -1,4 +1,4 @@
-## 1, Naming conventions
+### 1, Naming conventions
 
 #### Naming a Package
 
@@ -41,4 +41,30 @@ LoginServlet servlet = new LoginServlet() {
             }
         };
 ```
+
+### 3, String
+
+##### 3.1) Why `null + "Foo"` is `"nullFoo"`?
+
+```java
+char str2[] = {'J', 'a', 'v', 'a'};
+String str3 = null;
+
+for (char c : str2) {
+    str3 = str3 + c;
+}
+// str3 is "nullJava".
+System.out.println(str3);
+```
+
+The `+` operator in Java is overloaded to perform concatenation. If any operand were not a String, it would be converted to a String by calling `String.valueOf(...)`. Therefore if `null` is declared as a String which is an Object the method `valueOf(Obejct)` will be called and overrode. 
+
+```java
+// java.lang.String#valueOf(java.lang.Object)
+    public static String valueOf(Object obj) {
+        return (obj == null) ? "null" : obj.toString();
+    }
+```
+
+
 
