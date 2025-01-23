@@ -44,7 +44,7 @@ LoginServlet servlet = new LoginServlet() {
 
 ### 3, String
 
-##### 3.1) Why `null + "Foo"` is `"nullFoo"`?
+##### 3.1) Why the concatenation of `null + "Foo"` is `"nullFoo"`?
 
 ```java
 char str2[] = {'J', 'a', 'v', 'a'};
@@ -61,10 +61,9 @@ The `+` operator in Java is overloaded to perform concatenation. If any operand 
 
 ```java
 // java.lang.String#valueOf(java.lang.Object)
-    public static String valueOf(Object obj) {
-        return (obj == null) ? "null" : obj.toString();
-    }
+public static String valueOf(Object obj) {
+    return (obj == null) ? "null" : obj.toString();
+}
 ```
-
 
 
