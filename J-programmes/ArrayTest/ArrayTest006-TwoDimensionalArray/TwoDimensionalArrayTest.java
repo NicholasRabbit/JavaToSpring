@@ -1,4 +1,14 @@
+
+
+
+
 public class TwoDimensionalArrayTest {
+
+
+	/*
+	 * Conventionally, the first dimension is the number of rows 
+	 * and the second dimension is the number of columns.
+	 * */
     public static void main(String[] args){
          arrayMethod();
 
@@ -7,8 +17,8 @@ public class TwoDimensionalArrayTest {
     public static void arrayMethod(){
 
 
-
-        //1，静态初始化二维数组。其内部每单个元素是一个数组，注意有两个中括号。
+		// Initialisation of two-dimensional array.
+        // 1, Initialise it statically.
         int[][]  array1 = {
                 {11,12,13,14,15},
                 {21,22,23},
@@ -42,7 +52,7 @@ public class TwoDimensionalArrayTest {
 		int[][] array3 = new int[5][5];
 		int[] array2[] = new int[2][5];
 
-		//二维数组声明的时候，第一位必须指定容量，第二维可以不指定容量
+		//N.B. 二维数组声明的时候，第一位必须指定容量，第二维可以不指定容量
 		//如果第二维没有指定容量，那么第二维中的值全部是null，因为数组本身是一个引用
 
         //int[][] arr = new int[][];  //这里报错：缺少数组维度
