@@ -20,7 +20,7 @@ class A {
 	public void method(int age ,String name){
 	    this.age=age;
 		this.name=name;
-	    System.out.println("父类A中method方法执行:"+name+age);
+	    System.out.println("父类A中method方法执行:" + name + ":" + age);
 	}
 }
 

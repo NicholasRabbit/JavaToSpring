@@ -1,7 +1,7 @@
 public class SuperTest004 {
 
     public static void main(String[] args){
-	
+		Father s = new Son();
 	   
 	}
 
@@ -23,7 +23,7 @@ class Father {
 class Son extends Father {
     
     public Son(){
-	    super(10);
+	    //super(10);  // 此处注释后会导致报错！
 	}
 
 	public Son(int age){

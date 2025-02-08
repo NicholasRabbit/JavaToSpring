@@ -1,22 +1,24 @@
 public class Son extends Father {
 
-    String name="Son";
-	
+	String name="Son";
+
 	public void work(){
-	
-	   System.out.println("儿子在工作");
+		System.out.println("A son is working.");
 	}
 
 	public void methodOfSon(){
-	
-	   System.out.println(this.name);   //这里this.name调用子类里的name，结果“Son”。
-	   this.work();                     //调用子类里的方法work()，输出“儿子在工作”。
-       
-	   System.out.println("分割线~~~~~~~~~~~~~~~");
-	   
-	   //super的作用，强制调用父类里的name，work(),即使子类（本类）里有name也不调用。
-	   System.out.println(super.name);   
-	   super.work();                     
+		//this.name is the field in this class, namely the Son.class.
+		System.out.println(this.name);   
+		//To call the "work()" method in Son.
+		this.work();                     
+
+		System.out.println("~~~~~~~~~~~~~~~");
+
+		//While super is used to get the field in Son's or to call
+		//the method in super class even though there are ones with
+		//same names in Son.class.
+		System.out.println(super.name);   
+		super.work();                     
 
 
 	}
