@@ -125,3 +125,39 @@ Bar bar = JSONUtil.toBean((JSONObject) bean.getResult(), Bar.class);
 | assignment           | `= += -= *= /= %= &= ^= |= <<= >>= >>>=` |
 
 Operators in a row have higher precedence than its lower rows in the above table. 
+
+### 6, "default" and "  " are different access modifiers
+
+```java
+
+class Foo {
+    /*
+    Issue: This code is invalid in Java.
+    */
+    default void test () {
+
+    }
+}
+
+class Bar {
+    void test() {
+
+    }
+}
+
+```
+
+- **Issue:** This code is **invalid** in Java.
+  - The `default` keyword is used in **interfaces** to provide a default implementation for a method. It cannot be used in a **class**.
+  - If you try to compile this code, you will get a compilation error because `default` is not allowed in a class definition.
+
+In addition, `default` can not be an access modifier of a variable.
+
+```java
+// A syntactic error.
+default int i;
+// Correct
+int i;
+```
+
+Generally speaking, `default` can only be used as an access modifier of a default implementation of a method in an interface.
