@@ -100,3 +100,28 @@ Bar bar = JSONUtil.toBean((JSONObject) bean.getResult(), Bar.class);
 [Official Documents](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
 
 [Lesson: Generic Types](https://docs.oracle.com/javase/tutorial/extra/generics/index.html)
+
+
+
+### 5, Operators Precedence
+
+[Precedence of Operators](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html)
+
+| Operators            | Precedence                               |
+| -------------------- | ---------------------------------------- |
+| postfix              | `*expr*++ *expr*--`                      |
+| unary                | `++*expr* --*expr* +*expr* -*expr* ~ !`  |
+| multiplicative       | `* / %`                                  |
+| additive             | `+ -`                                    |
+| shift                | `<< >> >>>`                              |
+| relational           | `< > <= >= instanceof`                   |
+| equality             | `== !=`                                  |
+| bitwise AND          | `&`                                      |
+| bitwise exclusive OR | `^`                                      |
+| bitwise inclusive OR | `|`                                      |
+| logical AND          | `&&`                                     |
+| logical OR           | `||`                                     |
+| ternary              | `? :`                                    |
+| assignment           | `= += -= *= /= %= &= ^= |= <<= >>= >>>=` |
+
+Operators in a row have higher precedence than its lower rows in the above table. 
