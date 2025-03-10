@@ -161,3 +161,15 @@ int i;
 ```
 
 Generally speaking, `default` can only be used as an access modifier of a default implementation of a method in an interface.
+
+### 7,  `1_11.00` : Underscores are legal in numbers
+
+In order to improve readability, correct usage of underscores in numeric literals is allowed in Java:
+
+- **Integers:** `int x = 1_000_000;`  (Valid)
+- **Floating-point:** `float f = 111.00f;` or `float f = 1_11.0f;` (Valid)
+- **Hexadecimal:** `int hex = 0xFF_EC_DE_5E;` (Valid)
+- **Binary:** `int bin = 0b1010_0101;` (Valid)
+
+See `UnderscoreTest.java` in J-Programmes
+
