@@ -126,7 +126,24 @@ Bar bar = JSONUtil.toBean((JSONObject) bean.getResult(), Bar.class);
 
 Operators in a row have higher precedence than its lower rows in the above table. 
 
-### 6, "default" and "  " are different access modifiers
+
+
+### 7,  `1_11.00` : Underscores are legal in numbers
+
+In order to improve readability, correct usage of underscores in numeric literals is allowed in Java:
+
+- **Integers:** `int x = 1_000_000;`  (Valid)
+- **Floating-point:** `float f = 111.00f;` or `float f = 1_11.0f;` (Valid)
+- **Hexadecimal:** `int hex = 0xFF_EC_DE_5E;` (Valid)
+- **Binary:** `int bin = 0b1010_0101;` (Valid)
+
+See `UnderscoreTest.java` in J-Programmes
+
+### 8, Modifiers
+
+[access control](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html)
+
+#### 1) default and package-private
 
 **N.B.** in `int i;` the implicit modifier is "*package-private*" which is distinct from the modifier `default`.
 
@@ -161,28 +178,15 @@ int i;
 
 Generally speaking, `default` can only be used as an access modifier of a default implementation of a method in an interface.
 
-### 7,  `1_11.00` : Underscores are legal in numbers
+#### 2), `protected` and Polymorphism
 
-In order to improve readability, correct usage of underscores in numeric literals is allowed in Java:
+See `ProtectedTest.java` in J-Programme.  [protected](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html#:~:text=The%20protected%20modifier%20specifies%20that%20the%20member%20can%20only%20be%20accessed%20within%20its%20own%20package%20(as%20with%20package%2Dprivate)%20and%2C%20in%20addition%2C%20by%20a%20subclass%20of%20its%20class%20in%20another%20package.)
 
-- **Integers:** `int x = 1_000_000;`  (Valid)
-- **Floating-point:** `float f = 111.00f;` or `float f = 1_11.0f;` (Valid)
-- **Hexadecimal:** `int hex = 0xFF_EC_DE_5E;` (Valid)
-- **Binary:** `int bin = 0b1010_0101;` (Valid)
+> Since `Acc` is in the package of "p1" and Test is in "p2", members like "int r" with the implicit modifier of package-private could be accessed if and only if the subclass is declared without polymorphism as in Example 1. 
+>
+> When compiled, `obj` is an instance of ACC. Conventionally, members with `protected` can only be accessed within its package (like *package-private*) and, in addition, by a subclass of its class in another package such as in "Example 1" below. 
 
-See `UnderscoreTest.java` in J-Programmes
-
-### 8, Modifiers
-
-[access control](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html)
-
-##### 1), `protected` and Polymorphism
-
-See `ProtectedTest.java` in J-Programme
-
-Since `Acc` is in the package of "p1" and Test is in "p2", members like "int r" with the implicit modifier of package-private could be accessed if and only if the subclass is declared without polymorphism as in Example 1.
-
-N.B. The "int r" can not be accessed if the instance variable is the super class.
+N.B. The "int r" can not be accessed if the instance variable is the super class outside its package.
 
 ```java
 package p2;
@@ -191,11 +195,13 @@ public class Test extends Acc {
 	public static void main(String[] args){
 		// Example 1
 		Test test = new Test();
-		int t3 = test.r;  // implicit modifier of package-private
-
+		// protected. test.r is accessed because 'r' is inherited by Test
+        int t3 = test.r;  
+		
 		// Example 2
+        // When this code is compiled, obj is an instance of Acc and is declared outside its package. Thus, 'r' is not accessed.
 		Acc obj = new Test();	
-		int r = obj.r;  // implicit modifier of package-private
+		int r = obj.r;  //protected
 	}
 }
 ```
