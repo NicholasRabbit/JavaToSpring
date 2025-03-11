@@ -128,8 +128,9 @@ Operators in a row have higher precedence than its lower rows in the above table
 
 ### 6, "default" and "  " are different access modifiers
 
-```java
+**N.B.** in `int i;` the implicit modifier is "*package-private*" which is distinct from the modifier `default`.
 
+```java
 class Foo {
     /*
     Issue: This code is invalid in Java.
@@ -138,10 +139,8 @@ class Foo {
 
     }
 }
-
 class Bar {
-    void test() {
-
+    void test() {   // package-private
     }
 }
 
@@ -172,4 +171,38 @@ In order to improve readability, correct usage of underscores in numeric literal
 - **Binary:** `int bin = 0b1010_0101;` (Valid)
 
 See `UnderscoreTest.java` in J-Programmes
+
+### 8, `protected` and Polymorphism
+
+See `ProtectedTest.java` in J-Programme
+
+Since `Acc` is in the package of "p1" and Test is in "p2", members like "int r" with the implicit modifier of package-private could be accessed if and only if the subclass is declared without polymorphism as in Example 1.
+
+N.B. The "int r" can not be accessed if the instance variable is the super class.
+
+```java
+package p2;
+import p1.Acc;
+public class Test extends Acc {
+	public static void main(String[] args){
+		// Example 1
+		Test test = new Test();
+		int t3 = test.r;  // implicit modifier of package-private
+
+		// Example 2
+		Acc obj = new Test();	
+		int r = obj.r;  // implicit modifier of package-private
+	}
+}
+```
+
+```java
+package p1;
+public class Acc {
+	int p;
+	private int q;
+	protected int r;
+	public int s;
+}
+```
 
