@@ -4,13 +4,13 @@ public class Son extends Father {
 
 
 	/*
-	 * 1,使用super()调用只能写在方法构造方法第一行。因此，只有一句。
-	 *	 this()也是只能在第一行，所以这俩个方法不可同时出现在一个构造方法里。
+	 * 1. super() must be at the very first line of the constructor. 
+	 *	  this() also must be at the first line, therefore, they can not exit in the same method. Note it is a metod, this().
 	 * 2,如果父类只有一个有参构造方法，无参构造也没有手写(此时父类中的系统默认给的也没有了)
 	 *   那么子类的构造方法中必须使用super(..)去调用，否则编译报错，详见本节测试类里。
+	 * 3. The reason that super() must be called is to verify the existance of the superclass. 
 	 * **/
 	public Son(){
-
 		//super();          //此处无参构造方法内，系统默认给一个super(),一般不显示，来调用父类里的无参构造方法。
 		//super("10",100);  //一旦有在子类里的无参构造方法里有手写的super()或super(实参)，
 		//那么，系统默认给的super()就没有了。

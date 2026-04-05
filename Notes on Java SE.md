@@ -244,3 +244,14 @@ public static void doSome(User u) {
 	u.id = 25;
 }
 ```
+
+### 10. Double and Integer
+
+What's wrong with the following Java code which converts Fahrenheit to Celsius ? 
+
+```java
+double f = 95.5;
+double c = f * (9/5) + 32;
+```
+
+Integers are used as numerator and denominator in`9/5`. The result is 1, not 1.8. Consequently, the value of Celsius is not correct.
