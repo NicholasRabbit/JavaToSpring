@@ -1,4 +1,4 @@
-public class ForTest011{
+public class ForTest011_Primes{
     public static void main(String[] args){
 	     int m;
 	      

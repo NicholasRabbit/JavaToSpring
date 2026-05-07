@@ -1,8 +1,0 @@
-/*这里修饰标签a中的内容
-*/
-a{
-	font-size:20px;
-	color:orchid;
-	text-decoration:none; /* 这里设置把超链接的默认下划线去掉*/
-}
-

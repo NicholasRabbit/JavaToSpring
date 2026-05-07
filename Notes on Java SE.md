@@ -255,3 +255,8 @@ double c = f * (9/5) + 32;
 ```
 
 Integers are used as numerator and denominator in`9/5`. The result is 1, not 1.8. Consequently, the value of Celsius is not correct.
+
+### 11. String.format()
+
+[Definition and usage.](https://www.w3schools.com/java/ref_string_format.asp)
+
