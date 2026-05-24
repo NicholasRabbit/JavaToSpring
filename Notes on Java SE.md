@@ -245,7 +245,9 @@ public static void doSome(User u) {
 }
 ```
 
-### 10. Double and Integer
+### 10. Double, Float and Integer
+
+1) Double and integer.
 
 What's wrong with the following Java code which converts Fahrenheit to Celsius ? 
 
@@ -256,7 +258,26 @@ double c = f * (9/5) + 32;
 
 Integers are used as numerator and denominator in`9/5`. The result is 1, not 1.8. Consequently, the value of Celsius is not correct.
 
+2) Float and double
+
+Any constant decimal in Java is treated as a double data if not specified. 
+
+```java
+float f = 1.2;  // an error occurs when it is compiled. 1.2 is double by default. 
+float f = 1.2f;	// 
+```
+
+
+
 ### 11. String.format()
 
 [Definition and usage.](https://www.w3schools.com/java/ref_string_format.asp)
 
+```java
+// By default, the output is aligned right with padding spaces on the left. 
+String.format("%10s", "Hello");
+// "-" indicates that it is align left. 
+String.format("%-10s", "Hello");
+```
+
+See `StringFormatTest.java` for more details. 
